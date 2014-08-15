@@ -1,0 +1,14 @@
+# we use Shopify as our ecommerce platform
+
+User-agent: *
+Disallow: /admin
+Disallow: /cart
+Disallow: /orders
+Disallow: /checkouts
+Disallow: /account
+Disallow: /collections/*+*
+Disallow: /blogs/*+*
+Sitemap: https://monster-supplies.myshopify.com/sitemap.xml
+
+User-agent: Nutch
+Disallow: /

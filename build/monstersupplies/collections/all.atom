@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:s="http://jadedpixel.com/-/spec/shopify">
+  <id>https://monster-supplies.myshopify.com/collections/all.atom</id>
+  <link rel="alternate" type="text/html" href="https://monster-supplies.myshopify.com/collections/all"/>
+  <link rel="self" type="application/atom+xml" href="https://monster-supplies.myshopify.com/collections/all.atom"/>
+  <title>Monster Supplies</title>
+  <updated>2014-07-28T19:43:00+01:00</updated>
+  <author>
+    <name>Monster Supplies</name>
+  </author>
+  <entry>
+    <id>https://monster-supplies.myshopify.com/products/329909719</id>
+    <published>2014-07-28T19:43:00+01:00</published>
+    <updated>2014-07-28T19:43:00+01:00</updated>
+    <link rel="alternate" type="text/html" href="https://monster-supplies.myshopify.com/products/test-product"/>
+    <title>Test product</title>
+    <s:type>fear</s:type>
+    <s:vendor>Monster Supplies</s:vendor>
+    <summary type="html">
+      <![CDATA[
+    <table border="0">
+      <tr>
+        <td width="200"><img width="200" src="https://cdn.shopify.com/s/files/1/0558/9901/products/test.jpg?v=1406589624" /></td>
+        <td valign="bottom">
+          <p>
+            <strong>Vendor: </strong>Monster Supplies<br />
+            <strong>Type: </strong>fear<br />
+            <strong>Price: </strong>
+              7.00
+          </p>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">Description for product</td>
+      </tr>
+    </table>
+
+]]>
+    </summary>
+    <s:tag>fear</s:tag>
+    <s:tag>tin</s:tag>
+    <s:variant>
+      <id>https://monster-supplies.myshopify.com/products/329909719</id>
+      <title>Default Title</title>
+      <s:price currency="GBP">7.00</s:price>
+      <s:sku></s:sku>
+      <s:grams>1000</s:grams>
+    </s:variant>
+  </entry>
+</feed>
