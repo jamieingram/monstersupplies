@@ -1,0 +1,53 @@
+
+
+/*============================================================================
+  #General Variables
+==============================================================================*/
+
+// Timber Colors
+$colorPrimary: {{ settings.color_primary }};
+$colorSecondary: {{ settings.color_secondary }};
+
+// Button colors
+$colorBtnPrimary: $colorPrimary;
+$colorBtnPrimaryHover: darken($colorBtnPrimary, 10%);
+$colorBtnPrimaryActive: darken($colorBtnPrimaryHover, 10%);
+
+$colorBtnSecondary: $colorSecondary;
+$colorBtnSecondaryHover: darken($colorBtnSecondary, 10%);
+$colorBtnSecondaryActive: darken($colorBtnSecondaryHover, 10%);
+
+// Text link colors
+$colorLink: $colorPrimary;
+$colorLinkHover: #333;
+
+// Text colors
+$colorBody: #fff;
+$colorTextBody: {{ settings.color_body_text }};
+$colorHeaders: #999;
+
+// Border colors
+$borderColor: #e5e5e5;
+
+// Nav and dropdown link background
+$colorNav: #f2f2f2;
+$colorNavText: #333;
+
+// Footer
+$colorFooterBg: {{ settings.color_footer_bg }};
+$colorFooterText: {{ settings.color_footer_text }};
+
+// Helper colors
+$disabledGrey: #f6f6f6;
+$disabledBorder: darken($disabledGrey, 25%);
+$errorRed: #dc0000;
+$errorRedBg: lighten($errorRed, 55%);
+$successGreen: #0a942a;
+
+// Width variables
+$siteWidth: 1180px;
+$gutter: 24px;
+$gridGutter: 24px; // can be a %, but nested grids will have smaller margins because of it
+
+// Radius
+$radius: 3px;

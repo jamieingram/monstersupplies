@@ -1,0 +1,204 @@
+/*================ Typography ================*/
+
+// Header Font
+$headerFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$headerFontWeight: 700;
+
+// Body Font
+$bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$baseFontSize: 87.5%; // Henseforth known as 1em (assumed at 14px)
+
+// Icons
+@font-face {
+  font-family: "icons";
+  src: url(' {{ "icons.eot" | asset_url }} ');
+  src: url(' {{ "icons.eot" | asset_url }} ?#iefix ') format("embedded-opentype"),
+       url(' {{ "icons.woff" | asset_url }} ') format("woff"),
+       url(' {{ "icons.ttf" | asset_url }} ') format("truetype"),
+       url(' {{ "icons.svg" | asset_url }} #timber-icons ') format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+$socialIconFontStack: 'icons';
+
+/*============================================================================
+  #Typography
+==============================================================================*/
+body,
+input,
+textarea,
+button,
+select {
+  font-size: $baseFontSize;
+  line-height: 1.6;
+  font-family: $bodyFontStack;
+  color: $colorTextBody;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  display: block;
+  font-family: $headerFontStack;
+  font-weight: $headerFontWeight;
+  margin-bottom: 0.5em;
+  line-height: 1.4;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
+.h1 a, .h2 a, .h3 a, .h4 a, .h5 a, .h6 a { font-weight: inherit; }
+
+/*============================================================================
+  Pixel to EM conversion tool
+    - http://pxtoem.com/
+==============================================================================*/
+h1, .h1 { font-size: 3em; }       // 42px
+h2, .h2 { font-size: 2em; }       // 28px
+h3, .h3 { font-size: 1.571em; }   // 21px
+h4, .h4 { font-size: 1.429em; }   // 20px
+h5, .h5 { font-size: 1.143em; }   // 16px
+h6, .h6 { font-size: 1em; }       // 14px
+
+p { margin: 0 0 $gutter/2 0; }
+p img { margin: 0; }
+
+em { font-style: italic; }
+strong { font-weight: bold; }
+small { font-size: 80%; }
+sup {
+  position: relative;
+  top: -0.5em;
+  font-size: 60%;
+}
+
+
+/*================ Section Headers ================*/
+.section-header {
+  margin-bottom: $gutter/2;
+}
+
+@include at-query ($min, $large) {
+  .section-header {
+    display: table;
+    width: 100%;
+  }
+
+  .section-header--left {
+    display: table-cell;
+    vertical-align: middle;
+    margin-bottom: 0;
+
+    h1, h2, h3, h4,
+    .h1, .h2, .h3, .h4 {
+      margin-bottom: 0;
+    }
+  }
+
+  .section-header--right {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: right;
+    width: 325px;
+
+    @include at-query ($max, $medium) {
+      margin-bottom: $gutter;
+    }
+  }
+}
+
+.section-header--right {
+  @include at-query ($max, $medium) {
+    margin-top: -0.4em; // don't exceed h1 margin-bottom
+  }
+
+
+/*============================================================================
+  #Rich Text Editor
+==============================================================================*/
+.rte {
+  margin-bottom: $gutter/2;
+
+  // Add some top margin to headers from the rich text editor
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 2em;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  & > div {
+    margin-bottom: $gutter/2;
+  }
+
+  ul, ol {
+    margin-left: 35px;
+  }
+
+  ul {
+    @extend ul.disc;
+  }
+
+  li {
+    margin-bottom: 0.4em;
+  }
+}
+
+  .form-horizontal,
+  .collection-view {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  @include at-query ($min, $postSmall) {
+    label + select,
+    .collection-view {
+      margin-left: $gutter/2;
+    }
+  }
+}
+
+.collection-view {
+  display: inline-block;
+  border: 1px solid $borderColor;
+  border-radius: $radius;
+  padding: 11px;
+  height: 37px; // same as form elements
+
+  /*================ We use SVG icons, so simply hide this in oldIE ================*/
+  .lt-ie9 & {
+    display: none;
+  }
+
+  /*================ Only show on larger screens ================*/
+  @include at-query ($min, $large) {
+    display: inline-block;
+  }
+
+  a {
+    display: block;
+    float: left;
+    opacity: 0.7;
+    cursor: pointer;
+
+    & + a {
+      margin-left: 10px;
+    }
+
+    &.collection-view--active {
+      opacity: 1;
+      cursor: default;
+    }
+  }
+
+  img {
+    display: block;
+    opacity: inherit;
+  }
+}

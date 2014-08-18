@@ -1,5 +1,14 @@
-$(function() {
+;(function ($, Monsters, undefined){
 
-  // Go for it
-
-});
+    // set up main nav expand/collapse ////////////////////////////////////////
+    $(document).ready(function() {
+        //initialise the carouel
+        $(".feature-carousel").owlCarousel({
+            slideSpeed : 300,
+            paginationSpeed : 400,
+            singleItem:true
+        });
+    });
+    
+    
+})(jQuery, window.Monsters || (window.Monsters = {}));

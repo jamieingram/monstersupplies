@@ -6,18 +6,16 @@
     - http://docs.shopify.com/themes/liquid-variables/global
 {% endcomment %}
 
-<h2>Frontpage Collection</h2>
-
-{% comment %}
-  Use class grid-uniform to have evenly sized columns clear
-  each other properly at each breakpoint.
-{% endcomment %}
 <div class="grid-uniform">
 
-  {% comment %}
-    Loop through products in your Frontpage collection.
-    This collection is created by default, but you must add products to it.
-  {% endcomment %}
+  <div class="grid-item">
+    <div class="feature-carousel">
+      <div class="carousel-item"> Feature item 1 </div>
+      <div class="carousel-item"> Feature item 2 </div>
+      <div class="carousel-item"> Feature item 3 </div>
+    </div>
+  </div>
+
   {% for product in collections.frontpage.products limit:6 %}
 
     {% include 'product-grid-item' %}

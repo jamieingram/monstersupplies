@@ -1,0 +1,265 @@
+/*============================================================================
+  #Basic Styles
+==============================================================================*/
+html {
+  background-color: $colorFooterBg;
+}
+
+body {
+  background-color: $colorBody;
+}
+
+.wrapper {
+  @include clearfix();
+  max-width: $siteWidth;
+  margin: 0 auto;
+  padding: 0 $gutter/2;
+
+  @include at-query ($min, $small) {
+    padding: 0 $gutter;
+  }
+}
+
+.main-content {
+  display: block;
+  margin-top: $gutter;
+  padding-bottom: $gutter*2;
+}
+
+/*============================================================================
+  #Helper Classes
+==============================================================================*/
+.left { float: left; }
+.right { float: right; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.hidden { display: none; }
+
+.display-table {
+  display: table;
+}
+
+.display-table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+
+/*================ Blockquotes ================*/
+blockquote {
+  font-size: 1.125em;
+  line-height: 1.45;
+  font-style: italic;
+  margin: 0 0 $gutter;
+  padding: $gutter/2 $gutter;
+  border-left: 1px solid $borderColor;
+
+  p {
+    margin-bottom: 0;
+
+    & + cite {
+      margin-top: $gutter/2;
+    }
+  }
+
+  cite {
+    display: block;
+    font-size: 0.75em;
+
+    &:before {
+      content: "\2014 \0020";
+    }
+  }
+}
+
+hr {
+  clear: both;
+  border-top: solid $borderColor;
+  border-width: 1px 0 0;
+  margin: $gutter 0;
+
+  &.hr--small {
+    margin: $gutter/2 0;
+  }
+
+  &.hr--clear {
+    border-top-color: transparent;
+  }
+}
+
+/*============================================================================
+  #Links and Buttons
+==============================================================================*/
+a {
+  color: $colorLink;
+  text-decoration: underline;
+}
+
+a:hover,
+a:focus {
+  color: $colorLinkHover;
+}
+
+.btn {
+  display: inline-block;
+  padding: 8px 10px;
+  margin: 0;
+  line-height: 1.42;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+  -webkit-user-select: none;
+  -moz-user-select:    none;
+  -ms-user-select:     none;
+  -o-user-select:      none;
+  user-select:         none;
+  -webkit-appearance: none;
+  border-radius: $radius;
+
+  &.btn--small {
+    padding: 4px 5px;
+    font-size: 0.75em; //12px
+  }
+
+  &.btn--full {
+    width: 100%;
+  }
+
+  /*================ Set primary button colors - can override later ================*/
+  background-color: $colorBtnPrimary;
+  color: #fff;
+
+  &:hover {
+    background-color: $colorBtnPrimaryHover;
+    color: #fff;
+  }
+
+  &:active,
+  &:focus {
+   background-color: $colorBtnPrimaryActive;
+   color: #fff;
+  }
+
+  &[disabled],
+  &.disabled {
+    cursor: default;
+    color: $disabledBorder;
+    background-color: $disabledGrey;
+  }
+}
+
+.btn-secondary {
+  @extend .btn;
+  background-color: $colorBtnSecondary;
+
+  &:hover {
+    background-color: $colorBtnSecondaryHover;
+    color: #fff;
+  }
+
+  &:active,
+  &:focus {
+   background-color: $colorBtnSecondaryActive;
+   color: #fff;
+  }
+}
+
+/*================ Force an input/button to look like a text link ================*/
+.text-link {
+  display: inline;
+  border: 0 none;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
+/*============================================================================
+  #Lists
+==============================================================================*/
+ul, ol { margin-bottom: 1em; }
+ul { list-style: none outside; }
+ol { list-style: decimal; }
+ol, ul.square, ul.disc { margin-left: 20px; }
+ul.square { list-style: square outside; }
+ul.disc { list-style: disc outside; }
+ol.alpha { list-style: lower-alpha outside; }
+ul ul, ul ol,
+ol ol, ol ul { margin: 4px 0 5px 20px; }
+li { margin-bottom: 0.25em; }
+.inline-list li {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+/*============================================================================
+  #Tables
+==============================================================================*/
+table.full {
+  width: 100%;
+  margin-bottom: 1em;
+}
+
+th {
+  font-weight: bold;
+}
+
+th, td {
+  text-align: left;
+  padding: $gutter/2;
+  border: 1px solid $borderColor;
+}
+
+
+/*============================================================================
+  #OOCSS Media Object
+//  - http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/
+==============================================================================*/
+.media,
+.media-flex {
+  overflow: hidden;
+  _overflow: visible;
+  zoom: 1;
+}
+
+.media-img {
+  float: left;
+  margin-right: $gutter;
+}
+
+.media-img-right {
+  float: right;
+  margin-left: $gutter;
+}
+
+.media-img img,
+.media-img-right img {
+  display: block;
+}
+
+
+/*============================================================================
+  #Images and Iframes
+==============================================================================*/
+img.auto,
+.grid-item img,
+.grid-item iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+/*============================================================================
+  #Demo Styles - for empty store state
+==============================================================================*/
+.demo-image {
+  background: url('//cdn.shopify.com/s/files/1/0383/9765/t/1/assets/blankslate-producticon.png?4') no-repeat center center #eee;
+  display: block;
+  text-align: center;
+  padding: 100px 0;
+  color: #aaa;
+  font-size: 0.875em;
+  text-decoration: none;
+}
