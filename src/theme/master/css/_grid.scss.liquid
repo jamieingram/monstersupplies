@@ -52,6 +52,12 @@ $pull:               false;
   clear: both;
 }
 
+.full-width {
+  clear: both;
+  width:100%;
+  padding-left:0;
+}
+
 $class-type: unquote(".");
 
 @if $use-silent-classes == true {
@@ -107,6 +113,7 @@ $class-type: unquote(".");
 #{$class-type}grid-item {
   float: left;
   padding-left:$gridGutter;
+  margin-bottom:$gridGutter;
   vertical-align:top;
   @if $mobile-first == true {
     width:100%;

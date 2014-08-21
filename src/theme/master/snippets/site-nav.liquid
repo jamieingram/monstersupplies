@@ -4,6 +4,8 @@
   More info on linklists:
     - http://docs.shopify.com/themes/liquid-variables/linklists
 {% endcomment %}
+
+{% comment %}
 <ul class="site-nav">
   {% for link in linklists.main-menu.links %}
 
@@ -28,3 +30,19 @@
   {% endif %}
   {% endfor %}
 </ul>
+{% endcomment %}
+
+<div class="menu">
+    <ul>
+        <li class="nav-item nav-toggle"><a href="#">Menu</a></li>
+        <li class="nav-item"><a href="#">Edibles</a></li>
+        <li class="nav-item"><a href="#">Apothecary</a></li>
+        <li class="nav-item"><a href="#">Lifestyle</a></li>
+        <li class="nav-item"><a href="#">Clothing &amp; Accessories</a></li>
+        <li class="nav-item"><a href="#">Gift ideas</a></li>
+        <li class="nav-item"><a href="#">See everything</a></li>
+        <span class="nav-divider">|</span>
+        <li class="nav-item"><a href="#">Shop Journal</a></li>
+        <li class="nav-item"><a href="#">About us</a></li>
+    </ul>
+</div>

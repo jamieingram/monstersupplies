@@ -10,109 +10,71 @@
 
   <div class="grid-item">
     <div class="feature-carousel">
-      <div class="carousel-item"> Feature item 1 </div>
-      <div class="carousel-item"> Feature item 2 </div>
-      <div class="carousel-item"> Feature item 3 </div>
+      <div class="carousel-item">
+        {{ 'temp_carousel.jpg' | asset_url | img_tag: 'carousel image 1' }}
+        <div class="carousel-copy">
+          <h3>FANG FLOSS</h3>
+          <p>Our marvellously strong Fang Floss is invaluable in cleaning where traditional sticks and brushes can't reach.</p>
+          <button class='btn btn-black'>Buy now</button>
+        </div>
+      </div>
+      <div class="carousel-item">{{ 'temp_carousel.jpg' | asset_url | img_tag: 'carousel image 2' }}</div>
+      <div class="carousel-item">{{ 'temp_carousel.jpg' | asset_url | img_tag: 'carousel image 3' }}</div>
+    </div>
+  </div>
+  <div class="grid-item">
+    <div class="mos-promo">
+      <p>Regrettably, all profits go to the creative writing and mentory charity for young humans, the <a href="http://www.ministryofstories.org" target="_blank">Ministry of Stories</a></p>
     </div>
   </div>
 
-  {% for product in collections.frontpage.products limit:6 %}
-
-    {% include 'product-grid-item' %}
-
-  {% else %}
-
-    <div class="grid-item">
-      <p>You have no products in your Frontpage collection. This placeholder will appear until you <a href="/admin/custom_collections">add a product to this collection</a>.</p>
+  <div class="grid-item">
+    <div class="delivery-promo">
+      <button class='btn btn-black'>Free delivery on orders over &pound;50</button>
     </div>
+  </div>
+</div>
+  
+<div class="frontpage-collection side-padding">
+    <h2 class="text-center">Most loathed this week</h2>
+    <div class="grid-uniform">
+      {% for product in collections.featured.products limit:4 %}
 
-    <div class="grid-item">
-      <div class="grid-uniform">
-        <div class="grid-item large--one-third medium--one-half">
-          <a href="/admin/products" class="demo-image">
-            Add a Product
-          </a>
-          <p><a href="/admin/products">Example Product Title</a> $19.99</p>
-        </div>
-        <div class="grid-item large--one-third medium--one-half">
-          <a href="/admin/products" class="demo-image">
-            Add a Product
-          </a>
-          <p><a href="/admin/products">Example Product Title</a> $19.99</p>
-        </div>
-        <div class="grid-item large--one-third medium--one-half">
-          <a href="/admin/products" class="demo-image">
-            Add a Product
-          </a>
-          <p><a href="/admin/products">Example Product Title</a> $19.99</p>
-        </div>
-      </div>
+        {% include 'product-grid-item' %}
+
+      {% endfor %}
     </div>
-
-  {% endfor %}
-
 </div>
 
-<hr>
-
-<h2>Featured Collections</h2>
-
 <div class="grid-uniform">
-
-  {% comment %}
-    Show three collections, unless it's 'frontpage'.
-
-    Use an index variable in combination to the limit filter
-    to account for the frontpage collection being in top 3 returned.
-
-    Use variable isEmpty to check if no collections will be shown.
-    For empty store demo only.
-  {% endcomment %}
-  {% assign index = 1 %}
-  {% assign isEmpty = true %}
-
-  {% for collection in collections limit:4 %}
-    {% unless index > 4 %}
-
-      {% unless collection.handle == 'frontpage' %}
-        {% assign isEmpty = false %}
-        {% include 'collection-grid-item' %}
-      {% endunless %}
-
-    {% endunless %}
-
-    {% if isEmpty %}
-      <div class="grid-item">
-        <p>You don't have any collections to show here. <a href="/admin/custom_collections">Add some collections</a> to go along with the default Frontpage.</p>
-      </div>
-      <div class="grid-item">
-        <div class="grid-uniform">
-          <div class="grid-item large--one-third medium--one-half text-center">
-            <div class="demo-image">
-              Collection Image
-            </div>
-            <h5><a href="/admin/custom_collections">Example Collection Title</a> <small>(3 items)</small></h5>
-          </div>
-          <div class="grid-item large--one-third medium--one-half text-center">
-            <div class="demo-image">
-              Collection Image
-            </div>
-            <h5><a href="/admin/custom_collections">Example Collection Title</a> <small>(13 items)</small></h5>
-          </div>
-          <div class="grid-item large--one-third medium--one-half text-center">
-            <div class="demo-image">
-              Collection Image
-            </div>
-            <h5><a href="/admin/custom_collections">Example Collection Title</a> <small>(25 items)</small></h5>
-          </div>
+  <div class="grid-item">
+    <div class="about-shop-promo">
+        <div class="panel panel-black">
+          <h4>Service with a snarl</h4>
+          <div class="panel-sub-title">~ Since 1818 ~</div>
+          <p>London's oldest supplier of goods for the living, dead and undead now delivers to monsters right across the UK.</p>
+          <p>Confusingly voted No.1 Kids shop in London by <i>TimeOut</i> magazine (we serve monsters, not kids)</p>
+          <p><button class='btn btn-grey'>Find out more</button></p>
+          <p><a class="map-link" href="https://www.google.co.uk/maps/place/Ministry+of+Stories+and+Hoxton+Street+Monster+Supplies/@51.5314205,-0.0803399,17z/data=!4m2!3m1!1s0x0:0x4d51907375032c33?hl=en" target="_blank">159 Hoxton Street, London N1 6PJ</a></p>
         </div>
-      </div>
-    {% endif %}
+    </div>
+  </div>
+</div>
 
-    {% comment %}Add 1 to the current index{% endcomment %}
-    {% assign index = index | plus: 1 %}
-  {% endfor %}
+<div class="side-padding">
+  <h2 class="text-center">Collections</h2>
 
+  <div class="grid-uniform">
+
+    {% for collection in collections limit:7 %}
+
+        {% unless collection.handle == 'featured' %}
+          {% include 'collection-grid-item' %}
+        {% endunless %}
+
+    {% endfor %}
+
+  </div>
 </div>
 
 <hr>
@@ -124,55 +86,57 @@
   handle we want to focus on. For this example we'll use the default 'news',
   but you can create a blog page-specific content if you want.
 {% endcomment %}
-<h2>Latest News</h2>
 
-<div class="grid">
-  {% for article in blogs['news'].articles limit:3 %}
+<div class="side-padding">
+  <h2>Latest News</h2>
 
-    <div class="grid-item large--one-third">
+  <div class="grid">
+    {% for article in blogs['news'].articles limit:3 %}
 
-      <h6>
-        <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
-          {{ article.published_at | date: '%b %d, %Y' }}
-        </time>
-      </h6>
-      <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+      <div class="grid-item large--one-third">
 
-      {% comment %}
-        Add a surrounding div with class 'rte' to anything that will come from the rich text editor.
-        Since this is just a listing page, you can either use the excerpt or truncate the full article.
-      {% endcomment %}
-      <div class="rte">
-        {% if article.excerpt.size > 0 %}
-          {{ article.excerpt }}
-        {% else %}
-          <p>{{ article.content | strip_html | truncatewords: 20 }}</p>
-        {% endif %}
-      </div>
-
-      {% comment %}
-        Show off meta information like number of comments and tags.
-      {% endcomment %}
-      <ul>
+        <h6>
+          <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+            {{ article.published_at | date: '%b %d, %Y' }}
+          </time>
+        </h6>
+        <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
 
         {% comment %}
-          Don't be fooled, the ? in comments_enabled? is part of the liquid tag.
+          Add a surrounding div with class 'rte' to anything that will come from the rich text editor.
+          Since this is just a listing page, you can either use the excerpt or truncate the full article.
         {% endcomment %}
-        {% if blog.comments_enabled? %}
-        <li>
-          <a href="{{ article.url }}#comments">
-            {{ article.comments_count }} {{ article.comments_count | pluralize: 'comment','comments' }}
-          </a>
-        </li>
-        {% endif %}
+        <div class="rte">
+          {% if article.excerpt.size > 0 %}
+            {{ article.excerpt }}
+          {% else %}
+            <p>{{ article.content | strip_html | truncatewords: 20 }}</p>
+          {% endif %}
+        </div>
 
-        {% include 'tags-article' %}
+        {% comment %}
+          Show off meta information like number of comments and tags.
+        {% endcomment %}
+        <ul>
 
-      </ul>
+          {% comment %}
+            Don't be fooled, the ? in comments_enabled? is part of the liquid tag.
+          {% endcomment %}
+          {% if blog.comments_enabled? %}
+          <li>
+            <a href="{{ article.url }}#comments">
+              {{ article.comments_count }} {{ article.comments_count | pluralize: 'comment','comments' }}
+            </a>
+          </li>
+          {% endif %}
 
-      <p><a class="blog-read-more" href="{{ article.url }}">Read more →</a></p>
+          {% include 'tags-article' %}
 
-    </div>
+        </ul>
 
-  {% endfor %}
-</div>
+        <p><a class="blog-read-more" href="{{ article.url }}">Read more →</a></p>
+
+      </div>
+
+    {% endfor %}
+  </div>

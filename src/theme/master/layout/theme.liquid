@@ -26,6 +26,8 @@
   <!-- Helpers ================================================== -->
   <link rel="canonical" href="{{ canonical_url }}">
   <meta name="viewport" content="width=device-width">
+  <!-- Fonts ================================================ -->
+  <link href='https://fonts.googleapis.com/css?family=Crimson+Text|Oswald' rel='stylesheet' type='text/css'>
 
   <!-- CSS ================================================== -->
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
@@ -58,8 +60,6 @@
     };
   </script>
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js' | script_tag }}
-  {{ '//use.typekit.net/oiy4pmt.js' | script_tag }}
-  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
 </head>
 
@@ -68,23 +68,12 @@
 {% endcomment %}
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
 
-  <header class="site-header" role="banner">
+  <div class="translation-bar"><p>We have automatically translated this page into</p></div>
+  <header class="site-header side-padding" role="banner">
     <div class="wrapper">
+      <div  class="header-logo"><h1><a href="/"></a></h1></div>
 
-      {% comment %}
-        Use the uploaded logo from theme settings if enabled
-      {% endcomment %}
-      <h1 class="header-logo">
-        {% if settings.use_logo %}
-          <a href="/">
-            {{ 'logo.png' | asset_url | img_tag: shop.name }}
-          </a>
-        {% else %}
-          <a href="/">{{ shop.name }}</a>
-        {% endif %}
-      </h1>
-
-      <div class="text-center large-right large--text-right">
+      <div class="large--text-right header-links">
         {% comment %}
           You cart/checkout link should at least show the number of items in it.
           Below shows the item count followed by item(s) and the total cart price.
@@ -96,37 +85,21 @@
             - Documentation:  http://shopify.com/timber#ajax-cart
         {% endcomment %}
         <p>
+          <div class="nav-search">
+            {% include 'search-bar' %}
+          </div>
           <a href="/cart" id="cartToggle">
             Cart (<span id="cartCount">{{ cart.item_count }}</span> {{ cart.item_count | pluralize: 'item', 'items' }} <span id="cartCost">{{ cart.total_price | money }}</span>)
           </a>
         </p>
-
-        {% comment %}
-          If customer accounts are enabled, provide login and create account links
-        {% endcomment %}
-        {% if shop.customer_accounts_enabled %}
-        <p>
-          {% if customer %}
-            Logged in as <a href="/account">{{ customer.first_name }}</a> · {{ 'Log out' | customer_logout_link }}
-          {% else %}
-            {{ 'Log in' | customer_login_link }}
-            {% if shop.customer_accounts_optional %}
-            or {{ 'Create an account' | customer_register_link }}
-            {% endif %}
-          {% endif %}
-        </p>
-        {% endif %}
       </div>
 
     </div>
   </header>
 
-  <nav class="nav-bar" role="navigation">
+  <nav class="nav-bar side-padding" role="navigation">
     <div class="wrapper">
       {% include 'site-nav' %}
-      <div class="nav-search">
-        {% include 'search-bar' %}
-      </div>
     </div>
   </nav>
 
@@ -138,13 +111,9 @@
 
   {% include 'footer' %}
 
-  {% comment %}
-    Theme dependent JavaScript.
-    docs.js is only used on the documentation page and can be removed on your live site.
-  {% endcomment %}
-
-  {{ 'shop.js' | asset_url | script_tag }}
   {{ 'owl.carousel.min.js' | asset_url | script_tag }}
+  {{ 'jquery.ba-throttle-debounce.min.js' | asset_url | script_tag }}
+  {{ 'shop.js' | asset_url | script_tag }}
 
   {% comment %}
     Ajaxify your cart with this plugin. Adding a product will reveal a drawer, modal, or confirmation button.

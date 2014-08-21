@@ -1,12 +1,12 @@
 /*================ Typography ================*/
 
 // Header Font
-$headerFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$headerFontStack: "Oswald", sans-serif;
 $headerFontWeight: 700;
 
 // Body Font
-$bodyFontStack: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$baseFontSize: 87.5%; // Henseforth known as 1em (assumed at 14px)
+$bodyFontStack: "Crimson Text", serif;
+$baseFontSize: 16px; // Henseforth known as 1em (assumed at 14px)
 
 // Icons
 @font-face {
@@ -41,14 +41,19 @@ select {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   display: block;
-  font-family: $headerFontStack;
-  font-weight: $headerFontWeight;
+  font-family: $bodyFontStack;
   margin-bottom: 0.5em;
   line-height: 1.4;
+  text-transform: uppercase;
 
   a {
     text-decoration: none;
   }
+}
+
+h3 {
+  font-family: $headerFontStack;
+  font-weight: $headerFontWeight;
 }
 
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,

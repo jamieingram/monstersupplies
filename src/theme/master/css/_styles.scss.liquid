@@ -13,6 +13,9 @@ body {
   @include clearfix();
   max-width: $siteWidth;
   margin: 0 auto;
+}
+
+.side-padding {
   padding: 0 $gutter/2;
 
   @include at-query ($min, $small) {
@@ -21,6 +24,7 @@ body {
 }
 
 .main-content {
+  max-width: $siteWidth;
   display: block;
   margin-top: $gutter;
   padding-bottom: $gutter*2;
@@ -108,6 +112,7 @@ a:focus {
   font-weight: bold;
   text-decoration: none;
   text-align: center;
+  text-transform: uppercase;
   vertical-align: middle;
   white-space: nowrap;
   cursor: pointer;
