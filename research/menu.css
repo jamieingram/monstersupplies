@@ -1,0 +1,51 @@
+.menu {
+    text-transform: uppercase;
+    text-align:center;
+}
+
+.menu ul {
+    padding:0;
+    margin:0;
+}
+
+.nav-item {
+    display:inline-block;
+    margin-bottom:10px;
+    margin-left:2px;
+    margin-right:2px;
+    padding:3px;
+    font-size:14px;
+}
+
+.nav-item a {
+    text-decoration: none;
+}
+
+.nav-toggle {
+    display:none;
+}
+
+@media only screen and (max-width: 480px) {
+
+    .menu {
+        text-align:left;
+        height:20px;
+        overflow: hidden;
+    }
+
+    .is-open {
+        overflow: visible;
+    }
+
+    .nav-toggle {
+        display:block;
+    }
+
+    .nav-item {
+        display:block;
+    }
+
+    .nav-divider {
+        display:none;
+    }
+}

@@ -1,0 +1,68 @@
+.mos-promo {
+  font-size: 1.125em;
+  text-align: center;
+  background: url('{{ "mos_logo.png" | asset_url }}') top center no-repeat;
+  padding-top:5em;
+
+}
+
+.delivery-promo {
+  text-align: center;
+  background: url('{{ "packaging-bg.jpg" | asset_url }}') center center no-repeat;
+  padding:3em;
+}
+
+.about-shop-promo {
+  text-align: center;
+  background: url('{{ "shop-bg.jpg" | asset_url }}') center center no-repeat;
+  padding:5em;
+
+  @include at-query ($max, $small) {
+    padding:($gutter / 2);
+  }
+
+}
+
+.panel {
+    width:320px;
+
+    @include at-query ($max, $small) {
+        width:288px;
+    }
+
+    margin: 0 auto;
+    padding:$gutter;
+
+    h4 {
+        margin-bottom: 0;
+    }
+
+    .panel-sub-title {
+        text-transform: uppercase;
+        margin-bottom:1em;
+    }
+
+    p {
+        margin-bottom:1em;
+    }
+}
+
+.panel-black {
+    background-color: $black;
+    color: #FFF;
+
+    a {
+        color: #FFF;
+    }
+
+    a:hover,
+    a:focus {
+        color: $disabledGrey;
+    }
+}
+
+.map-link {
+    background: url('{{ "location-pin.png" | asset_url }}') top left no-repeat;
+    background-position: 0 2px;
+    padding-left:1.438em;
+}
