@@ -6,7 +6,11 @@ $headerFontWeight: 700;
 
 // Body Font
 $bodyFontStack: "Crimson Text", serif;
-$baseFontSize: 16px; // Henseforth known as 1em (assumed at 14px)
+$baseFontSize: 16px; // Henseforth known as 1em (assumed at 16px)
+
+@function em($px, $base: $baseFontSize) {
+    @return ($px / $base) * 1em;
+}
 
 // Icons
 @font-face {

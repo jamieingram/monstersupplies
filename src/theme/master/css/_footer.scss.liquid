@@ -5,9 +5,33 @@
   background-color: $colorFooterBg;
   border-top: 1px solid $borderColor;
   padding: $gutter 0;
+  padding-bottom: 0;
   color: $colorFooterText;
+  width:100%;
 
   @include at-query ($min, $large) {
     padding: $gutter*2 0;
+    padding-bottom: 0;
   }
+}
+
+.payment-icons {
+    li {
+        vertical-align: middle;
+    }
+}
+
+.footer-links {
+    background-color: $black;
+    text-transform: uppercase;
+    height:($gutter * 2);
+    padding-top:10px;
+    a,
+    a:hover,
+    a:focus,
+    a:link,
+    a:visited {
+        color: #FFF;
+    }
+
 }

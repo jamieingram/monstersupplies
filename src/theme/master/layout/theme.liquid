@@ -88,8 +88,8 @@
           <div class="nav-search">
             {% include 'search-bar' %}
           </div>
-          <a href="/cart" id="cartToggle">
-            Cart (<span id="cartCount">{{ cart.item_count }}</span> {{ cart.item_count | pluralize: 'item', 'items' }} <span id="cartCost">{{ cart.total_price | money }}</span>)
+          <a href="/cart" class="basket-link" id="cartToggle">
+            Basket (<span id="cartCount">{{ cart.item_count }}</span>)
           </a>
         </p>
       </div>
@@ -97,7 +97,7 @@
     </div>
   </header>
 
-  <nav class="nav-bar side-padding" role="navigation">
+  <nav class="nav-bar" role="navigation">
     <div class="wrapper">
       {% include 'site-nav' %}
     </div>
@@ -115,6 +115,13 @@
   {{ 'jquery.ba-throttle-debounce.min.js' | asset_url | script_tag }}
   {{ 'shop.js' | asset_url | script_tag }}
 
+  {% comment %}
+    Twitter widget plugin - for follow button
+  {% endcomment %}
+
+  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  </script>
+  
   {% comment %}
     Ajaxify your cart with this plugin. Adding a product will reveal a drawer, modal, or confirmation button.
     Enabled by default in theme settings.

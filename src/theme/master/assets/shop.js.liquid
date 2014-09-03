@@ -1,11 +1,12 @@
 ;(function ($, Monsters, undefined){
 
     $(document).ready(function() {
-        var menu = $('.menu');
-        var toggle = menu.find('.nav-toggle');
+        var mobile_menu = $('.mobile-nav');
+        var main_menu = $('.menu');
+        var toggle = mobile_menu.find('.nav-toggle');
         toggle.on('click', function(e) {
             e.preventDefault();
-            menu.toggleClass('is-open');
+            main_menu.toggleClass('is-open');
         });
 
     });
