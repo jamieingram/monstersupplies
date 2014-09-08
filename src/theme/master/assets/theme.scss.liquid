@@ -125,6 +125,9 @@ $errorRedBg: lighten($errorRed, 55%);
 $successGreen: #0a942a;
 $white: #FFFFFF;
 $black: #231f20;
+$grey: #d6d3d5;
+$darkGrey: #575455;
+$darkGreen: #367057;
 
 // Width variables
 $siteWidth: 1180px;
@@ -132,7 +135,7 @@ $gutter: 24px;
 $gridGutter: 24px; // can be a %, but nested grids will have smaller margins because of it
 
 // Radius
-$radius: 3px;
+$radius: 0px;
 *, input, :before, :after {
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
@@ -147,6 +150,7 @@ $viewportIncrement: 1px;
 $small: 480px;
 $medium: 768px;
 $large: 769px;
+$xlarge: 1024px;
 
 $postSmall: $small + $viewportIncrement;
 $preMedium: $medium - $viewportIncrement;
@@ -591,8 +595,8 @@ $class-type: unquote(".");
 /*================ Typography ================*/
 
 // Header Font
-$headerFontStack: "Oswald", sans-serif;
-$headerFontWeight: 700;
+$headerFontStack: "Crimson Text", sans-serif;
+$headerFontWeight: 400;
 
 // Body Font
 $bodyFontStack: "Crimson Text", serif;
@@ -1262,8 +1266,8 @@ label.error {
   margin: 0 auto 20px auto;
 
   @include at-query ($max, $small) {
-    width:(430px * 0.8);
-    height:(118px * 0.8);
+    width:(430px * 0.7);
+    height:(118px * 0.7);
     margin-bottom:10px;
   }
 
@@ -1276,7 +1280,7 @@ label.error {
     background-size: 430px 118px;
     
     @include at-query ($max, $small) {
-      background-size: (430px * 0.8) (118px * 0.8);
+      background-size: (430px * 0.7) (118px * 0.7);
     }
 
     display: block;
@@ -1311,7 +1315,8 @@ label.error {
   position: absolute;
   top:0px;
   right:0px;
-  margin-top:-30px;
+  text-align: right;
+  margin-top:-40px;
 
   @include at-query ($max, $small) {
     display:none;
@@ -1335,6 +1340,10 @@ label.error {
 
 .menu {
   margin-bottom:$gutter;
+}
+
+.mobile-search-form {
+  display:none;
 }
 
 .navigation ul li a {
@@ -1384,8 +1393,12 @@ label.error {
 }
 
 .nav-divider {
+  display:inline-block;
+  height:12px;
   margin-left: 10px;
-  margin-right: 10px;
+  margin-right: 12px;
+  border-right: 2px solid $black;
+  font-size:em(12px);
 }
 
 @include at-query ($max, $medium) {
@@ -1396,8 +1409,10 @@ label.error {
   }
 
   .nav-divider {
+    font-size:em(10px);
     margin-left: 6px;
-    margin-right: 6px;
+    margin-right: 8px;
+    border-right: 2px solid $black;
   }
 }
 
@@ -1406,8 +1421,30 @@ label.error {
 
   .menu {
     padding-top: 15px;
+    padding-bottom: 15px;
     background-color: $black;
     display:none;
+  }
+
+  .mobile-search-form {
+    background-color: $black;
+    padding-top:30px;
+    padding-bottom:30px;
+    padding-left:60px;
+    padding-right:60px;
+    display:none;
+
+    .input-group-field {
+      height:56px;
+    }
+
+    input[type="submit"] {
+      height:56px;
+      background-color: $grey;
+      color: $black;
+      padding-left: 14px;
+      padding-right: 14px;
+    }
   }
 
   .navigation ul {
@@ -1420,6 +1457,10 @@ label.error {
 
   .is-open {
     display: block;
+  }
+
+  .is-selected {
+    background-color:$grey;
   }
 
   .nav-item {
@@ -1440,15 +1481,39 @@ label.error {
   }
 
   .nav-divider {
-    display:none;
+    display:block;
+    width:100%;
+    height:6px;
+    left:0px;
+    border-right: 0px;
+    margin:0;
+    margin-bottom:10px;
+    padding:0;
+    border-bottom:2px solid $darkGrey;
   }
 }
 
 /*================ Search bar in header ================*/
 .nav-search {
+  text-transform: uppercase;
+  font-size:em(12px);
   width:150px;
   position: relative;
   padding: 7px 0;
+
+  input[type="text"] {
+    border:none;
+    border-bottom:2px dotted #000;
+    padding-bottom:0;
+    outline:none;
+    background: transparent;
+  }
+
+  input[type="text"]:focus{
+    border:none;
+    outline: none;
+    border-bottom:2px dotted #000;
+  }
 
   @include at-query ($max, $medium) {
     padding: 0 0 $gutter/2;
@@ -1459,6 +1524,15 @@ label.error {
   .input-group,
   .input-group-field {
     margin-bottom: 0;
+  }
+
+  .search-btn {
+    width:15px;
+    height:12px;
+    max-width:15px;
+    padding:0;
+    margin:0;
+    margin-top:15px;
   }
 }
 
@@ -1511,18 +1585,25 @@ a.basket-link {
     }
 
 }
-.mos-promo {
-  font-size: 1.125em;
-  text-align: center;
-  background: url('{{ "mos_logo.png" | asset_url }}') top center no-repeat;
-  padding-top:5em;
-
+.no-bottom-margin {
+    margin-bottom:0px;
 }
 
 .delivery-promo {
+  background-color:$darkGreen;
   text-align: center;
-  background: url('{{ "packaging-bg.jpg" | asset_url }}') center center no-repeat;
-  padding:3em;
+  padding:($gutter * 0.5);
+
+  p {
+    text-transform:uppercase;
+    color:$white;
+    margin:0px;
+    font-size:em(22px);
+
+    @include at-query ($max, $small) {
+      font-size:em(16px);
+    }
+  }
 }
 
 .about-shop-promo {
@@ -1534,6 +1615,21 @@ a.basket-link {
     padding:($gutter / 2);
   }
 
+}
+
+.mos-promo {
+  font-size: 1.125em;
+  text-align: center;
+  background: url('{{ "mos_logo.png" | asset_url }}') top center no-repeat;
+  padding-top:5em;
+
+  @include at-query ($max, $small) {
+    text-align: left;
+    background-position: left;
+    background-position-x: ($gutter * 2);
+    padding-top:0;
+    padding-left: 150px;
+  }
 }
 
 .panel {
@@ -1949,7 +2045,7 @@ a:focus {
 
 .btn {
   display: inline-block;
-  padding: 8px 10px;
+  padding: 6px 10px;
   margin: 0;
   line-height: 1.42;
   font-weight: bold;
@@ -2184,17 +2280,71 @@ img.auto,
 
 
 /* custom styling */
+
+.feature-carousel {
+	
+}
+
 .carousel-item {
-	background-color: #CCC;
+	background-color: #bababa;
 	width: 100%;
+
+	h3 {
+		font-size: em(32px);
+		line-height:1.3;
+		padding-bottom: 10px;
+		
+		@include at-query ($max, $small) {
+			font-size: em(22px);
+		}
+
+		@include at-query (null, $small, $medium) {
+			font-size: em(24px);
+		}
+	}
 }
 
 .carousel-copy {
 	position: absolute;
 	text-align: center;
-	top: 25%;
-	left:15%;
-	width: 25%;
+	top: 27%;
+	left:10%;
+	width: 30%;
+
+	p {
+		margin-bottom:30px;
+	}
+
+	@include at-query ($max, $small) {
+		padding-top:34px;
+		position: relative;
+		width:100%;
+		padding-left:10px;
+		padding-right:10px;
+		left:0;
+		top:0;
+		height:220px;
+
+		p {
+			font-size:em(18px);
+			line-height:em(20px);
+			margin-bottom:10px;
+		}
+
+		padding-bottom:$gutter;
+	}
+
+	@include at-query (null, $small, $medium) {
+		top: 18%;
+
+		p {
+			margin-bottom:20px;
+		}
+	}
+
+	@include at-query(null, $medium, $xlarge) {
+		top: 15%;
+	}
 }
 
 
@@ -2208,7 +2358,15 @@ img.auto,
 	position: absolute;
 	bottom:8%;
 	width:25%;
-	left:15%;
+	left:12.5%;
+
+	@include at-query ($max, $small) {
+		left:0;
+		margin: 0px auto;
+		bottom:190px;
+		width:100%;
+		padding-left:$gutter;
+	}
 }
 
 /* Styling Next and Prev buttons */
@@ -2254,6 +2412,14 @@ img.auto,
 	-moz-border-radius: 8px;
 	border-radius: 8px;
 	background: #869791;
+
+	@include at-query ($max, $small) {
+		width: 10px;
+		height: 10px;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+	}
 }
 
 .owl-theme .owl-controls .owl-page.active span,
@@ -2261,6 +2427,10 @@ img.auto,
 	filter: Alpha(Opacity=100);/*IE7 fix*/
 	opacity: 1;
 	background: #FFFFFF;
+
+	@include at-query ($max, $small) {
+		background: $black;
+	}
 }
 
 /* preloading images */

@@ -7,47 +7,51 @@
 {% endcomment %}
 
 <div class="grid-uniform">
-
-  <div class="grid-item">
-    <div class="feature-carousel">
-      <div class="carousel-item">
-        {{ 'temp_carousel.jpg' | asset_url | img_tag: 'carousel image 1' }}
-        <div class="carousel-copy">
-          <h3>FANG FLOSS</h3>
-          <p>Our marvellously strong Fang Floss is invaluable in cleaning where traditional sticks and brushes can't reach.</p>
-          <button class='btn btn-black'>Buy now</button>
-        </div>
+  <div class="feature-carousel grid-item">
+    <div class="carousel-item">
+      <img src="{{ 'temp_carousel_mobile.jpg' | asset_url }}" alt="carousel image 1" data-desktop-image="{{ 'temp_carousel.jpg' | asset_url }}">
+      <div class="carousel-copy">
+        <h3>SALT MADE FROM TEARS OF SORROW</h3>
+        <p>Vanquishes all dreams of future happiness and Rainbow Coloured Flying Ponies.</p>
+        <button class='btn btn-black'>Buy now</button>
       </div>
-      <div class="carousel-item">{{ 'temp_carousel.jpg' | asset_url | img_tag: 'carousel image 2' }}</div>
-      <div class="carousel-item">{{ 'temp_carousel.jpg' | asset_url | img_tag: 'carousel image 3' }}</div>
     </div>
-  </div>
-  <div class="grid-item">
-    <div class="mos-promo">
-      <p>Regrettably, all profits go to the creative writing and mentory charity for young humans, the <a href="http://www.ministryofstories.org" target="_blank">Ministry of Stories</a></p>
+    <div class="carousel-item">
+      <img src="{{ 'temp_carousel_mobile.jpg' | asset_url }}" alt="carousel image 2" data-desktop-image="{{ 'temp_carousel.jpg' | asset_url }}">
+      <div class="carousel-copy">
+        <h3>FANG FLOSS</h3>
+        <p>Our marvellously strong Fang Floss is invaluable in cleaning where traditional sticks and brushes can't reach.</p>
+        <button class='btn btn-black'>Buy now</button>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{{ 'temp_carousel_mobile.jpg' | asset_url }}" alt="carousel image 3" data-desktop-image="{{ 'temp_carousel.jpg' | asset_url }}">
+      <div class="carousel-copy">
+        <h3>FANG FLOSS</h3>
+        <p>Our marvellously strong Fang Floss is invaluable in cleaning where traditional sticks and brushes can't reach.</p>
+        <button class='btn btn-black'>Buy now</button>
+      </div>
     </div>
   </div>
 
-  <div class="grid-item">
-    <div class="delivery-promo">
-      <button class='btn btn-black'>Free delivery on orders over &pound;50</button>
-    </div>
+  <div class="mos-promo grid-item">
+    <p>Due to a rather inconvenient curse, all profits go to the <a href="http://www.ministryofstories.org" target="_blank">Ministry of Stories</a>, a creative writing and mentoring charity for young humans</p>
   </div>
 </div>
-  
+
 <div class="frontpage-collection side-padding">
-    <h2 class="text-center">Most loathed this week</h2>
-    <div class="grid-uniform">
-      {% for product in collections.featured.products limit:4 %}
+  <h2 class="text-center">Most loathed this week</h2>
+  <div class="grid-uniform">
+    {% for product in collections.featured.products limit:4 %}
 
-        {% include 'product-grid-item' %}
+      {% include 'product-grid-item' %}
 
-      {% endfor %}
-    </div>
+    {% endfor %}
+  </div>
 </div>
 
 <div class="grid-uniform">
-  <div class="grid-item">
+  <div class="grid-item no-bottom-margin">
     <div class="about-shop-promo">
         <div class="panel panel-black">
           <h4>Service with a snarl</h4>
@@ -57,6 +61,11 @@
           <p><button class='btn btn-grey'>Find out more</button></p>
           <p><a class="map-link" href="https://www.google.co.uk/maps/place/Ministry+of+Stories+and+Hoxton+Street+Monster+Supplies/@51.5314205,-0.0803399,17z/data=!4m2!3m1!1s0x0:0x4d51907375032c33?hl=en" target="_blank">159 Hoxton Street, London N1 6PJ</a></p>
         </div>
+    </div>
+  </div>
+  <div class="grid-item">
+    <div class="delivery-promo grid-item">
+      <p>Free delivery on orders over &pound;50</p>
     </div>
   </div>
 </div>

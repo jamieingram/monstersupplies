@@ -27,7 +27,7 @@
   <link rel="canonical" href="{{ canonical_url }}">
   <meta name="viewport" content="width=device-width">
   <!-- Fonts ================================================ -->
-  <link href='https://fonts.googleapis.com/css?family=Crimson+Text|Oswald' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Crimson+Text' rel='stylesheet' type='text/css'>
 
   <!-- CSS ================================================== -->
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
@@ -54,7 +54,7 @@
 
   <script>
     window.Monsters = {
-      isDesktop: function() { return (document.documentElement.clientWidth >= 768); },
+      isDesktop: function() { return (document.documentElement.clientWidth >= 480); },
       isMobile: function() { return !Monsters.isDesktop(); },
       isTouch: function() { return Modernizr.touch; },
     };

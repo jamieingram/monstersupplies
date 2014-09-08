@@ -4,15 +4,18 @@
     <li class="mobile-nav-item grid-item small--one-third">
       <a href="/cart" class="basket-link" id="cartToggle">Basket (<span id="cartCount">{{ cart.item_count }}</span>)</a>
     </li>
-    <li class="mobile-nav-item grid-item small--one-third"><a href="#">Search</a></li>
+    <li class="mobile-nav-item grid-item small--one-third mobile-nav-search"><a href="#">Search</a></li>
   </ul>
+  <div class="mobile-search-form">
+    {% include 'search-bar-mobile' %}
+  </div>
   <ul class="menu">
     {% for link in linklists.main-menu.links %}
     <li class="nav-item {% if forloop.first %}nav-item-first{% endif %}{% if forloop.last %}nav-item-last{% endif %}">
       <a href="{{ link.url }}">{{ link.title }}</a>
     </li>
     {% if link.title == 'View all' %}
-    <span class="nav-divider">|</span>
+    <span class="nav-divider"></span>
     {% endif %}
   {% endfor %}
   </ul>

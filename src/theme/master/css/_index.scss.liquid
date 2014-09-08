@@ -1,15 +1,22 @@
-.mos-promo {
-  font-size: 1.125em;
-  text-align: center;
-  background: url('{{ "mos_logo.png" | asset_url }}') top center no-repeat;
-  padding-top:5em;
-
+.no-bottom-margin {
+    margin-bottom:0px;
 }
 
 .delivery-promo {
+  background-color:$darkGreen;
   text-align: center;
-  background: url('{{ "packaging-bg.jpg" | asset_url }}') center center no-repeat;
-  padding:3em;
+  padding:($gutter * 0.5);
+
+  p {
+    text-transform:uppercase;
+    color:$white;
+    margin:0px;
+    font-size:em(22px);
+
+    @include at-query ($max, $small) {
+      font-size:em(16px);
+    }
+  }
 }
 
 .about-shop-promo {
@@ -21,6 +28,21 @@
     padding:($gutter / 2);
   }
 
+}
+
+.mos-promo {
+  font-size: 1.125em;
+  text-align: center;
+  background: url('{{ "mos_logo.png" | asset_url }}') top center no-repeat;
+  padding-top:5em;
+
+  @include at-query ($max, $small) {
+    text-align: left;
+    background-position: left;
+    background-position-x: ($gutter * 2);
+    padding-top:0;
+    padding-left: 150px;
+  }
 }
 
 .panel {

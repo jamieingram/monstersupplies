@@ -4,21 +4,89 @@
         var mobile_menu = $('.mobile-nav');
         var main_menu = $('.menu');
         var toggle = mobile_menu.find('.nav-toggle');
+        var search = $('.mobile-search-form');
+        var search_button = mobile_menu.find('.mobile-nav-search');
+
         toggle.on('click', function(e) {
             e.preventDefault();
+            $(this).toggleClass('is-selected');
             main_menu.toggleClass('is-open');
+            if (search_button.hasClass('is-selected')) {
+                search_button.removeClass('is-selected');
+                search.removeClass('is-open');
+            }
         });
 
+        search_button.on('click', function(e) {
+            e.preventDefault();
+            $(this).toggleClass('is-selected');
+            search.toggleClass('is-open');
+            if (toggle.hasClass('is-selected')) {
+                toggle.removeClass('is-selected');
+                main_menu.removeClass('is-open');
+            }
+        });
     });
 
     $(document).ready(function() {
-        //initialise the carouel
-        $(".feature-carousel").owlCarousel({
+        var carousel = $(".feature-carousel");
+        //store the carousel data
+        var carouselItems = $(".carousel-item");
+        var carouselOptions = {
             slideSpeed : 300,
             paginationSpeed : 400,
             singleItem:true,
-            autoPlay : 5000
+            autoPlay : 50000
+        };
+
+        var items_array = [];
+
+        $.each(carouselItems, function(index, item) {
+            var image = $(item).find('img');
+            var item_obj = {};
+            item_obj['desktop-img'] = image.attr('data-desktop-image');
+            item_obj['mobile-img'] = image.attr('src');
+            item_obj['alt-text'] = image.attr('alt');
+            item_obj['carousel-copy'] = $(item).find('.carousel-copy').html();
+            items_array.push(item_obj);
         });
+
+        //initialise the carouel
+        carousel.owlCarousel(carouselOptions);
+
+        var carouselData = $(carousel).data('owlCarousel');
+
+        var showDesktopCarouselAssets = function() {
+            repopulateCarousel(false);
+        }
+
+        var showMobileCarouselAssets = function() {
+            repopulateCarousel(true);
+        }
+
+        var repopulateCarousel = function (isMobile) {
+            carouselData.destroy();
+            var content_str = '';
+            for (var i = 0; i < items_array.length; i++) {
+                var item_obj = items_array[i];
+                var image_str = item_obj['desktop-img'];
+                if (isMobile) image_str = item_obj['mobile-img'];
+                var item_str = '<div class="carousel-item">';
+                item_str += '<img src="'+image_str+'" alt="'+item_obj['alt-text']+'">';
+                item_str += '<div class="carousel-copy">' +item_obj['carousel-copy']+ '</div>';
+                item_str += '</div>';
+                content_str += item_str;
+            };
+            carousel.html(content_str);
+            carouselData.reinit(carouselOptions);
+        }
+
+        if (Monsters.isDesktop) {
+            showDesktopCarouselAssets();
+        }
+
+        $(window).on('desktopToMobile', showMobileCarouselAssets);
+        $(window).on('mobileToDesktop', showDesktopCarouselAssets);
     });
 
     $(document).ready(function() {
@@ -27,7 +95,7 @@
             return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
         };
 
-        var minDesktopWidth = 768;
+        var minDesktopWidth = 480;
         var previousWidth = getWidth();
         if (previousWidth < minDesktopWidth) {
             $(window).trigger('desktopToMobile');
