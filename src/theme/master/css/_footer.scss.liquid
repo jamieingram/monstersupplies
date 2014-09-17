@@ -3,35 +3,136 @@
 ==============================================================================*/
 .site-footer {
   background-color: $colorFooterBg;
-  border-top: 1px solid $borderColor;
   padding: $gutter 0;
   padding-bottom: 0;
-  color: $colorFooterText;
   width:100%;
 
+  h5 {
+    font-size:em(26px);
+    text-transform: none;
+  }
+
+  p {
+    font-size:em(14px);
+    margin:0px;
+    line-height:1.3em;
+  }
+
   @include at-query ($min, $large) {
-    padding: $gutter*2 0;
+    padding: 28px 0;
     padding-bottom: 0;
+  }
+
+  @include at-query ($max, $small) {
+    p {
+      font-size:em(12px);
+    }
+  }
+}
+
+.follow-content {
+  padding-left:0px;
+}
+
+.social {
+
+  .social-button {
+
+    display: inline-block;
+    vertical-align: middle;
+    min-height:40px;
+    margin-left:$gutter;
+  }
+
+  .twitter-button {
+    padding-top:10px;
+  }
+
+  .facebook-button {
+    padding-top:5px;
+  }
+
+  .gplus-button {
+    padding-top:10px;
+    
+  }
+
+  padding-bottom:20px;
+  border-bottom: 1px solid #b1b6af;
+
+  @include at-query ($max, $small) {
+    button {
+      display:block;
+      margin: 0 auto;
+      margin-bottom: ($gutter / 2);
+    }
+
+    .social-button {
+      margin-left:6px;
+    }
+
+    .twitter-button {
+      margin-left:0px;
+    }
   }
 }
 
 .payment-icons {
-    li {
-        vertical-align: middle;
+  margin-top:1em;
+
+  img {
+    width:80%;
+    margin-bottom:10px;
+
+    @include at-query ($min, $medium) {
+      width:574px;
     }
+  }
+  
 }
 
 .footer-links {
     background-color: $black;
     text-transform: uppercase;
-    height:($gutter * 2);
+    font-size:em(12px);
+    height:44px;
     padding-top:10px;
+    margin-top:32px;
+    padding-bottom:0px;
+
     a,
     a:hover,
     a:focus,
     a:link,
     a:visited {
+        text-decoration: none;
         color: #FFF;
+    }
+
+    ul {
+      margin-bottom: 0;
+    }
+
+    li {
+      display: inline-block;
+      margin-bottom: 2px;
+      padding:3px;
+    }
+
+    @include at-query ($max, $medium) {
+      height:auto;
+      padding-bottom:12px;
+      font-size:em(14px);
+
+      li {
+        display: block;
+      }
+    }
+
+    @include at-query ($min, $xlarge) {
+      height:($gutter * 2);
+      max-height:($gutter * 2);
+      font-size:em(14px);
     }
 
 }

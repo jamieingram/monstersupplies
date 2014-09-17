@@ -126,7 +126,7 @@ a:focus {
   border-radius: $radius;
 
   &.btn--small {
-    padding: 4px 5px;
+    padding: 2px 2px;
     font-size: 0.75em; //12px
   }
 
@@ -160,16 +160,17 @@ a:focus {
 .btn-secondary {
   @extend .btn;
   background-color: $colorBtnSecondary;
-
+  color: $black;
+  
   &:hover {
     background-color: $colorBtnSecondaryHover;
-    color: #fff;
+    color: $black;
   }
 
   &:active,
   &:focus {
    background-color: $colorBtnSecondaryActive;
-   color: #fff;
+   color: $black;
   }
 }
 

@@ -115,7 +115,6 @@ $colorNavText: #333;
 
 // Footer
 $colorFooterBg: {{ settings.color_footer_bg }};
-$colorFooterText: {{ settings.color_footer_text }};
 
 // Helper colors
 $disabledGrey: #f6f6f6;
@@ -661,12 +660,15 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a,
   Pixel to EM conversion tool
     - http://pxtoem.com/
 ==============================================================================*/
-h1, .h1 { font-size: 3em; }       // 42px
-h2, .h2 { font-size: 2em; }       // 28px
-h3, .h3 { font-size: 1.571em; }   // 21px
-h4, .h4 { font-size: 1.429em; }   // 20px
-h5, .h5 { font-size: 1.143em; }   // 16px
-h6, .h6 { font-size: 1em; }       // 14px
+h1, .h1 { font-size: 3em; }       // 48px
+h2, .h2 {
+  font-size: 2.25em; // 36px;
+  padding-bottom: 0.4em;
+}
+h3, .h3 { font-size: 1.3125em; }  // 21px
+h4, .h4 { font-size: 1.25em; }    // 20px
+h5, .h5 { font-size: 1em; }       // 16px
+h6, .h6 { font-size: 0.875em; }   // 14px
 
 p { margin: 0 0 $gutter/2 0; }
 p img { margin: 0; }
@@ -1305,6 +1307,7 @@ label.error {
 
 .search-bar {
   max-width: 100%;
+  border-bottom: 2px dotted #000;
 
   @include at-query ($max, $medium) {
     margin: 0 auto;
@@ -1325,12 +1328,45 @@ label.error {
 
 .translation-bar {
   width:100%;
-  height:45px;
+  min-height:45px;
   background-color: #2f2f2f;
   text-align:center;
-  p {
-    padding:6px;
-    color: #FFF;
+  color: #FFF;
+  padding:8px;
+  font-size:em(15px);
+
+  .selected-language {
+    font-style: italic;
+    font-weight: 700;
+  }
+  
+  .translation-options {
+
+    a {
+      color:$white;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+    display:none;
+  }
+
+  .is-open {
+    display:block;
+  }
+
+  .burger-trigger {
+    display:inline-block;
+    width:11px;
+    height:12px;
+    background-image: url({{ 'burger.png' | asset_url }});
+    background-repeat: no-repeat;
+    margin-left:($gutter / 2);
+    cursor: pointer;
+  }
+
+  @include at-query ($max, $small) {
+    min-height:42px;
+    font-size:em(14px);
   }
 }
 
@@ -1503,7 +1539,6 @@ label.error {
 
   input[type="text"] {
     border:none;
-    border-bottom:2px dotted #000;
     padding-bottom:0;
     outline:none;
     background: transparent;
@@ -1512,7 +1547,6 @@ label.error {
   input[type="text"]:focus{
     border:none;
     outline: none;
-    border-bottom:2px dotted #000;
   }
 
   @include at-query ($max, $medium) {
@@ -1553,35 +1587,136 @@ a.basket-link {
 ==============================================================================*/
 .site-footer {
   background-color: $colorFooterBg;
-  border-top: 1px solid $borderColor;
   padding: $gutter 0;
   padding-bottom: 0;
-  color: $colorFooterText;
   width:100%;
 
+  h5 {
+    font-size:em(26px);
+    text-transform: none;
+  }
+
+  p {
+    font-size:em(14px);
+    margin:0px;
+    line-height:1.3em;
+  }
+
   @include at-query ($min, $large) {
-    padding: $gutter*2 0;
+    padding: 28px 0;
     padding-bottom: 0;
+  }
+
+  @include at-query ($max, $small) {
+    p {
+      font-size:em(12px);
+    }
+  }
+}
+
+.follow-content {
+  padding-left:0px;
+}
+
+.social {
+
+  .social-button {
+
+    display: inline-block;
+    vertical-align: middle;
+    min-height:40px;
+    margin-left:$gutter;
+  }
+
+  .twitter-button {
+    padding-top:10px;
+  }
+
+  .facebook-button {
+    padding-top:5px;
+  }
+
+  .gplus-button {
+    padding-top:10px;
+    
+  }
+
+  padding-bottom:20px;
+  border-bottom: 1px solid #b1b6af;
+
+  @include at-query ($max, $small) {
+    button {
+      display:block;
+      margin: 0 auto;
+      margin-bottom: ($gutter / 2);
+    }
+
+    .social-button {
+      margin-left:6px;
+    }
+
+    .twitter-button {
+      margin-left:0px;
+    }
   }
 }
 
 .payment-icons {
-    li {
-        vertical-align: middle;
+  margin-top:1em;
+
+  img {
+    width:80%;
+    margin-bottom:10px;
+
+    @include at-query ($min, $medium) {
+      width:574px;
     }
+  }
+  
 }
 
 .footer-links {
     background-color: $black;
     text-transform: uppercase;
-    height:($gutter * 2);
+    font-size:em(12px);
+    height:44px;
     padding-top:10px;
+    margin-top:32px;
+    padding-bottom:0px;
+
     a,
     a:hover,
     a:focus,
     a:link,
     a:visited {
+        text-decoration: none;
         color: #FFF;
+    }
+
+    ul {
+      margin-bottom: 0;
+    }
+
+    li {
+      display: inline-block;
+      margin-bottom: 2px;
+      padding:3px;
+    }
+
+    @include at-query ($max, $medium) {
+      height:auto;
+      padding-bottom:12px;
+      font-size:em(14px);
+
+      li {
+        display: block;
+      }
+    }
+
+    @include at-query ($min, $xlarge) {
+      height:($gutter * 2);
+      max-height:($gutter * 2);
+      font-size:em(14px);
     }
 
 }
@@ -1608,60 +1743,62 @@ a.basket-link {
 
 .about-shop-promo {
   text-align: center;
-  background: url('{{ "shop-bg.jpg" | asset_url }}') center center no-repeat;
-  padding:5em;
+  background: url('{{ "shop-bg.jpg" | asset_url }}') center -260px no-repeat;
+  background-size: 1180px 887px;
 
-  @include at-query ($max, $small) {
-    padding:($gutter / 2);
+  .btn-secondary {
+    margin-bottom: 2.6em;
   }
 
+  @include at-query ($max, $small) {
+    background-size: 480px ((480 / 1180) * 887px);
+    background-position-y:0px;
+  }
+
+  
 }
 
 .mos-promo {
   font-size: 1.125em;
   text-align: center;
   background: url('{{ "mos_logo.png" | asset_url }}') top center no-repeat;
-  padding-top:5em;
+  background-position-y:$gutter;
+  padding-top:115px;
+  padding-bottom:$gutter;
+  background-color:$white;
 
   @include at-query ($max, $small) {
     text-align: left;
     background-position: left;
     background-position-x: ($gutter * 2);
-    padding-top:0;
+    padding-top:$gutter;
     padding-left: 150px;
   }
 }
 
 .panel {
-    width:320px;
-
-    @include at-query ($max, $small) {
-        width:288px;
-    }
-
-    margin: 0 auto;
+    width:100%;
     padding:$gutter;
 
-    h4 {
-        margin-bottom: 0;
-    }
-
-    .panel-sub-title {
-        text-transform: uppercase;
-        margin-bottom:1em;
-    }
-
     p {
-        margin-bottom:1em;
+        font-size:em(18px);
     }
+
+    @include at-query (null, $small, $medium) {
+      p {
+        font-size:em(16px);
+      }
+    }
+
 }
 
 .panel-black {
     background-color: $black;
-    color: #FFF;
+    color: $white;
+    padding:10px;
 
     a {
-        color: #FFF;
+        color: $white;
     }
 
     a:hover,
@@ -1670,10 +1807,52 @@ a.basket-link {
     }
 }
 
+.panel-sub-title {
+  color: $white;
+  width:100%;
+  background: url('{{ "semi_circle.png" | asset_url }}') top center no-repeat;
+  background-size: 564px 109px;
+  padding-bottom:0.5em;
+  margin-bottom:14em;
+
+  h3 {
+    padding-top:($gutter / 2);
+    font-size:em(30px);
+    margin-bottom:0px;
+  }
+
+  p {
+    font-size:em(24px);
+  }
+
+  @include at-query ($max, $small) {
+    background-size: (564px * 0.5) (109px * 0.5);
+    margin-bottom:9em;
+
+    h3 {
+      padding-top:4px;
+      font-size:em(18px);
+      line-height:1.3em;
+    }
+
+    p {
+      font-size:em(14px);
+    }
+  }
+
+}
+
 .map-link {
     background: url('{{ "location-pin.png" | asset_url }}') top left no-repeat;
     background-position: 0 2px;
     padding-left:1.438em;
+}
+
+.collection-list {
+    margin-bottom:46px;
+    @include at-query ($max, $small) {
+      margin-bottom:$gutter;
+    }
 }
 
 .collection-promo {
@@ -1684,15 +1863,24 @@ a.basket-link {
 
     .collection-text {
         padding:1em;
-        min-height: 7.8em;
+        min-height: 8em;
+        @include at-query ($min, $xlarge) {
+          min-height: 9em;
+        }
+        
     }
 
     .title-small {
         font-family: $headerFontStack;
         font-weight: $headerFontWeight;
-        font-size: 1.429em;
+        font-size: em(20px);
+        line-height:1em;
         text-transform: uppercase;
         margin-bottom:0.5em;
+
+        @include at-query ($min, $xlarge) {
+          font-size: em(26px);
+        }
     }
 
     img {
@@ -1703,6 +1891,26 @@ a.basket-link {
         line-height: 1.4;
         margin: 0;
         padding: 0 10px 0 10px;
+    }
+
+    @include at-query ($min, $xlarge) {
+      p {
+        font-size: em(18px);
+      }
+    }
+}
+
+.frontpage-collection {
+
+  h2 {
+    padding-top:$gutter;
+  }
+
+  @include at-query ($max, $small) {
+        h2 {
+          font-size: em(30px);
+          padding-top:($gutter / 2);
+        }
     }
 }
 /*============================================================================
@@ -1892,16 +2100,18 @@ a.basket-link {
 }
 
 .product-grid-item {
-  .product-detail {
+  .product-grid-detail {
     text-align:center;
     margin-top:($gutter/2);
   }
 
   .product-title {
+    display:inline-block;
     font-family: $headerFontStack;
     font-weight: $headerFontWeight;
     font-size: 0.9em;
     text-transform: uppercase;
+    line-height:1.2em;
   }
 
   a {
@@ -1913,6 +2123,89 @@ a.basket-link {
 /*============================================================================
   #Product Page
 ==============================================================================*/
+.top-line {
+  padding-top:30px;
+  border-top:1px solid grey;
+}
+
+.postage-promo-banner {
+  height:30px;
+  font-size: em(16px);
+  text-align: center;
+  color:$white;
+  text-transform: uppercase;
+  padding-top:3px;
+  background-color: $darkGreen;
+  margin-bottom:40px;
+}
+
+.carousel-holder {
+  position:relative;
+
+  @include at-query ($max, $large) {
+    margin-bottom: $gutter;
+  }
+}
+
+.carousel-navigation {
+  position:absolute;
+  z-index:10;
+  padding-left:$gutter;
+  padding-right:$gutter;
+  width:100%;
+  top:37.5%;
+
+  .arrow-left {
+    float:left;
+  }
+
+  .arrow-right {
+    float:right;
+  }
+}
+
+.product-carousel {
+  .carousel-item {
+    background-color: $colorBody;
+  }
+}
+.product-thumbs {
+  background-color: #bababa;
+  text-align: center;
+  padding-top:20px;
+  padding-bottom:16px;
+
+  @include at-query ($max, $large) {
+    display:none;
+  }
+}
+
+.product-thumb {
+  cursor: pointer;
+  width:50px;
+  margin-left:3px;
+  margin-right:3px;
+  display:inline-block;
+
+  @include at-query ($min, $small) {
+    width:80px;
+    margin-left:5px;
+    margin-right:5px;
+  }
+
+  @include at-query ($min, $medium) {
+    width:60px;
+    margin-left:3px;
+    margin-right:3px;
+  }
+
+  @include at-query ($min, $xlarge) {
+    width:95px;
+    margin-left:6px;
+    margin-right:6px;
+  }
+}
+
 .product-variants {
   display: none;
 
@@ -1936,6 +2229,77 @@ a.basket-link {
     margin-bottom: $gutter;
   }
 }
+
+.product-detail {
+  padding-left:$gutter;
+  h2 {
+    line-height:0.7em;
+    padding-bottom:$gutter;
+  }
+
+  @include at-query($max, $large) {
+    padding-right: 24px;
+  }
+}
+
+.product-offer {
+  color:#FFF;
+  background-color:$darkGreen;
+  height: 30px;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding-top:2px;
+}
+
+.product-price {
+  @include clearfix();
+  background: url('{{ "mos_logo.png" | asset_url }}') 94% center no-repeat;
+  background-size: 65px 65px;
+  background-color:$white;
+  margin-bottom:$gutter;
+  padding-bottom:($gutter * 0.5);
+}
+
+.product-price-amount {
+  vertical-align:middle;
+  padding-left:$gutter;
+  margin-top:0.8em;
+  width:30%;
+  float:left;
+  font-size:em(40px);
+}
+
+.price-text {
+  width:40%;
+  float:left;
+  text-align:center;
+  line-height:1.3em;
+  margin-top:$gutter;
+}
+
+.collection-items {
+  h3 {
+    font-size:em(26px);
+    margin-bottom: 0.7em;
+  }
+  margin-bottom:$gutter;
+}
+
+.other-products {
+  h3 {
+    font-size:em(26px);
+    margin-bottom: 0.7em;
+  }
+}
+
+.product-grid-item {
+  .product-grid-detail {
+    margin-top: 4px;
+    line-height:1.2em;
+  }
+}
+
 
 /*============================================================================
   #Basic Styles
@@ -2065,7 +2429,7 @@ a:focus {
   border-radius: $radius;
 
   &.btn--small {
-    padding: 4px 5px;
+    padding: 2px 2px;
     font-size: 0.75em; //12px
   }
 
@@ -2099,16 +2463,17 @@ a:focus {
 .btn-secondary {
   @extend .btn;
   background-color: $colorBtnSecondary;
-
+  color: $black;
+  
   &:hover {
     background-color: $colorBtnSecondaryHover;
-    color: #fff;
+    color: $black;
   }
 
   &:active,
   &:focus {
    background-color: $colorBtnSecondaryActive;
-   color: #fff;
+   color: $black;
   }
 }
 
@@ -2289,6 +2654,10 @@ img.auto,
 	background-color: #bababa;
 	width: 100%;
 
+	img {
+		display:block;
+	}
+	
 	h3 {
 		font-size: em(32px);
 		line-height:1.3;

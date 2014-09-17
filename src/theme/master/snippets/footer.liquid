@@ -4,49 +4,33 @@
 
 
     <div class="grid-item follow-content">
-      <h5>Follow us if you must</h5>
+      <h5>Follow us if you must...</h5>
       <div class="social">
-        {% include 'newsletter-form' %}
-        <div class="twitter-button">
+        <button class='btn--small btn-secondary'>Sign up to newsletter</button>
+        <div class="twitter-button social-button">
           <a href="https://twitter.com/MonsterSupplies" class="twitter-follow-button" data-show-count="false">Follow @MonsterSupplies</a>
+        </div>
+        <div class="facebook-button social-button">
+          <div class="fb-like" data-href="http://www.monstersupplies.org" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
+        </div>
+        <div class="gplus-button social-button left-margin-button ">
+          <div class="g-plusone" data-size="medium" data-annotation="none" data-href="http://www.monstersupplies.org"></div>
         </div>
       </div>
     </div>
   </div>
-  
-  <hr>
 
   <p>Tragically we cannot beans (magic or otherwise), and no longer accept human sacrifice.</p>
   <p>However we do take the following payment methods via Paypal:
-  <ul class="inline-list payment-icons text-center">
-    <li>
-      <img src="{{ "mastercard.png" | asset_url }}" />
-    </li>
-    <li>
-      <img src="{{ "visa.png" | asset_url }}" />
-    </li>
-    <li>
-      <img src="{{ "maestro.png" | asset_url }}" />
-    </li>
-    <li>
-      <img src="{{ "amex.png" | asset_url }}" />
-    </li>
-    <li>
-      <img src="{{ "discover.png" | asset_url }}" />
-    </li>
-    <li>
-      <img src="{{ "solo.png" | asset_url }}" />
-    </li>
-    <li>
-      <img src="{{ "trans.png" | asset_url }}" />
-    </li>
-  </ul>
+  <div class="payment-icons">
+    <img src="{{  "cards.png" | asset_url }}" alt="payment cards">
+  </div>
   <p>Monster Supplies is an operating name for the Ministry of Stories, Company No. 07317370, Registered Charity No. 1138553, VAT no 169 9531 56</p>
 
   <div class="footer-links">
-    <ul class="inline-list text-center">
+    <ul class="text-center">
       {% for link in linklists.footer.links %}
-      <li class="nav-item">
+      <li>
         <a href="{{ link.url }}">{{ link.title }}</a>
       </li>
       {% endfor %}

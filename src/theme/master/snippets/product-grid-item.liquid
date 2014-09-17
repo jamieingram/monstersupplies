@@ -17,7 +17,7 @@
 {% comment %}
   Set a class for sold-out and on-sale items
 {% endcomment %}
-<div class="grid-item product-grid-item large--one-quarter medium--one-half{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
+<div class="grid-item no-bottom-margin product-grid-item large--one-quarter medium--one-half small--one-half{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
 
   <a href="{{ product.url | within: collection }}" class="product-grid-image">
     <img src="{{ product.featured_image.src | product_img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
@@ -25,7 +25,7 @@
       <strong>Sold Out</strong>
     {% endif %}
   </a>
-  <div class="product-detail">
+  <div class="product-grid-detail">
     <a class="product-title" href="{{ product.url | within: collection }}">{{ product.title }}</a>
     <p>
        <span>

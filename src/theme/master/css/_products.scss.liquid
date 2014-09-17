@@ -28,16 +28,18 @@
 }
 
 .product-grid-item {
-  .product-detail {
+  .product-grid-detail {
     text-align:center;
     margin-top:($gutter/2);
   }
 
   .product-title {
+    display:inline-block;
     font-family: $headerFontStack;
     font-weight: $headerFontWeight;
     font-size: 0.9em;
     text-transform: uppercase;
+    line-height:1.2em;
   }
 
   a {
@@ -49,6 +51,89 @@
 /*============================================================================
   #Product Page
 ==============================================================================*/
+.top-line {
+  padding-top:30px;
+  border-top:1px solid grey;
+}
+
+.postage-promo-banner {
+  height:30px;
+  font-size: em(16px);
+  text-align: center;
+  color:$white;
+  text-transform: uppercase;
+  padding-top:3px;
+  background-color: $darkGreen;
+  margin-bottom:40px;
+}
+
+.carousel-holder {
+  position:relative;
+
+  @include at-query ($max, $large) {
+    margin-bottom: $gutter;
+  }
+}
+
+.carousel-navigation {
+  position:absolute;
+  z-index:10;
+  padding-left:$gutter;
+  padding-right:$gutter;
+  width:100%;
+  top:37.5%;
+
+  .arrow-left {
+    float:left;
+  }
+
+  .arrow-right {
+    float:right;
+  }
+}
+
+.product-carousel {
+  .carousel-item {
+    background-color: $colorBody;
+  }
+}
+.product-thumbs {
+  background-color: #bababa;
+  text-align: center;
+  padding-top:20px;
+  padding-bottom:16px;
+
+  @include at-query ($max, $large) {
+    display:none;
+  }
+}
+
+.product-thumb {
+  cursor: pointer;
+  width:50px;
+  margin-left:3px;
+  margin-right:3px;
+  display:inline-block;
+
+  @include at-query ($min, $small) {
+    width:80px;
+    margin-left:5px;
+    margin-right:5px;
+  }
+
+  @include at-query ($min, $medium) {
+    width:60px;
+    margin-left:3px;
+    margin-right:3px;
+  }
+
+  @include at-query ($min, $xlarge) {
+    width:95px;
+    margin-left:6px;
+    margin-right:6px;
+  }
+}
+
 .product-variants {
   display: none;
 
@@ -72,3 +157,74 @@
     margin-bottom: $gutter;
   }
 }
+
+.product-detail {
+  padding-left:$gutter;
+  h2 {
+    line-height:0.7em;
+    padding-bottom:$gutter;
+  }
+
+  @include at-query($max, $large) {
+    padding-right: 24px;
+  }
+}
+
+.product-offer {
+  color:#FFF;
+  background-color:$darkGreen;
+  height: 30px;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding-top:2px;
+}
+
+.product-price {
+  @include clearfix();
+  background: url('{{ "mos_logo.png" | asset_url }}') 94% center no-repeat;
+  background-size: 65px 65px;
+  background-color:$white;
+  margin-bottom:$gutter;
+  padding-bottom:($gutter * 0.5);
+}
+
+.product-price-amount {
+  vertical-align:middle;
+  padding-left:$gutter;
+  margin-top:0.8em;
+  width:30%;
+  float:left;
+  font-size:em(40px);
+}
+
+.price-text {
+  width:40%;
+  float:left;
+  text-align:center;
+  line-height:1.3em;
+  margin-top:$gutter;
+}
+
+.collection-items {
+  h3 {
+    font-size:em(26px);
+    margin-bottom: 0.7em;
+  }
+  margin-bottom:$gutter;
+}
+
+.other-products {
+  h3 {
+    font-size:em(26px);
+    margin-bottom: 0.7em;
+  }
+}
+
+.product-grid-item {
+  .product-grid-detail {
+    margin-top: 4px;
+    line-height:1.2em;
+  }
+}
+

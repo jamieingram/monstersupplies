@@ -67,23 +67,25 @@
   Add the page template as a class for easy page or template specific styling.
 {% endcomment %}
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
-
-  <div class="translation-bar"><p>We have automatically translated this page into</p></div>
+  <div id="fb-root"></div>
+  <form id="translation-form" name="translation-form" class="translation-form" method="POST">
+    <div class="translation-bar">
+      <span>This page has been automatically translated for </span>
+      <span class="selected-language">human</span>
+      <div class="burger-trigger"></div>
+      <div class="translation-options">
+        <ul>
+          <li><a href="#" data-language="human">Human</a></li>
+          <li><a href="#" data-language="werewolf">Werewolf</a></li>
+        </ul>
+      </div>
+    </div>
+  </form>
   <header class="site-header side-padding" role="banner">
     <div class="wrapper">
       <div  class="header-logo"><h1><a href="/"></a></h1></div>
 
       <div class="large--text-right header-links">
-        {% comment %}
-          You cart/checkout link should at least show the number of items in it.
-          Below shows the item count followed by item(s) and the total cart price.
-
-          Ajaxify Cart Notes:
-            - #cartToggle toggles cart visibility (drawer or modal)
-            - #cartCount updates the total number of items in the cart
-            - #cartCost updates the total cost of the cart
-            - Documentation:  http://shopify.com/timber#ajax-cart
-        {% endcomment %}
         <p>
           <div class="nav-search">
             {% include 'search-bar' %}
@@ -103,11 +105,7 @@
     </div>
   </nav>
 
-  <main class="wrapper main-content" role="main">
-
-    {{ content_for_layout }}
-
-  </main>
+  {{ content_for_layout }}
 
   {% include 'footer' %}
 
@@ -116,10 +114,25 @@
   {{ 'shop.js' | asset_url | script_tag }}
 
   {% comment %}
-    Twitter widget plugin - for follow button
+    Social plugin scripts
   {% endcomment %}
 
   <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  </script>
+
+  <script>
+    (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&appId=430457520367012&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  </script>
+
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script src="https://apis.google.com/js/platform.js" async defer>
+    {lang: 'en-GB'}
   </script>
   
   {% comment %}

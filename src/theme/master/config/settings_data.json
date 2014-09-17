@@ -3,11 +3,10 @@
   "presets": {
     "Default": {
       "color_body_text": "#000000",
-      "color_footer_bg": "#dde4dc",
+      "color_footer_bg": "#dde4db",
       "color_footer_social_link": "#bbbbbb",
-      "color_footer_text": "#636363",
       "color_primary": "#231f20",
-      "color_secondary": "#767676",
+      "color_secondary": "#FFFFFF",
       "use_logo": false,
       "logo_max_width": "450px",
       "logo_use_image": false,

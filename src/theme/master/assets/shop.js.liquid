@@ -1,5 +1,7 @@
 ;(function ($, Monsters, undefined){
 
+    /* navigation */
+
     $(document).ready(function() {
         var mobile_menu = $('.mobile-nav');
         var main_menu = $('.menu');
@@ -28,66 +30,129 @@
         });
     });
 
+    /* Translation menu */
+
     $(document).ready(function() {
+        var burger_trigger = $('.burger-trigger');
+        var translation_options = $('.translation-options');
+        var transition_links = translation_options.find('a');
+        var selected_language = $('.selected-language');
+        //
+        burger_trigger.on('click', function(e) {
+            e.preventDefault();
+            translation_options.toggleClass('is-open');
+        });
+        transition_links.on('click', function (e) {
+            e.preventDefault();
+            var language = $(this).attr('data-language');
+            selected_language.html(language);
+            translation_options.removeClass('is-open');
+        });
+    });
+
+    /* Carousel */
+
+    $(document).ready(function() {
+
+        /* homepage carousel */
         var carousel = $(".feature-carousel");
         //store the carousel data
-        var carouselItems = $(".carousel-item");
-        var carouselOptions = {
-            slideSpeed : 300,
-            paginationSpeed : 400,
-            singleItem:true,
-            autoPlay : 50000
-        };
-
-        var items_array = [];
-
-        $.each(carouselItems, function(index, item) {
-            var image = $(item).find('img');
-            var item_obj = {};
-            item_obj['desktop-img'] = image.attr('data-desktop-image');
-            item_obj['mobile-img'] = image.attr('src');
-            item_obj['alt-text'] = image.attr('alt');
-            item_obj['carousel-copy'] = $(item).find('.carousel-copy').html();
-            items_array.push(item_obj);
-        });
-
-        //initialise the carouel
-        carousel.owlCarousel(carouselOptions);
-
-        var carouselData = $(carousel).data('owlCarousel');
-
-        var showDesktopCarouselAssets = function() {
-            repopulateCarousel(false);
-        }
-
-        var showMobileCarouselAssets = function() {
-            repopulateCarousel(true);
-        }
-
-        var repopulateCarousel = function (isMobile) {
-            carouselData.destroy();
-            var content_str = '';
-            for (var i = 0; i < items_array.length; i++) {
-                var item_obj = items_array[i];
-                var image_str = item_obj['desktop-img'];
-                if (isMobile) image_str = item_obj['mobile-img'];
-                var item_str = '<div class="carousel-item">';
-                item_str += '<img src="'+image_str+'" alt="'+item_obj['alt-text']+'">';
-                item_str += '<div class="carousel-copy">' +item_obj['carousel-copy']+ '</div>';
-                item_str += '</div>';
-                content_str += item_str;
+        var carouselItems = carousel.find(".carousel-item");
+        if (carouselItems.length > 0) {
+            var carouselOptions = {
+                slideSpeed : 300,
+                paginationSpeed : 400,
+                singleItem:true,
+                autoPlay : 50000
             };
-            carousel.html(content_str);
-            carouselData.reinit(carouselOptions);
+
+            var items_array = [];
+
+            $.each(carouselItems, function(index, item) {
+                var image = $(item).find('img');
+                var item_obj = {};
+                item_obj['desktop-img'] = image.attr('data-desktop-image');
+                item_obj['mobile-img'] = image.attr('src');
+                item_obj['alt-text'] = image.attr('alt');
+                item_obj['carousel-copy'] = $(item).find('.carousel-copy').html();
+                items_array.push(item_obj);
+            });
+
+            //initialise the homepage carouel
+            carousel.owlCarousel(carouselOptions);
+
+            var carouselData = $(carousel).data('owlCarousel');
+
+            var showDesktopCarouselAssets = function() {
+                repopulateCarousel(false);
+            }
+
+            var showMobileCarouselAssets = function() {
+                repopulateCarousel(true);
+            }
+
+            var repopulateCarousel = function (isMobile) {
+                if (!carouselData) return;
+                carouselData.destroy();
+                var content_str = '';
+                for (var i = 0; i < items_array.length; i++) {
+                    var item_obj = items_array[i];
+                    var image_str = item_obj['desktop-img'];
+                    if (isMobile) image_str = item_obj['mobile-img'];
+                    var item_str = '<div class="carousel-item">';
+                    item_str += '<img src="'+image_str+'" alt="'+item_obj['alt-text']+'">';
+                    item_str += '<div class="carousel-copy">' +item_obj['carousel-copy']+ '</div>';
+                    item_str += '</div>';
+                    content_str += item_str;
+                };
+                carousel.html(content_str);
+                carouselData.reinit(carouselOptions);
+            }
+
+            if (Monsters.isDesktop) {
+                showDesktopCarouselAssets();
+            }
+
+            $(window).on('desktopToMobile', showMobileCarouselAssets);
+            $(window).on('mobileToDesktop', showDesktopCarouselAssets);
         }
 
-        if (Monsters.isDesktop) {
-            showDesktopCarouselAssets();
+        /* product carousel */
+        var product_carousel = $('.product-carousel');
+        var carousel_thumbs = $('.js-carousel-thumb');
+        var carousel_navigation = $('.carousel-navigation');
+        var left_arrow = carousel_navigation.find('.arrow-left');
+        var right_arrow = carousel_navigation.find('.arrow-right');
+        //
+        if (product_carousel) {
+
+            product_carousel.owlCarousel({
+              slideSpeed : 300,
+              pagination: false,
+              singleItem:true,
+            });
+
+            $.each(carousel_thumbs, function(index, thumb) {
+                $(thumb).on('click', function (e) {
+                    e.preventDefault();
+                    product_carousel.trigger('owl.goTo',index);
+                });
+            });
+
+            left_arrow.on('click', function (e) {
+                e.preventDefault();
+                product_carousel.trigger('owl.prev');
+            });
+
+            right_arrow.on('click', function (e) {
+                e.preventDefault();
+                product_carousel.trigger('owl.next');
+            });
         }
 
-        $(window).on('desktopToMobile', showMobileCarouselAssets);
-        $(window).on('mobileToDesktop', showDesktopCarouselAssets);
-    });
+     });
+
+    /* helper functions */
 
     $(document).ready(function() {
         //setup the layout handler

@@ -21,60 +21,62 @@
 
 .about-shop-promo {
   text-align: center;
-  background: url('{{ "shop-bg.jpg" | asset_url }}') center center no-repeat;
-  padding:5em;
+  background: url('{{ "shop-bg.jpg" | asset_url }}') center -260px no-repeat;
+  background-size: 1180px 887px;
 
-  @include at-query ($max, $small) {
-    padding:($gutter / 2);
+  .btn-secondary {
+    margin-bottom: 2.6em;
   }
 
+  @include at-query ($max, $small) {
+    background-size: 480px ((480 / 1180) * 887px);
+    background-position-y:0px;
+  }
+
+  
 }
 
 .mos-promo {
   font-size: 1.125em;
   text-align: center;
   background: url('{{ "mos_logo.png" | asset_url }}') top center no-repeat;
-  padding-top:5em;
+  background-position-y:$gutter;
+  padding-top:115px;
+  padding-bottom:$gutter;
+  background-color:$white;
 
   @include at-query ($max, $small) {
     text-align: left;
     background-position: left;
     background-position-x: ($gutter * 2);
-    padding-top:0;
+    padding-top:$gutter;
     padding-left: 150px;
   }
 }
 
 .panel {
-    width:320px;
-
-    @include at-query ($max, $small) {
-        width:288px;
-    }
-
-    margin: 0 auto;
+    width:100%;
     padding:$gutter;
 
-    h4 {
-        margin-bottom: 0;
-    }
-
-    .panel-sub-title {
-        text-transform: uppercase;
-        margin-bottom:1em;
-    }
-
     p {
-        margin-bottom:1em;
+        font-size:em(18px);
     }
+
+    @include at-query (null, $small, $medium) {
+      p {
+        font-size:em(16px);
+      }
+    }
+
 }
 
 .panel-black {
     background-color: $black;
-    color: #FFF;
+    color: $white;
+    padding:10px;
 
     a {
-        color: #FFF;
+        color: $white;
     }
 
     a:hover,
@@ -83,10 +85,52 @@
     }
 }
 
+.panel-sub-title {
+  color: $white;
+  width:100%;
+  background: url('{{ "semi_circle.png" | asset_url }}') top center no-repeat;
+  background-size: 564px 109px;
+  padding-bottom:0.5em;
+  margin-bottom:14em;
+
+  h3 {
+    padding-top:($gutter / 2);
+    font-size:em(30px);
+    margin-bottom:0px;
+  }
+
+  p {
+    font-size:em(24px);
+  }
+
+  @include at-query ($max, $small) {
+    background-size: (564px * 0.5) (109px * 0.5);
+    margin-bottom:9em;
+
+    h3 {
+      padding-top:4px;
+      font-size:em(18px);
+      line-height:1.3em;
+    }
+
+    p {
+      font-size:em(14px);
+    }
+  }
+
+}
+
 .map-link {
     background: url('{{ "location-pin.png" | asset_url }}') top left no-repeat;
     background-position: 0 2px;
     padding-left:1.438em;
+}
+
+.collection-list {
+    margin-bottom:46px;
+    @include at-query ($max, $small) {
+      margin-bottom:$gutter;
+    }
 }
 
 .collection-promo {
@@ -97,15 +141,24 @@
 
     .collection-text {
         padding:1em;
-        min-height: 7.8em;
+        min-height: 8em;
+        @include at-query ($min, $xlarge) {
+          min-height: 9em;
+        }
+        
     }
 
     .title-small {
         font-family: $headerFontStack;
         font-weight: $headerFontWeight;
-        font-size: 1.429em;
+        font-size: em(20px);
+        line-height:1em;
         text-transform: uppercase;
         margin-bottom:0.5em;
+
+        @include at-query ($min, $xlarge) {
+          font-size: em(26px);
+        }
     }
 
     img {
@@ -116,5 +169,25 @@
         line-height: 1.4;
         margin: 0;
         padding: 0 10px 0 10px;
+    }
+
+    @include at-query ($min, $xlarge) {
+      p {
+        font-size: em(18px);
+      }
+    }
+}
+
+.frontpage-collection {
+
+  h2 {
+    padding-top:$gutter;
+  }
+
+  @include at-query ($max, $small) {
+        h2 {
+          font-size: em(30px);
+          padding-top:($gutter / 2);
+        }
     }
 }

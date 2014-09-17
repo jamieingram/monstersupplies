@@ -1,30 +1,32 @@
-{% comment %}
-
-  This page represents the /collections and /products pages.
-  It is an optional, but highly recommended, template for your theme.
-
-  More info:
-    - http://docs.shopify.com/manual/configuration/store-customization/taking-control-of-collections-listing
-
-{% endcomment %}
-
-<header class="page-header">
-  <h1>Product Collections</h1>
-</header>
-
-<div class="grid-uniform">
-
+<main class="wrapper main-content" role="main">
   {% comment %}
-    Loop through each collection, except 'frontpage'
+
+    This page represents the /collections and /products pages.
+    It is an optional, but highly recommended, template for your theme.
+
+    More info:
+      - http://docs.shopify.com/manual/configuration/store-customization/taking-control-of-collections-listing
+
   {% endcomment %}
-  {% for collection in collections %}
 
-    {% unless collection.handle == 'frontpage' %}
+  <header class="page-header">
+    <h1>Product Collections</h1>
+  </header>
 
-      {% include 'collection-grid-item' %}
+  <div class="grid-uniform">
 
-    {% endunless %}
+    {% comment %}
+      Loop through each collection, except 'frontpage'
+    {% endcomment %}
+    {% for collection in collections %}
 
-  {% endfor %}
+      {% unless collection.handle == 'frontpage' %}
 
-</div>
+        {% include 'collection-grid-item' %}
+
+      {% endunless %}
+
+    {% endfor %}
+
+  </div>
+</main>
