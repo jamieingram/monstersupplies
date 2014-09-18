@@ -2200,7 +2200,7 @@ a.basket-link {
   }
 
   @include at-query ($min, $xlarge) {
-    width:95px;
+    width:100px;
     margin-left:6px;
     margin-right:6px;
   }
@@ -2283,6 +2283,14 @@ a.basket-link {
     font-size:em(26px);
     margin-bottom: 0.7em;
   }
+
+  .product-grid-item {
+    .product-grid-detail {
+      margin-top: 4px;
+      line-height:1.2em;
+    }
+  }
+
   margin-bottom:$gutter;
 }
 
@@ -2291,15 +2299,91 @@ a.basket-link {
     font-size:em(26px);
     margin-bottom: 0.7em;
   }
-}
-
-.product-grid-item {
-  .product-grid-detail {
-    margin-top: 4px;
-    line-height:1.2em;
+  .product-grid-item {
+    .product-grid-detail {
+      font-size:em(18px);
+      margin-top: 4px;
+      line-height:1.2em;
+    }
   }
 }
 
+.product-description {
+  background-color:$white;
+  font-size:em(18px);
+  padding-top:30px;
+  padding-left:(2 * $gutter);
+  padding-right:(2 * $gutter);
+  padding-bottom:$gutter;
+}
+
+.product-notes {
+  border-top: 1px dashed grey;
+  background-color:#fffff0;
+  text-align: center;
+
+  .product-notes-content {
+    width:50%;
+    display:inline-block;
+    padding-top:16px;
+  }
+
+  h3 {
+    font-size:em(10px);
+    text-transform: uppercase;
+  }
+
+  p {
+    text-align: left;
+    font-size:em(14px);
+  }
+
+  .product-more-info {
+    min-height:30px;
+    overflow:hidden;
+    cursor:pointer;
+    background: url('{{ "arrow-down.png" | asset_url }}') 96% top no-repeat;
+
+    &.is-open {
+      background: url('{{ "arrow-up.png" | asset_url }}') 96% top no-repeat;
+    }
+
+    h3 {
+      height:30px;
+      font-size:em(14px);
+      text-transform: uppercase;
+      border: 1px solid black;
+      padding: 7px;
+      line-height: 1.0em;
+      text-align:left;
+    }
+
+    p {
+      margin-top:-100px;
+    }
+
+    margin-bottom:20px;
+  }
+  margin-bottom:38px;
+}
+
+.product-quote {
+  padding-left: 48px;
+  padding-right: 48px;
+  padding-top: 30px;
+  padding-bottom:28px;
+  background-color:$black;
+  color:#FFF;
+  .quote-text {
+    font-size:em(30px);
+    line-height:1.2em;
+    margin-bottom:18px;
+  }
+
+  .quote-author {
+    font-size:em(16px);
+  }
+}
 
 /*============================================================================
   #Basic Styles

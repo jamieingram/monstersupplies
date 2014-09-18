@@ -146,17 +146,19 @@
           {{ product.description }}
         </div>
         <div class="product-notes">
-          <h3>Notes for Humans:</h3>
-          <p>
-            Delicious hard boiled sweets in a metal tin with “A Vague Sense of Unease” by Laura Dockrill, a specially commissioned poem exclusive to Hoxton Street Monster Supplies and suitable for readers <strong>aged 7+ years.</strong>
-          </p>
-          <div class="product-ingredients">
-            <h3>Ingredients</h3>
-            <p>Some ingredients here</p>
-          </div>
-          <div class="product-size">
-            <h3>Size / weight</h3>
-            <p>Some size weight stuff here</p>
+          <div class="product-notes-content">
+            <h3>Notes for Humans:</h3>
+            <p>
+              Delicious hard boiled sweets in a metal tin with “A Vague Sense of Unease” by Laura Dockrill, a specially commissioned poem exclusive to Hoxton Street Monster Supplies and suitable for readers <strong>aged 7+ years.</strong>
+            </p>
+            <div class="product-ingredients product-more-info js-collapsable">
+              <h3>Ingredients</h3>
+              <p>Some ingredients here</p>
+            </div>
+            <div class="product-size product-more-info js-collapsable">
+              <h3>Size / weight</h3>
+              <p>Some size weight stuff here</p>
+            </div>
           </div>
         </div>
         <div class="product-quote">
@@ -177,6 +179,9 @@
         </div>
         <div class="other-products top-line">
           <h3>Other monsters also bought</h3>
+
+          {% include 'related-products' %}
+
         </div>
       </div>
     </div>

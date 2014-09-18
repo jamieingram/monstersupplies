@@ -150,7 +150,21 @@
             });
         }
 
-     });
+    });
+
+    /* expandable panels - product info */
+    $(document).ready(function() {
+        var panels = $('.js-collapsable');
+        panels.on('click', function (e) {
+            var content = $(this).find('p');
+            $(this).toggleClass('is-open');
+            if (!$(this).hasClass('is-open')) {
+                content.animate({'margin-top': '-100px'});
+            }else{
+                content.animate({'margin-top': '0px'});
+            }
+        });
+    });
 
     /* helper functions */
 
