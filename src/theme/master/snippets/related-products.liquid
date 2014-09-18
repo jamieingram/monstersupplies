@@ -1,0 +1,44 @@
+
+<div class="grid-uniform related-products">
+  {% assign meta_related_products = product.metafields.custom_fields.related_products | remove: ' ' %}
+  {% if meta_related_products %}
+    {% assign related_products = meta_related_products | split: ',' %}
+    {% for product in collection.all_products %}
+      {% for related_product in related_products %}
+        {% if product.handle == related_product %}
+          
+          {% assign on_sale = false %}
+          {% if product.compare_at_price > product.price %}
+            {% assign on_sale = true %}
+          {% endif %}
+
+          {% assign sold_out = true %}
+          {% if product.available  %}
+            {% assign sold_out = false %}
+          {% endif %}
+
+          <div class="grid-item no-bottom-margin product-grid-item large--one-half medium--one-half small--one-half{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
+
+            <a href="{{ product.url | within: collection }}" class="product-grid-image">
+              <img src="{{ product.featured_image.src | product_img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+              {% if sold_out %}
+                <strong>Sold Out</strong>
+              {% endif %}
+            </a>
+            <div class="product-grid-detail">
+              <a class="product-title" href="{{ product.url | within: collection }}">{{ product.title }}</a>
+              <p>
+                 <span>
+                 {% if product.price_varies %}From{% endif %}
+                  {{ product.price | money }}
+                </span>
+              </p>
+            </div>
+          </div>
+
+        {% endif %}
+      {% endfor %}        
+    {% endfor %}
+  {% endif %}
+
+</div>
