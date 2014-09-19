@@ -121,15 +121,31 @@
                 </h3>
                 <p class="price-text">All profits go to the <a href="#">Ministry of Stories</a>, a creative writing charity for humans</a>
               </div>
-
-              {% comment %}
-                Quantity selector is optional
-              {% endcomment %}
-              <label for="quantity">Qty: </label>
-              <input min="1" type="number" id="quantity" name="quantity" value="1">
-
-              <input type="submit" name="add" class="btn" id="addToCart" value="Add to Cart">
+              <div class="quantity-elements">
+                <span class="subtract-product"></span>
+                <input min="1" type="text" id="quantity" name="quantity" value="1">
+                <span class="add-product"></span>
+                <input type="submit" name="add" class="btn button-add" id="addToCart" value="Add to Casket">
+              </div>              
             </form>
+
+            <div class="delivery-info">
+              <a href="#">Delivery and returns information</a>
+            </div>
+            
+            <div class="social product-share">
+              <div class="facebook-button social-button">
+                <div class="fb-like" data-layout="button" data-action="like" data-show-faces="false"></div>
+              </div>
+              <div class="twitter-button social-button left-margin-button">
+                <a class="twitter-share-button" data-count="none" href="https://twitter.com/share">Tweet</a>
+              </div>
+              <div class="pinterest-button social-button left-margin-button">
+                <a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" ><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>
@@ -211,7 +227,7 @@
     if (variant) {
       if (variant.available) {
         // We have a valid product variant, so enable the submit button
-        addToCart.removeClass('disabled').removeAttr('disabled').val('Add to Cart');
+        addToCart.removeClass('disabled').removeAttr('disabled').val('Add to Casket');
 
       } else {
         // Variant is sold out, disable the submit button

@@ -181,11 +181,11 @@
 }
 
 .product-price {
-  @include clearfix();
+  @include clearfix;
   background: url('{{ "mos_logo.png" | asset_url }}') 94% center no-repeat;
   background-size: 65px 65px;
   background-color:$white;
-  margin-bottom:$gutter;
+  margin-bottom:34px;
   padding-bottom:($gutter * 0.5);
 }
 
@@ -310,5 +310,63 @@
 
   .quote-author {
     font-size:em(16px);
+  }
+}
+
+.quantity-elements {
+  @include clearfix;
+  display: inline-block;
+  margin-right:$gutter;
+
+  input[type="text"] {
+    float:left;
+    display:inline-block;
+    padding:0px;
+    margin:0px;
+    height:34px;
+    width: 34px;
+    text-align:center;
+    border:none;
+    outline:none;
+    background: transparent;
+  }
+
+  input[type="text"]:focus{
+    border:none;
+    outline: none;
+  }
+
+  .subtract-product {
+    cursor:pointer;
+    float:left;
+    display:inline-block;
+    width:34px;
+    height:34px;
+    background: url('{{ "minus.png" | asset_url }}') left top no-repeat;
+  }
+
+  .add-product {
+    cursor:pointer;
+    float:left;
+    display:inline-block;
+    width:34px;
+    height:34px;
+    background: url('{{ "plus.png" | asset_url }}') left top no-repeat;
+    margin-right:$gutter;
+  }
+
+  .button-add {
+    float:left;
+  }
+}
+
+.delivery-info {
+  font-size:em(18px);
+  margin-bottom:$gutter;
+}
+
+.product-share {
+  .facebook-button {
+    margin-left:0px;
   }
 }

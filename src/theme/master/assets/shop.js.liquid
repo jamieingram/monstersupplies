@@ -166,6 +166,27 @@
         });
     });
 
+    /* plus and minus buttons - product page */
+    $(document).ready(function() {
+        var add_button = $('.add-product');
+        var subtract_button = $('.subtract-product');
+        var quantity_input = $('input[name="quantity"]');
+
+        var quantity;
+
+        subtract_button.on('click', function (e) {
+            quantity = parseInt(quantity_input.val());
+            if (quantity > 1) quantity -= 1;
+            quantity_input.val(quantity);
+        });
+
+        add_button.on('click', function (e) {
+            quantity = parseInt(quantity_input.val());
+            quantity += 1;
+            quantity_input.val(quantity);
+        });
+    });
+
     /* helper functions */
 
     $(document).ready(function() {
