@@ -1,0 +1,87 @@
+.modal-window {
+    position:fixed;
+    display:none;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color: #131313;
+    overflow-y: scroll;
+    
+    .modal-content {
+        background-color:#FFF;
+        width:80%;
+        margin:10%;
+
+        .overlay-close-button {
+            @include clearfix;
+            cursor:pointer;
+            float:right;
+            width:21px;
+            height:21px;
+            margin-top:-21px;
+            margin-right:-21px;
+            background: url('{{ "close-button.png" | asset_url }}') top left no-repeat;
+
+            @include at-query ($max, $small) {
+                margin-top:0px;
+                margin-right:0px;
+            }
+        }
+
+        .modal-content-inner {
+            clear: both;
+        }
+
+        @include at-query ($max, $small) {
+            width:100%;
+            margin:0;
+        }
+    }
+
+    &.is-open {
+        display:block;
+    }
+}
+
+.newsletter-overlay {
+
+    .modal-content {
+        text-align:center;
+        padding:36px;
+        
+        .newsletter-form-content {
+            max-width:800px;
+            margin: 0 auto;
+
+            h2 {
+                padding-bottom:0px;
+            }
+            p {
+                padding-left:24px;
+                padding-right:24px;
+                font-size:em(18px);
+                line-height:1.3em;
+                margin-bottom:$gutter;
+            }
+
+            @include at-query ($max, $small) {
+                h2 {
+                    font-size:em(26px);
+                }
+
+                p {
+                    font-size:em(14px);
+                }
+            }
+        }
+
+        @include at-query ($max, $small) {
+            padding:18px;
+        }
+    }
+}
+
+.noscroll {
+    overflow: hidden;
+}

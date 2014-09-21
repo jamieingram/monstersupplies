@@ -187,6 +187,26 @@
         });
     });
 
+    /* overlays */
+
+    $(document).ready(function() {
+        var newsletter_button = $('.js-newsletter-button');
+        var newsletter_overlay = $('.newsletter-overlay');
+        var modal_windows = $('.modal-window');
+        var close_button = $('.js-overlay-close');
+
+        newsletter_button.on('click', function (e) {
+            e.preventDefault();
+            $('body').addClass('noscroll');
+            newsletter_overlay.addClass('is-open');
+        });
+
+        close_button.on('click', function (e) {
+            $('body').removeClass('noscroll');
+            modal_windows.removeClass('is-open');
+        });
+    });
+
     /* helper functions */
 
     $(document).ready(function() {
