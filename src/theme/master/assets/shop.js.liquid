@@ -191,7 +191,11 @@
 
     $(document).ready(function() {
         var newsletter_button = $('.js-newsletter-button');
+        var delivery_link = $('.js-delivery-info');
+        var mos_link = $('.js-mos-info');
         var newsletter_overlay = $('.newsletter-overlay');
+        var delivery_overlay = $('.delivery-overlay');
+        var mos_overlay = $('.mos-overlay');
         var modal_windows = $('.modal-window');
         var close_button = $('.js-overlay-close');
 
@@ -199,6 +203,18 @@
             e.preventDefault();
             $('body').addClass('noscroll');
             newsletter_overlay.addClass('is-open');
+        });
+
+        delivery_link.on('click', function (e) {
+            e.preventDefault();
+            $('body').addClass('noscroll');
+            delivery_overlay.addClass('is-open');
+        });
+
+        mos_link.on('click', function (e) {
+            e.preventDefault();
+            $('body').addClass('noscroll');
+            mos_overlay.addClass('is-open');
         });
 
         close_button.on('click', function (e) {

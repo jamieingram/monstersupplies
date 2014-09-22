@@ -134,6 +134,10 @@ a:focus {
     width: 100%;
   }
 
+  &.btn--red {
+    background-color: $red;
+  }
+
   /*================ Set primary button colors - can override later ================*/
   background-color: $colorBtnPrimary;
   color: #fff;
@@ -141,6 +145,10 @@ a:focus {
   &:hover {
     background-color: $colorBtnPrimaryHover;
     color: #fff;
+  }
+
+  &.btn--red:hover {
+    background-color: darken($red, 10%);
   }
 
   &:active,

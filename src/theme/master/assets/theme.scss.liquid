@@ -127,6 +127,7 @@ $black: #231f20;
 $grey: #d6d3d5;
 $darkGrey: #575455;
 $darkGreen: #367057;
+$red: #ac3b2a;
 
 // Width variables
 $siteWidth: 1180px;
@@ -1582,7 +1583,19 @@ a.basket-link {
 }
 
 
+.noscroll {
+    overflow: hidden;
+}
+
+.border-left {
+    border-left: 2px solid #7f7f7f;
+    @include at-query ($max, $medium) {
+        border-left:none;
+    }
+}
+
 .modal-window {
+    z-index:200;
     position:fixed;
     display:none;
     top:0;
@@ -1614,7 +1627,7 @@ a.basket-link {
         }
 
         .modal-content-inner {
-            clear: both;
+            padding:$gutter;
         }
 
         @include at-query ($max, $small) {
@@ -1625,6 +1638,63 @@ a.basket-link {
 
     &.is-open {
         display:block;
+    }
+
+    label, legend {
+        font-size:em(18px);
+        font-weight:normal;
+        display:inline-block;
+    }
+
+    input[type="text"] {
+        display:inline-block;
+        margin:0 0 22px;
+        border:none;
+        outline:none;
+        width:280px;
+        height:40px;
+        background-color:#dbe0d9;
+    }
+
+    input[type="text"]:focus{
+        border:none;
+        outline: none;
+    }
+
+    input[type="checkbox"] {
+      position: absolute; 
+      overflow: hidden; 
+      clip: rect(0 0 0 0); 
+      height:1px; 
+      width:1px; 
+      margin:-1px; 
+      padding:0;
+      border:0;
+    }
+
+    input[type="checkbox"] + label.checkbox-label {
+      padding-left:26px;
+      height:20px; 
+      display:inline-block;
+      line-height:20px;
+      background-repeat:no-repeat;
+      background-position: 0 0;
+      vertical-align:middle;
+      cursor:pointer;
+    }
+
+    input[type="checkbox"]:checked + label.checkbox-label {
+      background-position: 0 -21px;
+    }
+
+    .checkbox-label {
+      background:url('{{ "checkbox.png" | asset_url }}') top left no-repeat;
+    }
+
+    .form-input {
+        @include at-query ($max, $small) {
+            text-align:left;
+        }
     }
 }
 
@@ -1649,13 +1719,54 @@ a.basket-link {
                 margin-bottom:$gutter;
             }
 
+            label {
+                width:100px;
+                text-align:right;
+                margin-right:12px;
+
+                &.checkbox-label {
+                    width:auto;
+                    text-align:left;
+                }
+
+                @include at-query ($max, $small) {
+                    text-align:left;
+                    margin-right:0px;
+                }
+            }
+
+            ul {
+                display:inline-block;
+                text-align:left;
+            }
+
+            .top-align {
+                vertical-align: top;
+            }
+
+            .form-input {
+                ul {
+                    width:280px;
+                }
+
+                button {
+                    margin-right: 86px;
+                }
+            }
+
             @include at-query ($max, $small) {
                 h2 {
-                    font-size:em(26px);
+                    font-size:em(28px);
                 }
 
                 p {
-                    font-size:em(14px);
+                    padding-left:0px;
+                    padding-right:0px;
+                    font-size:em(16px);
+                }
+
+                label {
+                    font-size:em(16px);
                 }
             }
         }
@@ -1666,8 +1777,78 @@ a.basket-link {
     }
 }
 
-.noscroll {
-    overflow: hidden;
+.delivery-overlay {
+
+    .modal-content {
+        .overlay-close-button {
+            margin-top:0px;
+            margin-right:0px;
+        }
+
+        h2 {
+            font-size:em(24px);
+        }
+
+        .delivery-content-inner {
+            margin-top:36px;
+
+            .grid-item {
+                padding-left:36px;
+                padding-right:36px;
+            }
+        }
+    }
+}
+
+.mos-overlay {
+
+    .grid-item {
+        margin-bottom:0px;
+    }
+
+    .mos-modal-content {
+         
+        .overlay-close-button {
+            margin-top:0px;
+            margin-right:0px;
+            @include at-query ($max, $large) {
+                margin-bottom:24px;
+            }
+        }
+
+         img {
+            display:block;
+         }
+
+         .mos-logo {
+            width:100%;
+            height:ceil(164px * 0.7);
+            background: url('{{ "mos-logo-red.png" | asset_url }}') top center no-repeat;
+            background-size: (232px * 0.7) (164px * 0.7);
+            text-indent: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            margin-top:24px;
+            margin-bottom:36px;
+
+            @include at-query ($min, $xlarge) {
+                height:164px;
+                background-size: 232px 164px;
+            }
+         }
+
+         p {
+            font-size:em(18px);
+            line-height:em(16px);
+            font-style: italic;
+            margin-bottom:30px;
+
+            @include at-query ($min, $xlarge) {
+                font-size:em(20px);
+                line-height:em(18px);
+            }
+         }
+    }
 }
 /*============================================================================
   #Site Footer
@@ -2332,6 +2513,10 @@ a.basket-link {
   @include at-query($max, $large) {
     padding-right: 24px;
   }
+
+  .social {
+    border-bottom:none;
+  }
 }
 
 .product-offer {
@@ -2670,6 +2855,10 @@ a:focus {
     width: 100%;
   }
 
+  &.btn--red {
+    background-color: $red;
+  }
+
   /*================ Set primary button colors - can override later ================*/
   background-color: $colorBtnPrimary;
   color: #fff;
@@ -2677,6 +2866,10 @@ a:focus {
   &:hover {
     background-color: $colorBtnPrimaryHover;
     color: #fff;
+  }
+
+  &.btn--red:hover {
+    background-color: darken($red, 10%);
   }
 
   &:active,

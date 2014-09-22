@@ -5,9 +5,78 @@
             <h2>Sign up to the newsletter</h2>
             <p>Here at Hoxton Street Monster Supplies, there are many comings and goings, moanings and groanings, things that go bump in the night, and lots of ghastly goings on.</p>
             <p>To stay abreast of these matters, as well as new products, special offers and other grim tales, please sign up to our newsletter below:</p>
-            <form>
-
+            <form action="/newsletter" method="post" id="newsletter-form" class="newsletter-form" role="newsletter">
+                <div class="form-input"><label for="first_name" >First name</label><input type="text" name="first_name"></div>
+                <div class="form-input"><label for="last_name" >Last name</label><input type="text" name="last_name"></div>
+                <div class="form-input"><label for="email" >Email address</label><input type="text" name="email"></div>
+                <div class="form-input">
+                    <label for="cb1" class="top-align">Mailing list</label> 
+                    <ul>
+                        <li><input type="checkbox" id="cb1" value="mos" /><label for="cb1" class="checkbox-label">Ministry of Stories</label></li>
+                        <li><input type="checkbox" id="cb2" value="hsms" /><label for="cb2" class="checkbox-label">Hoxton Street Monster Supplies</label></li> 
+                    </ul>
+                </div>
+                <div class="form-input"><button class='btn js-newsletter-submit-button'>Sign up</button></div>
             </form>
+        </div>
+    </div>
+</div>
+
+<div class="delivery-overlay modal-window">
+    <div class="modal-content">
+        <div class="delivery-modal-content modal-content-inner">
+            <div class="overlay-close-button js-overlay-close">&nbsp;</div>
+            <div class="grid-uniform delivery-content-inner">
+                <div class="grid-item large--one-half">
+                    <h2>Delivery information</h2>
+                    <p>At the moment, we deliver to UK destinations only, via 1st class Royal Mail. We are looking into the possibility of shipping internationally, and will update this page as new destinations become available around the world and underworld. In the meantime, some of our products are available for sale on Firebox.com: Human Preserves, Cubed Earwax and Zombie Mints.</p>
+
+                    <p>Postage and packing for the period up to Christmas costs:
+                        <ul>
+                            <li>- £3.50 for orders of up to £25,</li>
+                            <li>- £7 for orders £25 - £50, a</li>
+                            <li>- Free for any order over £50.</li>
+                        </ul>
+                    </p>
+         
+                    <p>This charge helps cover our costs, making sure that the best proceeds from your purchase go towards supporting writing workshops for young people at the Ministry of Stories.</p>
+         
+                    <p>Our team of zombie volunteers sends orders once a week on a Saturday by 1st class Royal Mail, who aim to deliver within 1 working day. On average, you can expect your delivery within 12 working days of order confirmation, and hopefully sooner. Unless something truly hideous happens, in which case delays of several centuries are not unlikely.</p>
+                </div>
+
+                 <div class="grid-item large--one-half border-left">
+                    <h2>Returns information</h2>
+                    <p>You can return products if:</p>
+     
+                    <p>- You decide within seven days the product isn’t for you. You’ll get a refund for its full price and any delivery charges. We’ll process that within 30 days of you asking for a refund. You will need to email us at orders@monstersupplies.org and get the product back to us, together with a returns form. Please look after the product when you have it. Do not burn it, eat it, sit on it, drown it, or in any way cause it harm. We might need to ask for compensation otherwise.</p>
+     
+                    <p>- You don’t agree to a change in our terms and conditions or other policies, or you think the product’s faulty. You will need to include the returns form and get the product back to us. If this happens, we’ll check the product and email you about your refund. We’ll process it as soon as monstrously possible – definitely within 30 days of us emailing you to confirm a refund. You’ll get the full price of the product and delivery back, plus any costs for sending it to us.</p>
+     
+                    <p>Please check the dispatch confirmation to find out more about your statutory right of cancellation. Returning a product doesn’t affect your other statutory rights as a consumer. Nor as a monster.</p>
+     
+                    <p>We try to use the same method to pay you as you used to pay us.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mos-overlay modal-window">
+    <div class="modal-content">
+        
+        <div class="mos-modal-content modal-content-inner">
+            <div class="overlay-close-button js-overlay-close">&nbsp;</div>
+            <div class="grid-uniform">
+                <div class="grid-item large--one-half">
+                    <img src="{{ "mos-inside.jpg" | asset_url }}" alt="ministry of stories">
+                </div>
+
+             <div class="grid-item large--one-half text-center">
+                <h2 class="mos-logo">Ministry of stories</h2>
+                <p>Hoxton Street Monster Supplies is run under license from the Ministry of Stories, a volunteering organisation which helps young people with all manner of writing, through free one-to-one mentoring and writing workshops.</p>
+                <p>You have already taken the first step to discovering our whereabouts. Jolly good work! Now, take the next step...</p>
+                <a href="http://www.ministryofstories.org"><button class="btn btn--red">Enter the ministry</button></a>
+            </div>
         </div>
     </div>
 </div>
