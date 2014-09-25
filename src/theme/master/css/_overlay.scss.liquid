@@ -39,6 +39,10 @@
                 margin-top:0px;
                 margin-right:0px;
             }
+
+            &.close-button-red {
+                background: url('{{ "close-button-red.png" | asset_url }}') top left no-repeat;
+            }
         }
 
         .modal-content-inner {
@@ -74,36 +78,6 @@
     input[type="text"]:focus{
         border:none;
         outline: none;
-    }
-
-    input[type="checkbox"] {
-      position: absolute; 
-      overflow: hidden; 
-      clip: rect(0 0 0 0); 
-      height:1px; 
-      width:1px; 
-      margin:-1px; 
-      padding:0;
-      border:0;
-    }
-
-    input[type="checkbox"] + label.checkbox-label {
-      padding-left:26px;
-      height:20px; 
-      display:inline-block;
-      line-height:20px;
-      background-repeat:no-repeat;
-      background-position: 0 0;
-      vertical-align:middle;
-      cursor:pointer;
-    }
-
-    input[type="checkbox"]:checked + label.checkbox-label {
-      background-position: 0 -21px;
-    }
-
-    .checkbox-label {
-      background:url('{{ "checkbox.png" | asset_url }}') top left no-repeat;
     }
 
     .form-input {

@@ -30,6 +30,20 @@ body {
   padding-bottom: $gutter*2;
 }
 
+.page-header {
+  width:100%;
+  text-align:center;
+  margin-top:12px;
+
+  h2 {
+    padding-bottom:0;
+    line-height: 1.1em;
+  }
+  @include at-query ($max, $small) {
+    margin-top:0px;
+  }
+}
+
 /*============================================================================
   #Helper Classes
 ==============================================================================*/
@@ -138,6 +152,11 @@ a:focus {
     background-color: $red;
   }
 
+  &.btn--grey {
+    color: #fff;
+    background-color: $lightGrey;
+  }
+
   /*================ Set primary button colors - can override later ================*/
   background-color: $colorBtnPrimary;
   color: #fff;
@@ -149,6 +168,11 @@ a:focus {
 
   &.btn--red:hover {
     background-color: darken($red, 10%);
+  }
+
+  &.btn--grey:hover {
+    color: #fff;
+    background-color: darken($lightGrey, 10%);
   }
 
   &:active,
@@ -263,6 +287,10 @@ img.auto,
 .grid-item iframe {
   max-width: 100%;
   height: auto;
+}
+
+img {
+  display: block;
 }
 
 /*============================================================================

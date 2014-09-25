@@ -172,17 +172,34 @@
         var subtract_button = $('.subtract-product');
         var quantity_input = $('input[name="quantity"]');
 
-        var quantity;
+        var quantity = parseInt(quantity_input.val());
 
         subtract_button.on('click', function (e) {
-            quantity = parseInt(quantity_input.val());
             if (quantity > 1) quantity -= 1;
             quantity_input.val(quantity);
         });
 
         add_button.on('click', function (e) {
-            quantity = parseInt(quantity_input.val());
             quantity += 1;
+            quantity_input.val(quantity);
+        });
+    });
+
+    /* up and down arrows in basket */
+    $(document).ready(function() {
+        var arrow_up = $('.arrow-up');
+        var arrow_down = $('.arrow-down');
+        var quantity_input = $('input.quantity-input');
+
+        var quantity = parseInt(quantity_input.val());
+
+        arrow_up.on('click', function (e) {
+            quantity += 1;
+            quantity_input.val(quantity);
+        });
+
+        arrow_down.on('click', function (e) {
+            if (quantity > 1) quantity -= 1;
             quantity_input.val(quantity);
         });
     });

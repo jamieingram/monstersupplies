@@ -164,6 +164,38 @@ label[for] {
   color: #999;
 }
 
+input[type="checkbox"] {
+  position: absolute; 
+  overflow: hidden; 
+  clip: rect(0 0 0 0); 
+  height:1px; 
+  width:1px;
+  margin:-1px; 
+  padding:0;
+  border:0;
+}
+
+label.checkbox-label {
+  padding-left:26px;
+  height:21px;
+  display:inline-block;
+  line-height:21px;
+  background:url('{{ "checkbox.png" | asset_url }}') top left no-repeat;
+  background-repeat:no-repeat;
+  background-position: 0 0;
+  vertical-align:middle;
+  cursor:pointer;
+}
+
+label.checkbox-label-right {
+  background:url('{{ "checkbox.png" | asset_url }}') top right no-repeat;
+  padding-right:26px;
+}
+
+input[type="checkbox"]:checked + label.checkbox-label {
+  background-position: 0 -21px;
+}
+
 /*================ Horizontal Form ================*/
 form.form-horizontal,
 .form-horizontal {
@@ -311,4 +343,28 @@ label.error {
   color: $errorRed;
   background-color: $errorRedBg;
   border-color: $errorRed;
+}
+
+/* Custom styles */
+
+input[type="text"] {
+  &.no-border-number {
+    float:left;
+    display:inline-block;
+    padding:0px;
+    margin:0px;
+    height:34px;
+    width: 34px;
+    text-align:center;
+    border:none;
+    outline:none;
+    background: transparent;
+  }
+}
+
+input[type="text"]:focus{
+  &.no-border-number {
+    border:none;
+    outline: none;
+  }
 }

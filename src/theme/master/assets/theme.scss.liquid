@@ -128,6 +128,7 @@ $grey: #d6d3d5;
 $darkGrey: #575455;
 $darkGreen: #367057;
 $red: #ac3b2a;
+$lightGrey: #a8a8a6;
 
 // Width variables
 $siteWidth: 1180px;
@@ -974,6 +975,38 @@ label[for] {
   color: #999;
 }
 
+input[type="checkbox"] {
+  position: absolute; 
+  overflow: hidden; 
+  clip: rect(0 0 0 0); 
+  height:1px; 
+  width:1px;
+  margin:-1px; 
+  padding:0;
+  border:0;
+}
+
+label.checkbox-label {
+  padding-left:26px;
+  height:21px;
+  display:inline-block;
+  line-height:21px;
+  background:url('{{ "checkbox.png" | asset_url }}') top left no-repeat;
+  background-repeat:no-repeat;
+  background-position: 0 0;
+  vertical-align:middle;
+  cursor:pointer;
+}
+
+label.checkbox-label-right {
+  background:url('{{ "checkbox.png" | asset_url }}') top right no-repeat;
+  padding-right:26px;
+}
+
+input[type="checkbox"]:checked + label.checkbox-label {
+  background-position: 0 -21px;
+}
+
 /*================ Horizontal Form ================*/
 form.form-horizontal,
 .form-horizontal {
@@ -1121,6 +1154,30 @@ label.error {
   color: $errorRed;
   background-color: $errorRedBg;
   border-color: $errorRed;
+}
+
+/* Custom styles */
+
+input[type="text"] {
+  &.no-border-number {
+    float:left;
+    display:inline-block;
+    padding:0px;
+    margin:0px;
+    height:34px;
+    width: 34px;
+    text-align:center;
+    border:none;
+    outline:none;
+    background: transparent;
+  }
+}
+
+input[type="text"]:focus{
+  &.no-border-number {
+    border:none;
+    outline: none;
+  }
 }
 /*============================================================================
   #Icons
@@ -1624,6 +1681,10 @@ a.basket-link {
                 margin-top:0px;
                 margin-right:0px;
             }
+
+            &.close-button-red {
+                background: url('{{ "close-button-red.png" | asset_url }}') top left no-repeat;
+            }
         }
 
         .modal-content-inner {
@@ -1659,36 +1720,6 @@ a.basket-link {
     input[type="text"]:focus{
         border:none;
         outline: none;
-    }
-
-    input[type="checkbox"] {
-      position: absolute; 
-      overflow: hidden; 
-      clip: rect(0 0 0 0); 
-      height:1px; 
-      width:1px; 
-      margin:-1px; 
-      padding:0;
-      border:0;
-    }
-
-    input[type="checkbox"] + label.checkbox-label {
-      padding-left:26px;
-      height:20px; 
-      display:inline-block;
-      line-height:20px;
-      background-repeat:no-repeat;
-      background-position: 0 0;
-      vertical-align:middle;
-      cursor:pointer;
-    }
-
-    input[type="checkbox"]:checked + label.checkbox-label {
-      background-position: 0 -21px;
-    }
-
-    .checkbox-label {
-      background:url('{{ "checkbox.png" | asset_url }}') top left no-repeat;
     }
 
     .form-input {
@@ -2309,28 +2340,21 @@ a.basket-link {
   #Cart Page
 ==============================================================================*/
 .cart-row {
-  margin-top: $gutter;
   padding-top: $gutter;
-  border-top: 1px solid $borderColor;
-
-  #ajaxifyDrawer & {
-    border-top-color: #444;
-  }
-
-  &:first-child {
-    margin-top: 0;
-  }
-
-  &:first-child {
-    padding-top: 0;
-    border-top: 0 none;
-  }
+  padding-bottom:12px;
 
   a {
     color: $colorTextBody;
 
     &:hover {
       color: $colorPrimary;
+    }
+  }
+
+  &.indented-row {
+    @include at-query ($min, $large) {
+      margin-left:18%;
+      margin-right:18%;
     }
   }
 }
@@ -2342,6 +2366,139 @@ a.basket-link {
 .cart-subtotal--price {
   margin: 0 0 0 $gutter/3;
   display: inline;
+}
+
+.basket-summary {
+  text-align:center;
+  padding-bottom:10px;
+  margin-bottom:$gutter;
+
+  p {
+    display:inline-block;
+    margin-right:24px;
+  }
+
+  input {
+    display:inline-block;
+  }
+}
+
+.basket-contents {
+  padding-top:12px;
+  padding-bottom: 24px;
+  background-color: $white;
+
+  h5 {
+    font-size:em(26px);
+    line-height:1.1em;
+
+    &.product-title {
+      @include at-query ($max, $small) {
+        font-size:em(18px);
+      }
+    }
+  }
+}
+
+.product-detail-item {
+  .grid-item {
+    margin-bottom:0px;
+  }
+}
+
+.close-button-white {
+  display:inline-block;
+  width:13px;
+  height:17px;
+  margin-right:5px;
+  background: url('{{ "close-button-white.png" | asset_url }}') bottom left no-repeat;
+}
+
+.arrow {
+  cursor:pointer;
+  display:block;
+  width:34px;
+  height:15px;
+  &.arrow-up {
+    background: url('{{ "arrow-up-grey.png" | asset_url }}') bottom center no-repeat;
+  }
+  &.arrow-down {
+    margin-top:40px;
+    background: url('{{ "arrow-down-grey.png" | asset_url }}') bottom center no-repeat;
+  }
+}
+
+.quantity-adjust {
+  margin-top:12px;
+}
+
+input[type="text"] {
+  &.quantity-input {
+    margin-top:4px;
+  }
+}
+
+.product-cost {
+  margin-top:32px;
+}
+
+.basket-add-curse {
+  @include clearfix;
+
+  padding-top:32px;
+  padding-bottom:32px;
+  margin-bottom:0px;
+
+  h3 {
+    font-size:em(26px);
+    margin-bottom:6px;
+  }
+
+  ul {
+    margin-bottom:0px;
+  }
+
+  p, li {
+    font-size:em(18px);
+  }
+
+  p {
+    line-height:1.2em;
+  }
+
+  border-bottom: 2px solid #bcbebb;
+
+  .curse-options-container {
+    background: url('{{ "mos_logo.png" | asset_url }}') center right no-repeat;
+    background-position: 98% center;
+  }
+
+  .curse-options {
+    display:inline-block;
+
+    li {
+      margin-bottom:10px;
+      text-transform: uppercase;
+    }
+
+    li:last-child {
+      margin-bottom:0px;
+    }
+  }
+
+  .product-cost {
+    font-size:em(26px);
+    line-height:1.1em;
+    display:inline-block;
+    margin-top:56px;
+    @include at-query ($max, $small) {
+      margin-top:24px;
+    }
+  }
+
+  .grid-item {
+    margin-bottom:0px;
+  }
 }
 /*============================================================================
   #Product Grid and List Views
@@ -2667,24 +2824,6 @@ a.basket-link {
   display: inline-block;
   margin-right:$gutter;
 
-  input[type="text"] {
-    float:left;
-    display:inline-block;
-    padding:0px;
-    margin:0px;
-    height:34px;
-    width: 34px;
-    text-align:center;
-    border:none;
-    outline:none;
-    background: transparent;
-  }
-
-  input[type="text"]:focus{
-    border:none;
-    outline: none;
-  }
-
   .subtract-product {
     cursor:pointer;
     float:left;
@@ -2749,6 +2888,20 @@ body {
   max-width: $siteWidth;
   display: block;
   padding-bottom: $gutter*2;
+}
+
+.page-header {
+  width:100%;
+  text-align:center;
+  margin-top:12px;
+
+  h2 {
+    padding-bottom:0;
+    line-height: 1.1em;
+  }
+  @include at-query ($max, $small) {
+    margin-top:0px;
+  }
 }
 
 /*============================================================================
@@ -2859,6 +3012,11 @@ a:focus {
     background-color: $red;
   }
 
+  &.btn--grey {
+    color: #fff;
+    background-color: $lightGrey;
+  }
+
   /*================ Set primary button colors - can override later ================*/
   background-color: $colorBtnPrimary;
   color: #fff;
@@ -2870,6 +3028,11 @@ a:focus {
 
   &.btn--red:hover {
     background-color: darken($red, 10%);
+  }
+
+  &.btn--grey:hover {
+    color: #fff;
+    background-color: darken($lightGrey, 10%);
   }
 
   &:active,
@@ -2984,6 +3147,10 @@ img.auto,
 .grid-item iframe {
   max-width: 100%;
   height: auto;
+}
+
+img {
+  display: block;
 }
 
 /*============================================================================
