@@ -1,0 +1,71 @@
+.collection-header {
+    h2 {
+        margin-bottom:0.1em;
+    }
+
+    p {
+        font-size:em(18px);
+    }
+
+    margin-bottom:($gutter * 2);
+}
+
+.product-grid-quote {
+    position:relative;
+
+    .quote-text {
+        position:absolute;
+        top:0;
+        left:0;
+        padding-left:($gutter * 2);
+        padding-right:$gutter;
+        padding-top:$gutter;
+
+        @include at-query ($max, $small) {
+            padding-top:($gutter * 0.5);
+        }
+
+        @include at-query ($min, $medium) {
+            padding-top:15%;
+        }
+
+        p {
+            font-size:em(16px);
+            line-height:1.2em;
+
+            @include at-query ($max, $small) {
+                font-size:em(14px);
+                line-height:1em;
+            }
+
+            @include at-query ($min, $large) {
+                font-size:em(14px);
+                line-height:1em;
+            }
+
+            @include at-query ($min, $xlarge) {
+                font-size:em(16px);
+                line-height:1.2em;
+            }
+
+        }
+
+        .quote-author {
+            font-size:em(14px);
+            line-height:1.2em;
+            font-style: italic;
+
+            @include at-query ($max, $small) {
+                font-size:em(12px);
+                line-height:1em;
+            }
+        }
+    }
+}
+
+.product-sub-category {
+    h3 {
+        font-size:em(26px);
+    }
+    margin-top:($gutter * 2);
+}
