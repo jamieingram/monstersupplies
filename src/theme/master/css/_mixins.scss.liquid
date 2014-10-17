@@ -18,6 +18,22 @@
   box-shadow:         #{$shadow};
 }
 
+@mixin rotate($t) {
+  -webkit-transform: rotate($t);
+  -moz-transform: rotate($t);
+  -o-transform: rotate($t);
+  -ms-transform: rotate($t);
+  transform: rotate($t);
+}
+
+@mixin rotateX($t) {
+  -webkit-transform: rotateX($t);
+  -moz-transform: rotateX($t);
+  -o-transform: rotateX($t);
+  -ms-transform: rotateX($t);
+  transform: rotateX($t);
+}
+
 @mixin transition($transition:0.1s all) {
   -webkit-transition: #{$transition};
   -moz-transition: #{$transition};

@@ -14,19 +14,31 @@
   {% assign sold_out = false %}
 {% endif %}
 
-{% comment %}
-  Set a class for sold-out and on-sale items
-{% endcomment %}
+{% if collection %}
+  {% assign product_url = product.url | within: collection %}
+{% else %}
+
+  {% assign product_url = product.url %}
+
+  {% for collection in product.collections %}
+    {% if forloop.first %}
+      {% assign product_url = '/collections/' | append: collection.handle | append: product.url %}
+    {% endif %}
+  {% endfor %}
+
+{% endif %}
+
 <div class="grid-item no-bottom-margin product-grid-item large--one-quarter medium--one-half small--one-half{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
 
-  <a href="{{ product.url | within: collection }}" class="product-grid-image">
+  <a href="{{ product_url }}" class="product-grid-image">
     <img src="{{ product.featured_image.src | product_img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+    
     {% if sold_out %}
-      <strong>Sold Out</strong>
+      <div class="stripe-holder"><div class="stripe secondary-font">Sold Out</div></div>
     {% endif %}
   </a>
   <div class="product-grid-detail">
-    <a class="product-title" href="{{ product.url | within: collection }}">{{ product.title }}</a>
+    <a class="product-title" href="{{ product_url }}">{{ product.title }}</a>
     <p>
        <span>
        {% if product.price_varies %}From{% endif %}

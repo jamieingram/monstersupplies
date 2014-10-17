@@ -18,6 +18,7 @@
 }
 
 .product-grid-image {
+  position:relative;
   display: block;
   margin: 0 auto;
 
@@ -47,6 +48,10 @@
   }
 }
 
+.product-selected {
+  border: 4px solid $white;
+}
+
 
 /*============================================================================
   #Product Page
@@ -54,6 +59,11 @@
 .top-line {
   padding-top:30px;
   border-top:1px solid grey;
+
+  @include at-query ($max, $medium) {
+    border-top:none;
+    padding-top:0px;
+  }
 }
 
 .postage-promo-banner {
@@ -81,7 +91,7 @@
   padding-left:$gutter;
   padding-right:$gutter;
   width:100%;
-  top:37.5%;
+  top:48%;
 
   .arrow-left {
     float:left;
@@ -162,11 +172,14 @@
   padding-left:$gutter;
   h2 {
     line-height:0.7em;
-    padding-bottom:$gutter;
   }
 
-  @include at-query($max, $large) {
+  @include at-query($min, $large) {
     padding-right: 24px;
+
+    h2 {
+      font-size:em(26px);
+    }
   }
 
   .social {
@@ -182,32 +195,54 @@
   font-weight: 700;
   text-transform: uppercase;
   padding-top:2px;
+  margin-bottom:30px;
+
+  @include at-query($min, $large) {
+    margin-left:$gutter;
+  }
 }
 
-.product-price {
-  @include clearfix;
-  background: url('{{ "mos_logo.png" | asset_url }}') 94% center no-repeat;
+.ministry-profit-message {
+  background: url('{{ "mos_logo.png" | asset_url }}') $gutter center no-repeat;
   background-size: 65px 65px;
   background-color:$white;
   margin-bottom:34px;
-  padding-bottom:($gutter * 0.5);
+
+  .profit-text {
+    padding-left:65px + (2 * $gutter);
+    padding-right:$gutter;
+    padding-top:30px;
+    padding-bottom:30px;
+    line-height:1.3em;
+    margin-top:$gutter;
+
+    @include at-query($max, $small) {
+      padding-top:20px;
+      padding-bottom:20px;
+    }
+  }
+
+  @include at-query($max, $large) {
+    margin-left:-$gutter;
+  }
 }
 
 .product-price-amount {
-  vertical-align:middle;
-  padding-left:$gutter;
-  margin-top:0.8em;
-  width:30%;
+  margin-right:$gutter;
+  margin-bottom:0px;
   float:left;
   font-size:em(40px);
+  line-height:0.8em;
 }
 
-.price-text {
-  width:40%;
-  float:left;
-  text-align:center;
-  line-height:1.3em;
-  margin-top:$gutter;
+.product-description {
+  font-size:em(20px);
+  margin-bottom:$gutter;
+
+  @include at-query($max, $small) {
+    font-size:em(16px);
+    margin-right: 24px;
+  }
 }
 
 .collection-items {
@@ -222,81 +257,66 @@
       line-height:1.2em;
     }
   }
-
+  
   margin-bottom:$gutter;
-}
 
-.other-products {
-  h3 {
-    font-size:em(26px);
-    margin-bottom: 0.7em;
+  @include at-query($max, $medium) {
+    margin-left:$gutter;
+    margin-right:$gutter;
   }
-  .product-grid-item {
-    .product-grid-detail {
-      font-size:em(18px);
-      margin-top: 4px;
-      line-height:1.2em;
-    }
-  }
-}
 
-.product-description {
-  background-color:$white;
-  font-size:em(18px);
-  padding-top:30px;
-  padding-left:(2 * $gutter);
-  padding-right:(2 * $gutter);
-  padding-bottom:$gutter;
+  
 }
 
 .product-notes {
-  border-top: 1px dashed grey;
-  background-color:#fffff0;
-  text-align: center;
-
-  .product-notes-content {
-    width:50%;
-    display:inline-block;
-    padding-top:16px;
-  }
+  
+  background-color: #FFF;
+  padding-top:30px;
+  padding-left:($gutter * 2);
+  padding-bottom:($gutter * 2);
+  padding-right:$gutter;
 
   h3 {
-    font-size:em(10px);
+    font-size:em(26px);
     text-transform: uppercase;
   }
 
   p {
-    text-align: left;
-    font-size:em(14px);
+    font-size:em(18px);
+    line-height:1.35em;
   }
 
   .product-more-info {
-    min-height:30px;
-    overflow:hidden;
-    cursor:pointer;
-    background: url('{{ "arrow-down.png" | asset_url }}') 96% top no-repeat;
-
-    &.is-open {
-      background: url('{{ "arrow-up.png" | asset_url }}') 96% top no-repeat;
-    }
+    
+    padding-top:$gutter;
 
     h3 {
-      height:30px;
       font-size:em(14px);
       text-transform: uppercase;
-      border: 1px solid black;
-      padding: 7px;
-      line-height: 1.0em;
+      line-height: 0.6em;
       text-align:left;
     }
 
     p {
-      margin-top:-100px;
+      font-size:em(14px);
+      margin-bottom:20px;
     }
 
     margin-bottom:20px;
   }
-  margin-bottom:38px;
+
+  @include at-query($max, $small) {
+     p {
+      font-size:em(16px);
+    }
+  }
+  @include at-query($min, $small) {
+    margin-bottom:38px;
+  }
+
+  @include at-query($max, $large) {
+    padding-left:$gutter;
+  }
 }
 
 .product-quote {
@@ -310,6 +330,9 @@
     font-size:em(30px);
     line-height:1.2em;
     margin-bottom:18px;
+    @include at-query($max, $small) {
+      font-size:em(22px);
+    }
   }
 
   .quote-author {
@@ -317,7 +340,7 @@
   }
 }
 
-.quantity-elements {
+.price-quantity-elements {
   @include clearfix;
   display: inline-block;
   margin-right:$gutter;
@@ -329,6 +352,10 @@
     width:34px;
     height:34px;
     background: url('{{ "minus.png" | asset_url }}') left top no-repeat;
+    
+    @include at-query($max, $small) {
+      margin-bottom:$gutter;
+    }
   }
 
   .add-product {
@@ -343,16 +370,76 @@
 
   .button-add {
     float:left;
+    @include at-query($max, $small) {
+      clear:both;
+    }
   }
 }
 
 .delivery-info {
   font-size:em(18px);
-  margin-bottom:$gutter;
-}
+  @include at-query($max, $small) {
+    font-size:em(14px);
+  }
+} 
 
 .product-share {
   .facebook-button {
     margin-left:0px;
+  }
+}
+
+.roundel {
+  position: absolute;
+  z-index:1;
+  color:#FFF;
+  background-color:$darkGreen;
+  text-align:center;
+  text-transform: uppercase;
+
+  @include at-query ($max, $small) {
+    margin:14px;
+    width:46px;
+    height:46px;
+    line-height:46px;
+    font-size:em(14px);
+
+    -moz-border-radius: 23px; 
+    -webkit-border-radius: 23px; 
+    border-radius: 23px;
+  }
+
+  @include at-query ($min, $small) {
+    margin:18px;
+    width:60px;
+    height:60px;
+    line-height:60px;
+    font-size:em(18px);
+
+    -moz-border-radius: 30px; 
+    -webkit-border-radius: 30px; 
+    border-radius: 30px;
+  }
+}
+
+.stripe-holder {
+  position:absolute;
+  top:0px;
+  clip: rect(0px, 100px, 100px, 0px);
+
+  .stripe {
+    position: absolute;
+    z-index:1;
+    color:#FFF;
+    background-color:$darkGreen;
+    text-align:center;
+    text-transform: uppercase;
+    @include rotate(-45deg);
+
+    top:22px;
+    left:-22px;
+    width:110px;
+    height:20px;
+    font-size:em(12px);
   }
 }

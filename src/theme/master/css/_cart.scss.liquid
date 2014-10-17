@@ -19,6 +19,35 @@
       margin-right:18%;
     }
   }
+
+  h5 {
+    font-size:em(26px);
+    line-height:1.1em;
+
+    &.product-title {
+      @include at-query ($max, $small) {
+        font-size:em(18px);
+      }
+    }
+  }
+
+  h3 {
+    font-size:em(26px);
+    margin-bottom:6px;
+  }
+
+  ul {
+    margin-bottom:0px;
+  }
+
+  p, li {
+    font-size:em(18px);
+  }
+
+  p {
+    padding-right:$gutter;
+    line-height:1.2em;
+  }
 }
 
 .cart-subtotal {
@@ -49,17 +78,6 @@
   padding-top:12px;
   padding-bottom: 24px;
   background-color: $white;
-
-  h5 {
-    font-size:em(26px);
-    line-height:1.1em;
-
-    &.product-title {
-      @include at-query ($max, $small) {
-        font-size:em(18px);
-      }
-    }
-  }
 }
 
 .product-detail-item {
@@ -111,28 +129,9 @@ input[type="text"] {
   padding-bottom:32px;
   margin-bottom:0px;
 
-  h3 {
-    font-size:em(26px);
-    margin-bottom:6px;
-  }
-
-  ul {
-    margin-bottom:0px;
-  }
-
-  p, li {
-    font-size:em(18px);
-  }
-
-  p {
-    line-height:1.2em;
-  }
-
-  border-bottom: 2px solid #bcbebb;
-
   .curse-options-container {
     background: url('{{ "mos_logo.png" | asset_url }}') center right no-repeat;
-    background-position: 98% center;
+    background-position: 96% center;
   }
 
   .curse-options {
@@ -148,7 +147,7 @@ input[type="text"] {
     }
   }
 
-  .product-cost {
+  .product-cost, .delivery-cost {
     font-size:em(26px);
     line-height:1.1em;
     display:inline-block;
@@ -160,5 +159,108 @@ input[type="text"] {
 
   .grid-item {
     margin-bottom:0px;
+  }
+}
+
+.delivery-cost-amount {
+
+  margin-top:44px;
+
+  h5 {
+    display:inline-block;
+  }
+
+  @include at-query($max, $medium) {
+    margin-top:0px;
+  }
+}
+
+.delivery-options-holder {
+  background: url('{{ "loch_ness.png" | asset_url }}') top right no-repeat;
+  background-size: (147px * 0.7) (71px * 0.7);
+  background-position: right 16px;
+  @include at-query($min, $xlarge) {
+    background-size: 147px 71px;
+  }
+
+  @include at-query($max, $medium) {
+    background-size: 147px 71px;
+    background-position: right 0px;
+  }
+}
+
+.delivery-options {
+  display:inline-block;
+  margin-top:42px;
+  @include at-query($max, $medium) {
+    margin-top:0px;
+  }
+}
+
+.product-gift-summary {
+  background-color: $white;
+  padding:$gutter;
+  padding-bottom:36px;
+
+  label {
+    font-size:em(26px);
+    text-transform: uppercase;
+    margin-bottom:12px;
+  }
+
+  p {
+    margin-bottom:($gutter * 2);
+  }
+
+  .basket-total {
+    @include clearfix;
+    width:100%;
+    margin-bottom:12px;
+  }
+
+  .basket-total-label {
+    margin-top:16px;
+    float:left;
+    display:inline-block;
+    font-size:em(26px);
+  }
+
+  .basket-total-amount {
+    display:inline-block;
+    float:right;
+    font-size:em(40px);
+  }
+}
+
+.extra-product {
+  padding:($gutter * 0.5);
+  background-color:#bababa;
+
+  .cart-row {
+    padding-bottom: $gutter;
+  }
+
+  a {
+    color:#FFF;
+  }
+
+  a:hover {
+    color:#FFF;
+  }
+
+  h4 {
+    text-transform: none;
+    font-size:em(26px);
+  }
+
+  .product-title {
+    font-size:em(18px);
+    margin-bottom:0.3em;
+  }
+
+  .product-cost {
+    margin-top:0px;
+    font-size:em(16px);
+    margin-bottom:1em;
   }
 }

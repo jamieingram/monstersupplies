@@ -1,7 +1,3 @@
-<div class="postage-promo-banner">
-  Free delivery on all orders over £50
-</div>
-
 <main class="wrapper main-content" role="main">
   {% comment %}
 
@@ -38,6 +34,7 @@
           {% endcomment %}
           {% if product.images.size > 1 %}
             <div class="carousel-holder">
+              <div class="roundel secondary-font">NEW</div>
               <div class="carousel-navigation">
                 <div class="arrow-left"><a href=""><img src="{{ 'arrow-left.png' | asset_url }}" alt="previous image"></a></div>
                 <div class="arrow-right"><a href=""><img src="{{ 'arrow-right.png' | asset_url }}" alt="next image"></a></div>
@@ -51,6 +48,13 @@
                 {% endfor %}
               </div>
             </div>
+            <div class="product-thumbs">
+              {% for image in product.images %}
+              <div class="product-thumb js-carousel-thumb {% if forloop.index == 1 %} product-selected {% endif %}">
+                <img src="{{ image.src | product_img_url: 'small' }}" alt="{{ image.alt | escape }}">
+              </div>
+              {% endfor %}
+            </div>
           {% endif %}
         {% endif %}
       </div>
@@ -61,11 +65,11 @@
 
           <meta itemprop="priceCurrency" content="{{ shop.currency }}">
 
+          <div class="product-offer">Special offer: 5 for the price of 4</div>
+
           <div class="product-detail">
-            <header class="page-header">
-              <h2 itemprop="name">{{ product.title }}</h2>
-            </header>
-          
+
+            <h2 itemprop="name">{{ product.title }}</h2>
           
             {% if product.available %}
               <link itemprop="availability" href="http://schema.org/InStock">
@@ -110,18 +114,16 @@
                   {% endif %}
                 {% endfor %}
               </select>
-
-              <div class="product-offer">Special offer: 5 for the price of 4</div>
-
-              <div class="product-price">
+              
+              <div class="product-description rte" itemprop="description">
+                {{ product.description }}
+              </div>  
+              <div class="price-quantity-elements">
                 <h3 class="product-price-amount">
                   <span id="productPrice" itemprop="price">
                     {{ product.price | money | remove: '.00'}}
                   </span>
                 </h3>
-                <p class="price-text">All profits go to the <a href="#" class="js-mos-info">Ministry of Stories</a>, a creative writing charity for humans</a>
-              </div>
-              <div class="quantity-elements">
                 <span class="subtract-product"></span>
                 <input min="1" type="text" id="quantity" name="quantity" class="no-border-number" value="1">
                 <span class="add-product"></span>
@@ -130,7 +132,7 @@
             </form>
 
             <div class="delivery-info">
-              <a href="#" class="js-delivery-info">Delivery and returns information</a>
+              Free delivery on orders over £50 - <a href="#" class="js-delivery-info">Delivery and returns information</a>
             </div>
             
             <div class="social product-share">
@@ -144,37 +146,28 @@
                 <a href="//www.pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" ><img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" /></a>
               </div>
             </div>
-
+            
+            <div class="ministry-profit-message">
+              <p class="profit-text">All profits go to the <a href="#" class="js-mos-info">Ministry of Stories</a>, a creative writing charity for humans</a>
+            </div>
 
           </div>
         </div>
       </div>
       <!-- end row -->
       <div class="grid-item large--one-half">
-        <div class="product-thumbs">
-          {% for image in product.images %}
-          <div class="product-thumb">
-            <a class="js-carousel-thumb"><img src="{{ image.src | product_img_url: 'small' }}" alt="{{ image.alt | escape }}"></a>
-          </div>
-          {% endfor %}
-        </div>
-        <div class="product-description rte" itemprop="description">
-          {{ product.description }}
-        </div>
         <div class="product-notes">
-          <div class="product-notes-content">
-            <h3>Notes for Humans:</h3>
-            <p>
-              Delicious hard boiled sweets in a metal tin with “A Vague Sense of Unease” by Laura Dockrill, a specially commissioned poem exclusive to Hoxton Street Monster Supplies and suitable for readers <strong>aged 7+ years.</strong>
-            </p>
-            <div class="product-ingredients product-more-info js-collapsable">
-              <h3>Ingredients</h3>
-              <p>Some ingredients here</p>
-            </div>
-            <div class="product-size product-more-info js-collapsable">
-              <h3>Size / weight</h3>
-              <p>Some size weight stuff here</p>
-            </div>
+          <h3>Notes for Humans:</h3>
+          <p>
+            Delicious hard boiled sweets in a metal tin with “A Vague Sense of Unease” by Laura Dockrill, a specially commissioned poem exclusive to Hoxton Street Monster Supplies and suitable for readers <strong>aged 7+ years.</strong>
+          </p>
+          <div class="product-more-info">
+            <h3>Ingredients</h3>
+            <p>Black &amp; White Humbugs (80g). Ingredients: Sugar, Glucose Syrup, Peppermint Oil, Mint Centre (Glucose syrup, Sugar, Non Hydrogenated Vegetable Fat, Salt, Treacle, Full Cream Condensed Milk, Peppermint Oil, Soya Lecithin E322), Colours: E102, E122, E142. Contains: Milk, Gluten, Soya.</p>
+            <h3>Size</h3>
+            <p>9cm x 10cm</p>
+            <h3>Weight</h3>
+            <p>80g</p>
           </div>
         </div>
         <div class="product-quote">
@@ -193,7 +186,7 @@
             {% endfor %}
           </div>
         </div>
-        <div class="other-products top-line">
+        <div class="collection-items top-line no-bottom-margin">
           <h3>Other monsters also bought</h3>
 
           {% include 'related-products' %}
@@ -287,3 +280,6 @@
   });
   </script>
 </main>
+<div class="postage-promo-banner secondary-font no-bottom-margin">
+  Free delivery on all orders over £50
+</div>

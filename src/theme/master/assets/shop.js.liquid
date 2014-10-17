@@ -126,11 +126,27 @@
         //
         if (product_carousel) {
 
+            var checkCurrentImage = function() {
+                if (!productCarouselData) return;
+                var currentIndex = productCarouselData.currentItem;
+                $.each(carousel_thumbs, function(index, thumb) {
+                    if (index == currentIndex) {
+                        $(thumb).addClass('product-selected');
+                    }else{
+                        $(thumb).removeClass('product-selected');
+                    }
+                    
+                });
+            }
+
             product_carousel.owlCarousel({
               slideSpeed : 300,
               pagination: false,
-              singleItem:true,
+              singleItem: true,
+              afterAction: checkCurrentImage
             });
+
+            var productCarouselData = $(product_carousel).data('owlCarousel');
 
             $.each(carousel_thumbs, function(index, thumb) {
                 $(thumb).on('click', function (e) {
@@ -187,20 +203,23 @@
 
     /* up and down arrows in basket */
     $(document).ready(function() {
-        var arrow_up = $('.arrow-up');
-        var arrow_down = $('.arrow-down');
-        var quantity_input = $('input.quantity-input');
+        var products = $('.js-product-row');
+        $.each(products, function(index, product) {
+            var arrow_up = $(product).find('.arrow-up');
+            var arrow_down = $(product).find('.arrow-down');
+            var quantity_input = $(product).find('input.quantity-input');
 
-        var quantity = parseInt(quantity_input.val());
+            var quantity = parseInt(quantity_input.val());
 
-        arrow_up.on('click', function (e) {
-            quantity += 1;
-            quantity_input.val(quantity);
-        });
+            arrow_up.on('click', function (e) {
+                quantity += 1;
+                quantity_input.val(quantity);
+            });
 
-        arrow_down.on('click', function (e) {
-            if (quantity > 1) quantity -= 1;
-            quantity_input.val(quantity);
+            arrow_down.on('click', function (e) {
+                if (quantity > 1) quantity -= 1;
+                quantity_input.val(quantity);
+            });
         });
     });
 
