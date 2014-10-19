@@ -28,6 +28,20 @@
         </div>
       </div>
     {% endfor %}
+
+    <div class="products-promo full-width">
+      <div class="grid-uniform products-promo-content">
+        <a href="#">
+          <div class="grid-item large--one-half medium--one-half text-center no-bottom-margin">
+            <h2>Can't find what you are looking for?</h2>
+            <button class='btn'>View all</button>
+          </div>
+        </a>
+        <div class="grid-item large--one-half medium--one-half no-bottom-margin">
+          <img src="{{ 'all-products.jpg' | asset_url }}" alt="view all products">
+        </div>
+      </div>
+    </div>
   
   {% else %}
     {% paginate collection.products by 12 %}

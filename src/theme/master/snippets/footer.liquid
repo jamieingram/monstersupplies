@@ -31,7 +31,11 @@
     <ul class="text-center">
       {% for link in linklists.footer.links %}
       <li>
-        <a href="{{ link.url }}">{{ link.title }}</a>
+        {% if link.handle == "delivery-and-returns" %}
+          <a href="#" class="js-delivery-info">{{ link.title }}</a>
+        {% else %}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {% endif %}
       </li>
       {% endfor %}
     </ul>

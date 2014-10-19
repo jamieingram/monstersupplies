@@ -21,18 +21,21 @@
     overflow-y: scroll;
     
     .modal-content {
+        position:relative;
         background-color:#FFF;
         width:80%;
-        margin:10%;
+        margin-left:10%;
+        margin-right:10%;
+        margin-top:5%;
+        margin-bottom:5%;
 
         .overlay-close-button {
-            @include clearfix;
+            position:absolute;
             cursor:pointer;
-            float:right;
             width:21px;
             height:21px;
-            margin-top:-21px;
-            margin-right:-21px;
+            top:$gutter;
+            right:$gutter;
             background: url('{{ "close-button.png" | asset_url }}') top left no-repeat;
 
             @include at-query ($max, $small) {
@@ -198,8 +201,6 @@
     .mos-modal-content {
          
         .overlay-close-button {
-            margin-top:0px;
-            margin-right:0px;
             @include at-query ($max, $large) {
                 margin-bottom:24px;
             }

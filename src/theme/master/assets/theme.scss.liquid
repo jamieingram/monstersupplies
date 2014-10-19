@@ -1687,18 +1687,21 @@ a.basket-link {
     overflow-y: scroll;
     
     .modal-content {
+        position:relative;
         background-color:#FFF;
         width:80%;
-        margin:10%;
+        margin-left:10%;
+        margin-right:10%;
+        margin-top:5%;
+        margin-bottom:5%;
 
         .overlay-close-button {
-            @include clearfix;
+            position:absolute;
             cursor:pointer;
-            float:right;
             width:21px;
             height:21px;
-            margin-top:-21px;
-            margin-right:-21px;
+            top:$gutter;
+            right:$gutter;
             background: url('{{ "close-button.png" | asset_url }}') top left no-repeat;
 
             @include at-query ($max, $small) {
@@ -1864,8 +1867,6 @@ a.basket-link {
     .mos-modal-content {
          
         .overlay-close-button {
-            margin-top:0px;
-            margin-right:0px;
             @include at-query ($max, $large) {
                 margin-bottom:24px;
             }
@@ -3147,6 +3148,52 @@ input[type="text"] {
         font-size:em(26px);
     }
     margin-top:($gutter * 2);
+}
+
+.products-promo {
+
+    margin-bottom:($gutter * 2);
+
+    .products-promo-content {
+        background-color: #fff;
+
+        h2 {
+            font-size:em(22px);
+            line-height:1.1em;
+            margin:$gutter;
+            margin-bottom:0px;
+
+            @include at-query($min, $medium) {
+                margin-bottom:$gutter;
+            }
+
+            @include at-query($min, $xlarge) {
+                font-size:em(26px);
+            }
+            
+        }
+        
+        @include at-query($max, $small) {
+            img {
+                margin-top:$gutter;
+            }
+        }
+
+        @include at-query($min, $small) {
+            margin: 0 auto;
+        }
+
+        @include at-query($min, $large) {
+            width:90%;
+        }
+
+        @include at-query($min, $xlarge) {
+            width:80%;
+            img {
+                float:right;
+            }
+        }
+    }
 }
 /*============================================================================
   #Basic Styles

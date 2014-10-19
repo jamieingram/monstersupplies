@@ -168,16 +168,19 @@
 
     });
 
-    /* expandable panels - product info */
+    /* rollover images for products */
     $(document).ready(function() {
-        var panels = $('.js-collapsable');
-        panels.on('click', function (e) {
-            var content = $(this).find('p');
-            $(this).toggleClass('is-open');
-            if (!$(this).hasClass('is-open')) {
-                content.animate({'margin-top': '-100px'});
-            }else{
-                content.animate({'margin-top': '0px'});
+        var images = $('.js-image-rollover');
+        $.each(images, function(index, image) {
+            var image_url = $(image).attr('src');
+            var rollover_url = $(image).attr('data-rollover-url');
+            if (rollover_url != '') {
+                $(image).on('mouseover', function (e) {
+                    $(this).attr("src",rollover_url);
+                });
+                $(image).on('mouseout', function (e) {
+                    $(this).attr("src",image_url);
+                });
             }
         });
     });

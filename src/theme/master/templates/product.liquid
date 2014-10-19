@@ -21,6 +21,7 @@
           If we only have one product image, show a large version of it.
           If we have more than 1, show it then loop through the rest as thumbnails.
         {% endcomment %}
+        {% assign meta_has_rollover = product.metafields.custom_fields.has_rollover %}
         {% if product.images.size == 0 %}
 
           <div class="product-photo-container">
@@ -34,25 +35,32 @@
           {% endcomment %}
           {% if product.images.size > 1 %}
             <div class="carousel-holder">
-              <div class="roundel secondary-font">NEW</div>
+              <!--<div class="roundel secondary-font">NEW</div>-->
               <div class="carousel-navigation">
                 <div class="arrow-left"><a href=""><img src="{{ 'arrow-left.png' | asset_url }}" alt="previous image"></a></div>
                 <div class="arrow-right"><a href=""><img src="{{ 'arrow-right.png' | asset_url }}" alt="next image"></a></div>
               </div>
               <div class="product-carousel">
-
                 {% for image in product.images %}
-                <div class="carousel-item">
-                  <img src="{{ image.src | product_img_url: '1024x1024' }}" alt="{{ image.alt | escape }}">
-                </div>
+                  {% if forloop.index == 2 && meta_has_rollover == 'true' %}
+                  <!-- don't show this image as it's the rollover asset -->
+                  {% else %}
+                    <div class="carousel-item">
+                      <img src="{{ image.src | product_img_url: '1024x1024' }}" alt="{{ image.alt | escape }}">
+                    </div>
+                  {% endif %}
                 {% endfor %}
               </div>
             </div>
             <div class="product-thumbs">
               {% for image in product.images %}
-              <div class="product-thumb js-carousel-thumb {% if forloop.index == 1 %} product-selected {% endif %}">
-                <img src="{{ image.src | product_img_url: 'small' }}" alt="{{ image.alt | escape }}">
-              </div>
+                {% if forloop.index == 2 && meta_has_rollover == 'true' %}
+                  <!-- don't show this image as it's the rollover asset -->
+                {% else %}
+                  <div class="product-thumb js-carousel-thumb {% if forloop.index == 1 %} product-selected {% endif %}">
+                    <img src="{{ image.src | product_img_url: 'small' }}" alt="{{ image.alt | escape }}">
+                  </div>
+                {% endif %}
               {% endfor %}
             </div>
           {% endif %}

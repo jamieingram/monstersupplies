@@ -69,3 +69,49 @@
     }
     margin-top:($gutter * 2);
 }
+
+.products-promo {
+
+    margin-bottom:($gutter * 2);
+
+    .products-promo-content {
+        background-color: #fff;
+
+        h2 {
+            font-size:em(22px);
+            line-height:1.1em;
+            margin:$gutter;
+            margin-bottom:0px;
+
+            @include at-query($min, $medium) {
+                margin-bottom:$gutter;
+            }
+
+            @include at-query($min, $xlarge) {
+                font-size:em(26px);
+            }
+            
+        }
+        
+        @include at-query($max, $small) {
+            img {
+                margin-top:$gutter;
+            }
+        }
+
+        @include at-query($min, $small) {
+            margin: 0 auto;
+        }
+
+        @include at-query($min, $large) {
+            width:90%;
+        }
+
+        @include at-query($min, $xlarge) {
+            width:80%;
+            img {
+                float:right;
+            }
+        }
+    }
+}
