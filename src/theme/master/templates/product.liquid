@@ -42,7 +42,7 @@
               </div>
               <div class="product-carousel">
                 {% for image in product.images %}
-                  {% if forloop.index == 2 && meta_has_rollover == 'true' %}
+                  {% if (forloop.index == 2 && meta_has_rollover == 'true') or image.alt contains 'carousel' %}
                   <!-- don't show this image as it's the rollover asset -->
                   {% else %}
                     <div class="carousel-item">
@@ -54,7 +54,7 @@
             </div>
             <div class="product-thumbs">
               {% for image in product.images %}
-                {% if forloop.index == 2 && meta_has_rollover == 'true' %}
+                {% if forloop.index == 2 && meta_has_rollover == 'true' or image.alt contains 'carousel'%}
                   <!-- don't show this image as it's the rollover asset -->
                 {% else %}
                   <div class="product-thumb js-carousel-thumb {% if forloop.index == 1 %} product-selected {% endif %}">
@@ -104,6 +104,10 @@
                   - http://docs.shopify.com/support/your-website/themes/can-i-make-my-theme-use-products-with-multiple-options#update-product-liquid
 
               {% endcomment %}
+              
+              <div class="product-description rte" itemprop="description">
+                {{ product.description }}
+              </div>  
               <select name="id" id="productSelect">
                 {% for variant in product.variants %}
                   {% if variant.available %}
@@ -122,10 +126,6 @@
                   {% endif %}
                 {% endfor %}
               </select>
-              
-              <div class="product-description rte" itemprop="description">
-                {{ product.description }}
-              </div>  
               <div class="price-quantity-elements">
                 <h3 class="product-price-amount">
                   <span id="productPrice" itemprop="price">

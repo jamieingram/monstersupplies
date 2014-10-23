@@ -187,6 +187,11 @@
 
     /* plus and minus buttons - product page */
     $(document).ready(function() {
+
+        var addItemtoBasket = function() {
+
+        }
+
         var add_button = $('.add-product');
         var subtract_button = $('.subtract-product');
         var quantity_input = $('input[name="quantity"]');
@@ -204,25 +209,34 @@
         });
     });
 
-    /* up and down arrows in basket */
+    /* basket behaviours */
     $(document).ready(function() {
+
+        /* up and down arrows in basket */
+
         var products = $('.js-product-row');
+
         $.each(products, function(index, product) {
             var arrow_up = $(product).find('.arrow-up');
             var arrow_down = $(product).find('.arrow-down');
             var quantity_input = $(product).find('input.quantity-input');
+            var product_id = quantity_input.attr('data-id');
 
             var quantity = parseInt(quantity_input.val());
 
             arrow_up.on('click', function (e) {
                 quantity += 1;
                 quantity_input.val(quantity);
+                Shopify.AjaxifyCart.updateBasket(product_id,quantity);
             });
 
             arrow_down.on('click', function (e) {
                 if (quantity > 1) quantity -= 1;
                 quantity_input.val(quantity);
+                Shopify.AjaxifyCart.updateBasket(product_id,quantity);
             });
+
+
         });
     });
 

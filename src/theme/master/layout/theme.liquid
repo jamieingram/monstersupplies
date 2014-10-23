@@ -139,34 +139,11 @@
 
   <script type="text/javascript" async src="//assets.pinterest.com/js/pinit.js"></script>
   
-  {% comment %}
-    Ajaxify your cart with this plugin. Adding a product will reveal a drawer, modal, or confirmation button.
-    Enabled by default in theme settings.
-
-    Ajaxify Cart Documentation:
-      - http://shopify.com/timber#ajax-cart
-  {% endcomment %}
-  {% if settings.ajax_cart %}
-  {{ 'handlebars.min.js' | asset_url | script_tag }}
-  {% include 'ajax-cart-template' %}
   {{ 'ajaxify.js' | asset_url | script_tag }}
+
   <script>
-  jQuery(function($) {
-    ajaxifyShopify.init({
-      method: '{{ settings.ajax_cart_method }}', // Method options are drawer, modal, and flip. Default is drawer.
-      wrapperClass: 'wrapper', // The class that defines your site width. Default is null.
-      formSelector: '#addToCartForm', // Default is form[action="/cart/add"].
-      addToCartSelector: '#addToCart', // Default is input[type="submit"] within 'formSelector'.
-      cartCountSelector: '#cartCount', // Update number of items in the cart when a product is added. Default is null.
-      cartCostSelector: '#cartCost', // Update the total cart cost when a product is added. Default is null.
-      toggleCartButton: '#cartToggle', // To toggle drawer/modal cart, include the selector here. Default is null and will take you to /cart page.
-      useCartTemplate: true, // True to use cart.liquid markup. Default is false and uses handlebars.js for template.
-      btnClass: 'btn', // Your main button class for styling purposes if useCartTemplate is set to false. Default is null.
-      moneyFormat: {{ shop.money_format | json }} // Your shop money format, defined in liquid.
-    });
-  });
+    Shopify.AjaxifyCart.init();
   </script>
-  {% endif %}
 
 </body>
 </html>

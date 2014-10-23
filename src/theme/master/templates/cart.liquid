@@ -79,10 +79,9 @@
             <div class="grid-uniform">
               <div class="grid-item large--three-fifths medium--one-half">
                 <ul class="curse-options">
-                    <li><input type="checkbox" id="cb1" value="none" /><label for="cb1" class="checkbox-label">No thank you - £0</label></li>
-                    <li><input type="checkbox" id="cb2" value="bad_luck" /><label for="cb2" class="checkbox-label">Bad luck - £1</label></li>
-                    <li><input type="checkbox" id="cb3" value="torment" /><label for="cb3" class="checkbox-label">General torment - £5</label></li> 
-                    <li><input type="checkbox" id="cb4" value="blight" /><label for="cb4" class="checkbox-label">Extended blight - £10</label></li> 
+                    <li><input type="checkbox" id="cb1" value="bad_luck" /><label for="cb1" class="checkbox-label">Bad luck - £1</label></li>
+                    <li><input type="checkbox" id="cb2" value="torment" /><label for="cb2" class="checkbox-label">General torment - £5</label></li> 
+                    <li><input type="checkbox" id="cb3" value="blight" /><label for="cb3" class="checkbox-label">Extended blight - £10</label></li> 
                 </ul>
               </div>
               <div class="grid-item large--two-fifths medium--one-half">
@@ -179,9 +178,10 @@
       It's likely people won't have items in the cart sometimes.
       Do something fun here, it's a great chance to show your company's human side.
     {% endcomment %}
-
-    <h4>It appears that your basket is currently empty!</h4>
-    <p>You can continue browsing <a href="/collections/all">here</a>.</p>
+    <div class="full-width text-center">
+      <h4>It appears that your basket is currently empty!</h4>
+      <p>You can continue browsing <a href="/collections/all">here</a>.</p>
+    </div>
 
   {% endif %}
 

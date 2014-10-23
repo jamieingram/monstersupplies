@@ -24,7 +24,7 @@
       "footer_display_newsletter": true,
       "footer_newsletter_title": "Newsletter",
       "cart_notes": true,
-      "ajax_cart": true,
+      "ajax_cart": false,
       "ajax_cart_method": "Drawer"
     }
   }

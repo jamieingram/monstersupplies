@@ -1031,6 +1031,14 @@ select::-ms-expand {
     display: none;
 }
 
+.selector-wrapper {
+  label {
+    display:inline-block;
+    margin-right:$gutter;
+  }
+  margin-bottom:$gutter;
+}
+
 /*================ Horizontal Form ================*/
 form.form-horizontal,
 .form-horizontal {
@@ -2520,7 +2528,7 @@ input[type="text"] {
     font-size:em(26px);
     line-height:1.1em;
     display:inline-block;
-    margin-top:56px;
+    margin-top:38px;
     @include at-query ($max, $small) {
       margin-top:24px;
     }
@@ -3078,6 +3086,19 @@ input[type="text"] {
     font-size:em(12px);
   }
 }
+
+/*=================== Ajax behaviour =====================*/
+.ajaxified-cart-feedback {
+  /* Below add to cart button */
+  /* display: block; */
+  display: inline;
+  margin-top:12px;
+  line-height: 36px;
+  vertical-align: middle;
+}
+
+.ajaxified-cart-feedback.success { color: $darkGreen; }
+.ajaxified-cart-feedback.error { color: $red; }
 .collection-header {
     h2 {
         margin-bottom:0.1em;
@@ -3659,8 +3680,8 @@ img {
 	text-align: center;
 	position: absolute;
 	bottom:8%;
-	width:25%;
-	left:12.5%;
+	width:34%;
+	left:10%;
 
 	@include at-query ($max, $small) {
 		left:0;
