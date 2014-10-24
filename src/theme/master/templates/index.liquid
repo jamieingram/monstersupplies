@@ -92,9 +92,9 @@
 
     <div class="collection-list grid-uniform">
 
-      {% for collection in collections limit:7 %}
+      {% for collection in collections %}
 
-          {% unless collection.handle == 'featured' %}
+          {% unless (collection.handle == 'featured' or collection.handle == 'curses' %}
             {% include 'collection-grid-item' %}
           {% endunless %}
 

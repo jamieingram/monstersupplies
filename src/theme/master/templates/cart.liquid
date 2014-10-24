@@ -17,53 +17,54 @@
       <div class="basket-contents">
 
         {% for item in cart.items %}
-        <div class="cart-row indented-row js-product-row">
-          <div class="grid-uniform product-detail-item">
+          {% unless item.product.type == 'curse' %}
+            <div class="cart-row indented-row js-product-row">
+              <div class="grid-uniform product-detail-item">
 
-            <div class="grid-item large--one-quarter medium-down--one-third">                
-                  <a href="{{ item.product.url | within: collections.all }}">
+                <div class="grid-item large--one-quarter medium-down--one-third">                
+                      <a href="{{ item.product.url | within: collections.all }}">
 
-                    <img src="{{ item.product.featured_image.src | product_img_url: 'medium' }}" alt="{{ item.title | escape }}">
-                  </a>
-            </div>
-
-            <div class="grid-item large--three-quarters medium-down--two-thirds">
-              <div class="grid-uniform">
-
-                <div class="grid-item three-fifths">
-                  <h5 class="product-title">
-                    <a href="{{ item.product.url }}">
-                      {{ item.product.title }}
-
-                      {% if item.product.variants.size != 0 %}
-                        {% unless item.variant.title contains 'Default' %}
-                          <br>
-                           <small>{{ item.variant.title }}</small>
-                        {% endunless %}
-                      {% endif %}
-                    </a>
-                  </h5>
-                  <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="btn btn--grey" data-id="{{ item.id }}"><span class="close-button-white">&nbsp;</span>Remove</a>
-                </div>
-                <div class="grid-item one-fifth quantity-adjust">
-                  {% comment %}
-                    Added data-id for the ajax cart implementation only.
-                  {% endcomment %}
-                  <span class="arrow arrow-up"></span>
-                  <input type="text" name="updates[]" id="updates_{{ item.id }}" class="no-border-number quantity-input" value="{{ item.quantity }}" autocomplete="off" min="0" data-id="{{ item.id }}">
-                  <span class="arrow arrow-down"></span>
+                        <img src="{{ item.product.featured_image.src | product_img_url: 'medium' }}" alt="{{ item.title | escape }}">
+                      </a>
                 </div>
 
-                <div class="grid-item one-fifth">
-                  <h5 class="product-cost">{{ item.price | money  | remove: '.00'}}</h5>
+                <div class="grid-item large--three-quarters medium-down--two-thirds">
+                  <div class="grid-uniform">
+
+                    <div class="grid-item three-fifths">
+                      <h5 class="product-title">
+                        <a href="{{ item.product.url }}">
+                          {{ item.product.title }}
+
+                          {% if item.product.variants.size != 0 %}
+                            {% unless item.variant.title contains 'Default' %}
+                              <br>
+                               <small>{{ item.variant.title }}</small>
+                            {% endunless %}
+                          {% endif %}
+                        </a>
+                      </h5>
+                      <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="btn btn--grey" data-id="{{ item.id }}"><span class="close-button-white">&nbsp;</span>Remove</a>
+                    </div>
+                    <div class="grid-item one-fifth quantity-adjust">
+                      {% comment %}
+                        Added data-id for the ajax cart implementation only.
+                      {% endcomment %}
+                      <span class="arrow arrow-up"></span>
+                      <input type="text" name="updates[]" id="updates_{{ item.id }}" class="no-border-number quantity-input" value="{{ item.quantity }}" autocomplete="off" min="0" data-id="{{ item.id }}">
+                      <span class="arrow arrow-down"></span>
+                    </div>
+
+                    <div class="grid-item one-fifth">
+                      <h5 class="product-cost">{{ item.price | money  | remove: '.00'}}</h5>
+                    </div>
+
+                  </div>
                 </div>
 
               </div>
-            </div>
-
-          </div>
-        </div> <!-- end cart-row //-->
-
+            </div> <!-- end cart-row //-->
+          {% endunless %}
         {% endfor %}
       </div>
 
@@ -79,9 +80,16 @@
             <div class="grid-uniform">
               <div class="grid-item large--three-fifths medium--one-half">
                 <ul class="curse-options">
-                    <li><input type="checkbox" id="cb1" value="bad_luck" /><label for="cb1" class="checkbox-label">Bad luck - £1</label></li>
-                    <li><input type="checkbox" id="cb2" value="torment" /><label for="cb2" class="checkbox-label">General torment - £5</label></li> 
-                    <li><input type="checkbox" id="cb3" value="blight" /><label for="cb3" class="checkbox-label">Extended blight - £10</label></li> 
+                  {% for product in collections.curses.products %}
+                    {% assign variant = product.selected_or_first_available_variant %}
+                    {% assign selected = false %}
+                    {% for item in cart.items %}
+                      {% if item.product.id == product.id %}
+                        {% assign selected = true %}
+                      {% endif %}
+                    {% endfor %}
+                    <li><input {% if selected %} checked="checked"{% endif %} type="checkbox" id="cb{{ forloop.index }}" value="{{ product.title | handleize }}" /><label for="cb{{ forloop.index }}" data-id="{{ variant.id }}" data-cost="{{ variant.price }}" class="checkbox-label">{{ product.title }} - {{ variant.price | money | remove: '.00' }}</label></li>
+                  {% endfor %}
                 </ul>
               </div>
               <div class="grid-item large--two-fifths medium--one-half">
