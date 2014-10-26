@@ -49,7 +49,7 @@
     var _init = function() {
       $(document).ready(function() { 
 
-        $('form[action="/cart/add"]').submit(function(e) {
+        $('form#addToCartForm').submit(function(e) {
           e.preventDefault();
           var addToCartForm = $(this);
 
@@ -127,39 +127,40 @@
 
     var _addToBasket = function(product_id, quantity) {
       $.ajax({
-        url: _config.shopifyAjaxAddURL,
-        dataType: 'json',
-        type: 'post',
-        data: {
-          quantity: quantity,
-          id: product_id
-        },
-        success: function(itemData) {
-          $.getJSON(_config.shopifyAjaxCartURL, function(cart) {
-            _updateBasketValues(cart);
-          });
-        }, 
-
-        error: function(XMLHttpRequest) {
-
-        }
+         url: _config.shopifyAjaxAddURL,
+         dataType: 'json',
+         type: 'POST',
+         data: 'quantity=' + quantity + '&id=' + product_id,
+         success: function(itemData) {
+           $.getJSON(_config.shopifyAjaxCartURL, function(cart) {
+             _updateBasketValues(cart);
+           });
+         },
+ 
+         error: function(XMLHttpRequest) {
+ 
+         }
       });
     }
 
-    var _updateBasket = function(product_id, quantity) {
-      $.ajax({
-        url: _config.shopifyAjaxUpdateURL,
-        dataType: 'json',
-        type: 'post',
-        data: "updates["+product_id+"]="+quantity,
-        success: function(itemData) {
-          _updateBasketValues(itemData);
-        }, 
-
-        error: function(XMLHttpRequest) {
-
-        }
+     var _updateBasket = function(product_id, quantity) {
+       $.ajax({
+         url: _config.shopifyAjaxUpdateURL,
+         dataType: 'json',
+         type: 'post',
+         data: "updates["+product_id+"]="+quantity,
+         success: function(itemData) {
+           _updateBasketValues(itemData);
+         },
+ 
+         error: function(XMLHttpRequest) {
+ 
+         }
       });
+    }
+
+    var _removeFromBasket = function(product_id) {
+      Shopify.removeItem(product_id);
     }
 
     return {

@@ -1,3 +1,5 @@
+{% include 'product-meta' %}
+
 <main class="wrapper main-content" role="main">
   {% comment %}
 
@@ -35,7 +37,12 @@
           {% endcomment %}
           {% if product.images.size > 1 %}
             <div class="carousel-holder">
-              <!--<div class="roundel secondary-font">NEW</div>-->
+              {% if is_new %}
+                <div class="roundel secondary-font">NEW</div>
+              {% endif %}
+              {% if sold_out %}
+              <div class="stripe-holder"><div class="stripe secondary-font">Sold Out</div></div>
+              {% endif %}
               <div class="carousel-navigation">
                 <div class="arrow-left"><a href=""><img src="{{ 'arrow-left.png' | asset_url }}" alt="previous image"></a></div>
                 <div class="arrow-right"><a href=""><img src="{{ 'arrow-right.png' | asset_url }}" alt="next image"></a></div>
@@ -167,25 +174,20 @@
         <div class="product-notes">
           <h3>Notes for Humans:</h3>
           <p>
-            Delicious hard boiled sweets in a metal tin with “A Vague Sense of Unease” by Laura Dockrill, a specially commissioned poem exclusive to Hoxton Street Monster Supplies and suitable for readers <strong>aged 7+ years.</strong>
+            {{ product.metafields.custom_fields.notes_for_humans }}
           </p>
           <div class="product-more-info">
-            <h3>Ingredients</h3>
-            <p>Black &amp; White Humbugs (80g). Ingredients: Sugar, Glucose Syrup, Peppermint Oil, Mint Centre (Glucose syrup, Sugar, Non Hydrogenated Vegetable Fat, Salt, Treacle, Full Cream Condensed Milk, Peppermint Oil, Soya Lecithin E322), Colours: E102, E122, E142. Contains: Milk, Gluten, Soya.</p>
-            <h3>Size</h3>
-            <p>9cm x 10cm</p>
-            <h3>Weight</h3>
-            <p>80g</p>
+            {{ product.metafields.custom_fields.notes_for_humans_detail }}
           </div>
         </div>
         <div class="product-quote">
-          <p class="quote-text">"I can highly recommend this product. My sense of unease increased tenfold in just 2 minutes"</p>
-          <p class="quote-author">-Angelica Limbless, age 457&frac12;, undead.</p>
+          <p class="quote-text">"{{ product.metafields.custom_fields.product_quote }}"</p>
+          <p class="quote-author">-{{ product.metafields.custom_fields.product_quote_author }}</p>
         </div>
       </div>
       <div class="grid-item large--one-half">
         <div class="collection-items top-line">
-          <h3>More from the Tinned Fear range</h3>
+          <h3>More from the {{ collection.title }} range</h3>
           <div class="grid-uniform">
             {% for product in collection.products limit:6 %}
 

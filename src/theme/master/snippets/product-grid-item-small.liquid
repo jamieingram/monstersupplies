@@ -1,28 +1,15 @@
-{% comment %}
-  Check if the product is on sale and set a variable to be used below.
-{% endcomment %}
-{% assign on_sale = false %}
-{% if product.compare_at_price > product.price %}
-  {% assign on_sale = true %}
-{% endif %}
+{% include 'product-meta' %}
 
-{% comment %}
-  Check if the product is sold out and set a variable to be used below.
-{% endcomment %}
-{% assign sold_out = true %}
-{% if product.available  %}
-  {% assign sold_out = false %}
-{% endif %}
-
-{% comment %}
-  Set a class for sold-out and on-sale items
-{% endcomment %}
 <div class="grid-item no-bottom-margin product-grid-item large--one-third medium--one-half small--one-half{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
 
   <a href="{{ product.url | within: collection }}" class="product-grid-image">
-    <img src="{{ product.featured_image.src | product_img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+    {% if is_new %}
+    <div class="roundel secondary-font">NEW</div>
+    {% endif %}
+    <img class="{% if has_rollover == "true" %}js-image-rollover{% endif %}" src="{{ product.featured_image.src | product_img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" {% if has_rollover == "true" %}data-rollover-url="{{ thumbnail_url }}"{% endif %}>
+    
     {% if sold_out %}
-      <strong>Sold Out</strong>
+      <div class="stripe-holder"><div class="stripe secondary-font">Sold Out</div></div>
     {% endif %}
   </a>
   <div class="product-grid-detail">

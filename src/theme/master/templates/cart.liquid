@@ -80,6 +80,7 @@
             <div class="grid-uniform">
               <div class="grid-item large--three-fifths medium--one-half">
                 <ul class="curse-options">
+                  {% assign total_curse_cost = 0 %}
                   {% for product in collections.curses.products %}
                     {% assign variant = product.selected_or_first_available_variant %}
                     {% assign selected = false %}
@@ -88,12 +89,15 @@
                         {% assign selected = true %}
                       {% endif %}
                     {% endfor %}
+                    {% if selected == true %}
+                      {% assign total_curse_cost = total_curse_cost | plus: product.price %}
+                    {% endif %}
                     <li><input {% if selected %} checked="checked"{% endif %} type="checkbox" id="cb{{ forloop.index }}" value="{{ product.title | handleize }}" /><label for="cb{{ forloop.index }}" data-id="{{ variant.id }}" data-cost="{{ variant.price }}" class="checkbox-label">{{ product.title }} - {{ variant.price | money | remove: '.00' }}</label></li>
                   {% endfor %}
                 </ul>
               </div>
               <div class="grid-item large--two-fifths medium--one-half">
-                <h5 class="product-cost">£0</h5>
+                <h5 class="product-cost">{{ total_curse_cost | money | remove: '.00' }}</h5>
               </div>
             </div>
           </div>
@@ -148,36 +152,51 @@
         </div>
 
       </div>
+    </form>
 
-      <div class="grid-item no-bottom-margin">
-        <div class="delivery-promo delivery-promo-small grid-item no-bottom-margin">
-          <p>Free delivery on orders over &pound;50</p>
-        </div>
+    <div class="grid-item no-bottom-margin">
+      <div class="delivery-promo delivery-promo-small grid-item no-bottom-margin">
+        <p>Free delivery on orders over &pound;50</p>
       </div>
+    </div>
 
-      <div class="grid-item no-bottom-margin">
-        <div class="extra-product">
-          <div class="cart-row indented-row">
-            <div class="grid-uniform product-detail-item">
+    {% capture index %}{{ 'now' | date: '%S' | times: collections.extra.products.size | divided_by: 60 }}{% endcapture %}
 
-              <div class="grid-item large--one-quarter medium-down--one-third">                
-                <a href="/products/cubed-earwax">
+    <div class="grid-item no-bottom-margin">
+      {% for product in collections.extra.products offset:index limit:1 %}
+      {% assign variant = product.selected_or_first_available_variant %}
+        {% for collection in product.collections %}
+          {% unless collection.handle = "extra" %}
+            {% assign product_url = '/collections/' | append: collection.handle | append: product.url %}
+          {% endunless %}
+        {% endfor %}
+      <div class="extra-product">
+        <div class="cart-row indented-row">
+          <div class="grid-uniform product-detail-item">
 
-                  <img src="//cdn.shopify.com/s/files/1/0558/9901/products/product_medium.jpg?v=1410912850" alt="Cubed Earwax" naptha_cursor="text">
-                </a>
-              </div>
-              <div class="grid-item large--three-quarters medium-down--two-thirds">
-                <h4>Why not add a little treat for yourself?</h4>
-                <h5 class="product-title">
-                  Cubed Earwax
-                </h5>
-                <h5 class="product-cost">£2.50</h5>
-                <a href="#" class="btn">Add to basket</a>
-              </div>
+            <div class="grid-item large--one-quarter medium-down--one-third">                
+              <a href="{{ product_url }}">
+
+                <img src="{{ product.featured_image.src | product_img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" naptha_cursor="text">
+              </a>
+            </div>
+            <div class="grid-item large--three-quarters medium-down--two-thirds">
+              <h4>Why not add a little treat for yourself?</h4>
+              <h5 class="product-title">
+                {{ product.title }}
+              </h5>
+              <h5 class="product-cost">{{ variant.price | money }}</h5>
+              <form action="/cart/add" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" id="id" value="{{ variant.id }}">
+                <input type="hidden" id="quantity" name="quantity" value="1">
+                <button class="btn" type="submit">Add to basket</button>
+              </form>
             </div>
           </div>
         </div>
       </div>
+      {% endfor %}
+    </div>
     </form>
 
   {% else %}

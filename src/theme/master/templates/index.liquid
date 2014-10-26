@@ -94,7 +94,7 @@
 
       {% for collection in collections %}
 
-          {% unless (collection.handle == 'featured' or collection.handle == 'curses' %}
+          {% unless (collection.handle == 'featured' or collection.handle == 'curses' or collection.handle == 'extra' %}
             {% include 'collection-grid-item' %}
           {% endunless %}
 

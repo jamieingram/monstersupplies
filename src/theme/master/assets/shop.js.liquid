@@ -236,39 +236,37 @@
         var curses = $('.curse-options li');
 
         $.each(curses, function(index, curse) {
-            $(curse).on('click', function (e) {
+            $(curse).on('click', $.debounce( 100, function (e) {
                 var product_id = $(this).find('label').attr('data-id');
                 var box = $(this).find('input');
                 var active = $(box).is(':checked');
-                if (active == false) {
+                if (active) {
                     Shopify.AjaxifyCart.addToBasket(product_id,1);
                 }else{
                     Shopify.AjaxifyCart.updateBasket(product_id,0);
                 }
                 //update the total curse amount
                 updateCurseTotal();
-
-            });
+            }));
         });
 
         var updateCurseTotal = function() {
-            console.log("update curse total");
             var curses_amount = $('.curse-options-container .product-cost');
             var total = 0;
             $.each(curses, function(index, curse) {
                 var cost = parseInt($(this).find('label').attr('data-cost'));
                 var box = $(this).find('input');
                 var active = $(box).is(':checked');
-                if (!active) {
-                    console.log(curse);
+                if (active) {
                     total += cost;
                 }
             });
-            console.log(total);
-            var price = Shopify.formatMoney(total / 1000, "{{ shop.money_format}}");
+            total *= 0.01;
+            var price = "£"+total;
             price = price.replace('.00','');
             curses_amount.html(price);
         }
+        
     });
 
     /* overlays */

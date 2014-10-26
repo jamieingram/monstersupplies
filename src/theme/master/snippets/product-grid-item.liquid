@@ -1,34 +1,11 @@
-{% assign on_sale = false %}
-{% if product.compare_at_price > product.price %}
-  {% assign on_sale = true %}
-{% endif %}
-
-{% assign sold_out = true %}
-{% if product.available  %}
-  {% assign sold_out = false %}
-{% endif %}
-
-{% if collection %}
-  {% assign product_url = product.url | within: collection %}
-{% else %}
-  {% assign product_url = product.url %}
-
-  {% for collection in product.collections %}
-    {% if forloop.first %}
-      {% assign product_url = '/collections/' | append: collection.handle | append: product.url %}
-    {% endif %}
-  {% endfor %}
-
-{% endif %}
-
-{% assign has_rollover = product.metafields.custom_fields.has_rollover %}
-{% if has_rollover == "true" %}
-  {% assign thumbnail_url = product.images[1].src | product_img_url: 'grande' %}
-{% endif %}
+{% include 'product-meta' %}
 
 <div class="grid-item no-bottom-margin product-grid-item large--one-quarter medium--one-half small--one-half{% if sold_out %} sold-out{% endif %}{% if on_sale %} on-sale{% endif %}">
 
   <a href="{{ product_url }}" class="product-grid-image">
+    {% if is_new %}
+    <div class="roundel secondary-font">NEW</div>
+    {% endif %}
     <img class="{% if has_rollover == "true" %}js-image-rollover{% endif %}" src="{{ product.featured_image.src | product_img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" {% if has_rollover == "true" %}data-rollover-url="{{ thumbnail_url }}"{% endif %}>
     
     {% if sold_out %}
