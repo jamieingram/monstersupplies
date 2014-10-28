@@ -42,6 +42,10 @@ body {
     margin-bottom:$gutter;
 }
 
+.top-gutter-margin {
+    margin-top:$gutter;
+}
+
 .page-header {
   width:100%;
   text-align:center;
@@ -74,6 +78,23 @@ body {
   vertical-align: middle;
 }
 
+.desktop-only {
+  @include at-query ($max, $small) {
+    display:none;
+  }
+}
+
+.mobile-only {
+  @include at-query($min, $postSmall) {
+    display:none;
+  }
+}
+
+.mobile-capitalise-first {
+  @include at-query ($max, $small) {
+    text-transform: capitalize;
+  }
+}
 
 /*================ Blockquotes ================*/
 blockquote {
@@ -307,4 +328,8 @@ img {
 
 .grey-border-bottom {
   border-bottom: 2px solid #bcbebb;
+}
+
+iframe.google-map {
+  height:420px;
 }

@@ -42,6 +42,9 @@
 
   p, li {
     font-size:em(18px);
+    @include at-query($max, $small) {
+      font-size:em(16px);
+    }
   }
 
   p {
@@ -67,6 +70,10 @@
   p {
     display:inline-block;
     margin-right:24px;
+    @include at-query($max, $small) {
+      margin-left:12px;
+      margin-right:12px;
+    }
   }
 
   input {
@@ -105,6 +112,10 @@
   &.arrow-down {
     margin-top:40px;
     background: url('{{ "arrow-down-grey.png" | asset_url }}') bottom center no-repeat;
+  }
+
+  @include at-query($max, $small) {
+    width:24px;
   }
 }
 
@@ -251,6 +262,9 @@ input[type="text"] {
   h4 {
     text-transform: none;
     font-size:em(26px);
+    @include at-query ($max, $small) {
+      font-size:em(20px);
+    }
   }
 
   .product-title {

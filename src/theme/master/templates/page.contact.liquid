@@ -9,58 +9,32 @@
 
   {% endcomment %}
 
-  <div class="grid">
+  <div class=" full-width">
+    <header class="page-header">
+      <h2>{{ page.title }}</h2>
+    </header>
+  </div>
 
-    <div class="grid-item large--two-thirds push--large--one-sixth">
+  <div class="grid-uniform side-padding">
 
-      <header class="page-header">
-        <h1>{{ page.title }}</h1>
-      </header>
+    <div class="grid-item large--one-half push--large--one-twelfth">
 
-      {% comment %}
-        Regular page content goes here.
-      {% endcomment %}
       <div class="rte">
         {{ page.content }}
       </div>
 
-      {% comment %}
-        Contact form starts here
-      {% endcomment %}
-      <div>
-        {% form 'contact' %}
-
-          {% comment %}
-            Successful message
-          {% endcomment %}
-          {% if form.posted_successfully? %}
-            <p class="note form-success">
-              Thanks for contacting us! We'll get back to you as soon as possible.
-            </p>
-          {% endif %}
-
-          {% include 'form-errors-custom' %}
-
-          <div id="contactFormWrapper">
-            <label for="contactFormName">Your Name:</label>
-            <input type="text" id="contactFormName" name="contact[name]" placeholder="John Doe">
-
-            <label for="contactFormEmail">Email:</label>
-            <input type="email" name="contact[email]" placeholder="john@example.com" id="contactFormEmail">
-
-            <label for="contactFormPhone">Phone Number:</label>
-            <input type="telephone" name="contact[phone]" placeholder="555-555-1234" id="contactFormPhone">
-
-            <label for="contactFormMessage">Message:</label>
-            <textarea rows="10" name="contact[body]" placeholder="Your Message" id="contactFormMessage"></textarea>
-
-            <input type="submit" class="btn right" value="Send">
-          </div>
-
-        {% endform %}
-      </div>
-
     </div>
 
+    <div class="grid-item large--one-third push--large--one-twelfth">
+      <h3>We're always looking for shop volunteers</h3>
+      <p>
+        <a href="{{ pages.volunteer.url }}">Find out more</a>
+      </p>
+      <img src="http://placehold.it/800x600" alt="volunteer image">
+    </div>
+
+    <div class="grid-item large--five-sixths push--large--one-twelfth">
+      <iframe width="100%" class="google-map" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=&amp;layer=c&amp;sll=51.531355,-0.080325&amp;cid=5571393039592795187&amp;panoid=7amqXA6Y04MAAAGu5veuzA&amp;cbp=13,352.27,,0,0&amp;gl=US&amp;hl=en&amp;ie=UTF8&amp;hq=&amp;hnear=&amp;ll=51.531355,-0.080325&amp;spn=0.006295,0.006295&amp;t=m&amp;cbll=51.531384,-0.08035&amp;source=embed&amp;output=svembed"></iframe>
+    </div>
   </div>
 </main>

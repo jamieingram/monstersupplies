@@ -19,7 +19,7 @@
         <div class="full-width text-center">
           <h3>Gifts for {{ tag }}</h3>
         </div>
-        <div class="grid-uniform bottom-gutter-margin">
+        <div class="grid-uniform bottom-gutter-margin side-padding">
           {% for product in collection.products %}
             {% if product.tags contains tag %}
               {% include 'product-grid-item' %}
@@ -30,7 +30,7 @@
     {% endfor %}
 
     <div class="products-promo full-width">
-      <div class="grid-uniform products-promo-content">
+      <div class="grid-uniform products-promo-content side-padding">
         <a href="#">
           <div class="grid-item large--one-half medium--one-half text-center no-bottom-margin">
             <h2>Can't find what you are looking for?</h2>
@@ -46,7 +46,7 @@
   {% else %}
     {% paginate collection.products by 12 %}
 
-    <div class="grid-uniform bottom-gutter-margin">
+    <div class="grid-uniform bottom-gutter-margin side-padding">
 
       {% for product in collection.products %}
 

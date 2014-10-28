@@ -123,6 +123,26 @@
           $(_config.cartTotalSelector).html(Shopify.formatMoney(cart.total_price, "{{ shop.money_format | remove: "'" | remove: '"' }}"));
         }
       }
+
+      //create hidden form fields
+      var cartForm = $('#cartForm');
+      var cartItems = cart.items;
+      var inputElements = cartForm.find('input.quantity-input:hidden').remove();
+      console.log(cart);
+      $.each(cartItems, function(index, item) {
+        var input = $('input[id=updates_'+item.id+']');
+        if (input.length == 0) {
+          $('<input>').attr(
+            {
+              type: 'hidden',
+              id: 'updates_'+item.id,
+              value: item.quantity,
+              'data-id': item.id,
+              name: 'updates[]'
+            }
+          ).appendTo(cartForm);
+        }
+      });
     }
 
     var _addToBasket = function(product_id, quantity) {

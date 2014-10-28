@@ -1419,11 +1419,12 @@ input[type="text"]:focus{
 .translation-bar {
   width:100%;
   min-height:45px;
-  background-color: #2f2f2f;
+  background-color: $black;
   text-align:center;
   color: #FFF;
-  padding:8px;
+  padding:10px;
   font-size:em(15px);
+  line-height:25px;
 
   .selected-language {
     font-style: italic;
@@ -1432,6 +1433,9 @@ input[type="text"]:focus{
   
   .translation-options {
 
+    ul {
+      margin-top:12px;
+    }
     a {
       color:$white;
       text-transform: uppercase;
@@ -1456,7 +1460,7 @@ input[type="text"]:focus{
 
   @include at-query ($max, $small) {
     min-height:42px;
-    font-size:em(10px);
+    padding:8px;
   }
 }
 
@@ -2115,6 +2119,7 @@ a.basket-link {
     background-position: left;
     background-position: ($gutter * 2) center;
     padding-top:$gutter;
+    padding-right:$gutter;
     padding-left: 150px;
   }
 }
@@ -2419,6 +2424,9 @@ a.basket-link {
 
   p, li {
     font-size:em(18px);
+    @include at-query($max, $small) {
+      font-size:em(16px);
+    }
   }
 
   p {
@@ -2444,6 +2452,10 @@ a.basket-link {
   p {
     display:inline-block;
     margin-right:24px;
+    @include at-query($max, $small) {
+      margin-left:12px;
+      margin-right:12px;
+    }
   }
 
   input {
@@ -2482,6 +2494,10 @@ a.basket-link {
   &.arrow-down {
     margin-top:40px;
     background: url('{{ "arrow-down-grey.png" | asset_url }}') bottom center no-repeat;
+  }
+
+  @include at-query($max, $small) {
+    width:24px;
   }
 }
 
@@ -2628,6 +2644,9 @@ input[type="text"] {
   h4 {
     text-transform: none;
     font-size:em(26px);
+    @include at-query ($max, $small) {
+      font-size:em(20px);
+    }
   }
 
   .product-title {
@@ -2815,6 +2834,9 @@ input[type="text"] {
   padding-left:$gutter;
   h2 {
     line-height:0.7em;
+    @include at-query($max, $small) {
+      line-height:1em;
+    }
   }
 
   @include at-query($min, $large) {
@@ -3095,6 +3117,11 @@ input[type="text"] {
   margin-top:12px;
   line-height: 36px;
   vertical-align: middle;
+
+  @include at-query($max, $small) {
+    line-height: 20px;
+    margin-bottom:0px;
+  }
 }
 
 .ajaxified-cart-feedback.success { color: $darkGreen; }
@@ -3124,6 +3151,8 @@ input[type="text"] {
 
         @include at-query ($max, $small) {
             padding-top:($gutter * 0.5);
+            padding-left:36px;
+            padding-right:12px;
         }
 
         @include at-query ($min, $medium) {
@@ -3260,6 +3289,10 @@ body {
     margin-bottom:$gutter;
 }
 
+.top-gutter-margin {
+    margin-top:$gutter;
+}
+
 .page-header {
   width:100%;
   text-align:center;
@@ -3292,6 +3325,23 @@ body {
   vertical-align: middle;
 }
 
+.desktop-only {
+  @include at-query ($max, $small) {
+    display:none;
+  }
+}
+
+.mobile-only {
+  @include at-query($min, $postSmall) {
+    display:none;
+  }
+}
+
+.mobile-capitalise-first {
+  @include at-query ($max, $small) {
+    text-transform: capitalize;
+  }
+}
 
 /*================ Blockquotes ================*/
 blockquote {
@@ -3525,6 +3575,10 @@ img {
 
 .grey-border-bottom {
   border-bottom: 2px solid #bcbebb;
+}
+
+iframe.google-map {
+  height:420px;
 }
 /* 
  * 	Core Owl Carousel CSS File

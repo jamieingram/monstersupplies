@@ -20,7 +20,7 @@
   {% endcomment %}
   {% assign grid_results = false %}
 
-  <div class="grid">
+  <div class="grid-uniform">
 
     <div class="grid-item large--two-thirds push--large--one-sixth">
 
@@ -38,16 +38,14 @@
           {% endcomment %}
           {% if search.results_count == 0 %}
 
-            <header class="page-header">
+            <header class="page-header side-padding">
               <h2>Your search for "{{ search.terms }}" did not yield any results.</h2>
-              {% include 'search-bar' %}
             </header>
 
           {% else %}
 
-            <header class="page-header">
+            <header class="page-header side-padding">
               <h2>Your search for "{{ search.terms }}" revealed the following:</h2>
-              {% include 'search-bar' %}
             </header>
 
             {% comment %}

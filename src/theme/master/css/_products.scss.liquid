@@ -172,6 +172,9 @@
   padding-left:$gutter;
   h2 {
     line-height:0.7em;
+    @include at-query($max, $small) {
+      line-height:1em;
+    }
   }
 
   @include at-query($min, $large) {
@@ -452,6 +455,11 @@
   margin-top:12px;
   line-height: 36px;
   vertical-align: middle;
+
+  @include at-query($max, $small) {
+    line-height: 20px;
+    margin-bottom:0px;
+  }
 }
 
 .ajaxified-cart-feedback.success { color: $darkGreen; }

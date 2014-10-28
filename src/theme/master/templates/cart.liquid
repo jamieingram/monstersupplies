@@ -7,7 +7,7 @@
   </div>
 
   {% if cart.item_count > 0 %}
-    <form action="/cart" class="no-bottom-margin" method="post">
+    <form action="/cart" id="cartForm" class="no-bottom-margin" method="post">
 
       <div class="full-width basket-summary">
         <p>Here are the items you have selected so far. Please note, magic beans are no longer accepted as payment.</p>
@@ -19,7 +19,7 @@
         {% for item in cart.items %}
           {% unless item.product.type == 'curse' %}
             <div class="cart-row indented-row js-product-row">
-              <div class="grid-uniform product-detail-item">
+              <div class="grid-uniform product-detail-item side-padding">
 
                 <div class="grid-item large--one-quarter medium-down--one-third">                
                       <a href="{{ item.product.url | within: collections.all }}">
@@ -124,7 +124,7 @@
               <div class="grid-item product-gift-summary">
                 <input type="checkbox" id="gift" value="gift" /><label for="gift" class="checkbox-label">This is a gift</label>
                 <div class="grey-border-bottom">
-                  <p>If you're sending your order directly to the recipient, we won't include the invoice.</p> 
+                  <p>If you're sending your order directly to the recipient, we won't include the invoice.</p>
                 </div>
                 <div class="basket-total">
                   <h5 class="basket-total-label">Total</h5><div class="basket-total-amount">{{ cart.total_price | money }}</div>
@@ -132,9 +132,9 @@
 
                 {% comment %}
                   name="update" is required for the update button to work
+                
+                <!--<input type="submit" name="update" class="btn-secondary" value="Update basket">-->
                 {% endcomment %}
-                <input type="submit" name="update" class="btn-secondary" value="Update basket">
-
                 {% comment %}
                   name="checkout" is required for the update button to work
                 {% endcomment %}

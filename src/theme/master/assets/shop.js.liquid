@@ -281,27 +281,33 @@
         var modal_windows = $('.modal-window');
         var close_button = $('.js-overlay-close');
 
+        var openOverlay = function(overlay_target) {
+            $('body').addClass('noscroll');
+            overlay_target.addClass('is-open');
+        }
+
+        var closeOverlays = function() {
+            $('body').removeClass('noscroll');
+            modal_windows.removeClass('is-open');
+        }
+
         newsletter_button.on('click', function (e) {
             e.preventDefault();
-            $('body').addClass('noscroll');
-            newsletter_overlay.addClass('is-open');
+            openOverlay(newsletter_overlay);
         });
 
         delivery_link.on('click', function (e) {
             e.preventDefault();
-            $('body').addClass('noscroll');
-            delivery_overlay.addClass('is-open');
+            openOverlay(delivery_overlay);
         });
 
         mos_link.on('click', function (e) {
             e.preventDefault();
-            $('body').addClass('noscroll');
-            mos_overlay.addClass('is-open');
+            openOverlay(mos_overlay);
         });
 
         close_button.on('click', function (e) {
-            $('body').removeClass('noscroll');
-            modal_windows.removeClass('is-open');
+            closeOverlays();
         });
     });
 
