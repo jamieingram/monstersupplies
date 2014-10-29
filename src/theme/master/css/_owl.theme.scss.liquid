@@ -19,6 +19,15 @@
 	}
 }
 
+.about-carousel {
+	.owl-theme .owl-controls{
+		@include at-query ($max, $small) {
+			bottom:90px;
+		}
+	}
+}
+
+
 /* Styling Next and Prev buttons */
 
 .owl-theme .owl-controls .owl-buttons div{

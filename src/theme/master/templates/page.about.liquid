@@ -1,0 +1,56 @@
+<main class="wrapper main-content" role="main">
+  
+  <div class=" full-width">
+    <header class="page-header">
+      <h2>{{ page.title }}</h2>
+    </header>
+  </div>
+
+  <div class="grid-uniform side-padding">
+
+    <div class="grid-item">
+
+      <div class="rte">
+        {{ page.content | split: '**address**' | first }}
+      </div>
+
+    </div>
+  </div>
+
+  <div class="grid-uniform">
+    <div class="grid-item feature-carousel about-carousel">
+      <div class="carousel-item">
+        <img src="{{ "about-us-1-mobile.jpg" | asset_url }}" alt="about image 1" data-desktop-image="{{ "about-us-1.jpg" | asset_url }}">
+        <div class="carousel-copy">Some copy about this image here...</div>
+      </div>
+
+      <div class="carousel-item">
+        <img src="{{ "about-us-1-mobile.jpg" | asset_url }}" alt="about image 1" data-desktop-image="{{ "about-us-1.jpg" | asset_url }}">
+        <div class="carousel-copy">The second image</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="grid-uniform side-padding">
+
+    <div class="grid-item large--two-thirds">
+      {{ page.content | split: '**address**' | last }}
+ 
+      <a href="{{ pages.contact-us.url }}">Full contact details</a>
+
+    </div>
+    <div class="grid-item large--one-third">
+      <h3>We're always looking for shop volunteers</h3>
+      <p>
+        <a href="{{ pages.volunteer.url }}">Find out more</a>
+      </p>
+      <img src="http://placehold.it/800x600" alt="volunteer image">
+    </div>
+
+    <div class="grid-item full-width">
+      <h3>Comments from some of our customers</h3>
+    </div>
+  </div>
+
+</main>

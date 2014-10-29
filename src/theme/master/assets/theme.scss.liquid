@@ -3724,6 +3724,14 @@ iframe.google-map {
 	}
 }
 
+.about-carousel {
+	.carousel-copy {
+		@include at-query ($max, $small) {
+			height:100px;
+		}
+	}
+}
+
 
 /*
 * 	Owl Carousel Owl Demo Theme 
@@ -3745,6 +3753,15 @@ iframe.google-map {
 		padding-left:$gutter;
 	}
 }
+
+.about-carousel {
+	.owl-theme .owl-controls{
+		@include at-query ($max, $small) {
+			bottom:90px;
+		}
+	}
+}
+
 
 /* Styling Next and Prev buttons */
 
