@@ -1,0 +1,52 @@
+
+.contact-page-content {
+    font-size: em(18px);
+}
+
+.address-details {
+
+    margin-top:18px;
+
+    h3 {
+        font-size:em(26px);
+        text-decoration: underline;
+        margin-bottom:10px;
+    }
+
+    li {
+        margin-bottom: 0px;
+        line-height:1.3em;
+    }
+
+    font-size: em(18px);
+
+    @include at-query ($max, $preMedium) {
+        margin-top:0;
+    }
+
+    @include at-query ($min, $medium) {
+        h3 {
+            font-size:em(20px);
+        }
+    }
+
+    @include at-query ($min, $xlarge) {
+        h3 {
+            font-size:em(26px);
+        }
+    }
+}
+
+iframe.google-map {
+  height:320px;
+}
+
+.volunteer-holder .collection-promo .collection-text {
+    min-height:0px;
+}
+
+.divider {
+    display:inline-block;
+    width:100%;
+    height:10px;
+}
