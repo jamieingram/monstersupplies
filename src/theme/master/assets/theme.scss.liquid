@@ -1687,6 +1687,13 @@ a.basket-link {
     }
 }
 
+.border-right {
+    border-right: 2px solid #7f7f7f;
+    @include at-query ($max, $medium) {
+        border-right:none;
+    }
+}
+
 .modal-window {
     z-index:200;
     position:fixed;
@@ -2188,6 +2195,13 @@ a.basket-link {
     }
   }
 
+}
+
+.about-panel-holder {
+  width:100%;
+  position:absolute;
+  z-index:100;
+  text-align:center;
 }
 
 .map-link {
@@ -3576,10 +3590,6 @@ img {
 .grey-border-bottom {
   border-bottom: 2px solid #bcbebb;
 }
-
-iframe.google-map {
-  height:420px;
-}
 /* 
  * 	Core Owl Carousel CSS File
  *	v1.3.3
@@ -3724,14 +3734,6 @@ iframe.google-map {
 	}
 }
 
-.about-carousel {
-	.carousel-copy {
-		@include at-query ($max, $small) {
-			height:100px;
-		}
-	}
-}
-
 
 /*
 * 	Owl Carousel Owl Demo Theme 
@@ -3753,15 +3755,6 @@ iframe.google-map {
 		padding-left:$gutter;
 	}
 }
-
-.about-carousel {
-	.owl-theme .owl-controls{
-		@include at-query ($max, $small) {
-			bottom:90px;
-		}
-	}
-}
-
 
 /* Styling Next and Prev buttons */
 
@@ -3831,5 +3824,179 @@ iframe.google-map {
 .owl-item.loading{
 	min-height: 150px;
 	background: url(AjaxLoader.gif) no-repeat center center
+}
+.about-carousel {
+
+    .carousel-copy {
+
+        display:table;
+        background-color:$black;
+        color:$white;
+        position: relative;
+        width:100%;
+        padding-left:10%;
+        padding-right:10%;
+        padding-top:20px;
+        padding-bottom:20px;
+        left:0;
+        top:0;
+        text-align:center;
+        height:90px;
+        line-height:1.2em;
+
+        span {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        p {
+            padding-left:30px;
+            padding-right:30px;
+            margin-bottom:0px;
+            font-size:em(18px);
+        }
+
+        .arrow-left {
+            margin-top:10px;
+            float:left;
+        }
+
+        .arrow-right {
+            margin-top:10px;
+            float:right;
+        }
+
+        @include at-query ($max, $small) {
+            padding-top:10px;
+            padding-bottom:10px;
+            line-height:1.1em;
+
+            p {
+                font-size:em(14px);
+            }
+
+            .arrow-left {
+                margin-top:24px;
+            }
+
+            .arrow-right {
+                margin-top:24px;
+            }
+        }
+    }
+}
+
+.about-carousel {
+    .owl-theme .owl-controls{
+        @include at-query ($max, $small) {
+            bottom:90px;
+        }
+    }
+}
+
+.volunteer-content-holder {
+    margin-top:50px;
+    margin-bottom:50px;
+    padding-top:($gutter * 2);
+    padding-bottom:$gutter;
+    margin-left:0px;
+    background-color: $white;
+    @include clearfix;
+
+    @include at-query($min, $xlarge) {
+        padding-top:50px;
+        padding-bottom:50px;
+        margin-bottom:100px;
+    }
+
+    @include at-query($max, $small) {
+        margin-top:0px;
+    }
+}
+
+.volunteer-content {
+    padding-top:$gutter;
+    padding-left:$gutter;
+    padding-right:$gutter;
+
+    @include at-query($min, $xlarge) {
+        padding-top:30px;
+        padding-left:75px;
+        padding-right:50px;
+    }
+}
+
+.volunteer-image-holder {
+
+    padding-top:$gutter;
+    padding-bottom:$gutter;
+    padding-left:($gutter * 2);
+    padding-right:($gutter * 2);
+
+    @include at-query($min, $xlarge) {
+        padding-top:30px;
+        padding-bottom:30px;
+        padding-left:65px;
+        padding-right:65px;
+    }
+
+    @include at-query($max, $small) {
+        padding-top:0px;
+        padding-left: $gutter;
+        padding-right: $gutter;
+        padding-bottom:0px;
+    }
+}
+
+.contact-page-content {
+    font-size: em(18px);
+}
+
+.address-details {
+
+    margin-top:18px;
+
+    h3 {
+        font-size:em(26px);
+        text-decoration: underline;
+        margin-bottom:10px;
+    }
+
+    li {
+        margin-bottom: 0px;
+        line-height:1.3em;
+    }
+
+    font-size: em(18px);
+
+    @include at-query ($max, $preMedium) {
+        margin-top:0;
+    }
+
+    @include at-query ($min, $medium) {
+        h3 {
+            font-size:em(20px);
+        }
+    }
+
+    @include at-query ($min, $xlarge) {
+        h3 {
+            font-size:em(26px);
+        }
+    }
+}
+
+iframe.google-map {
+  height:320px;
+}
+
+.volunteer-holder .collection-promo .collection-text {
+    min-height:0px;
+}
+
+.divider {
+    display:inline-block;
+    width:100%;
+    height:10px;
 }
 

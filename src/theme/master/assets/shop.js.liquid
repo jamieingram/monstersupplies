@@ -56,6 +56,7 @@
 
         /* homepage carousel */
         var carousel = $(".feature-carousel");
+        var is_about = $(carousel).hasClass('about-carousel');
         //store the carousel data
         var carouselItems = carousel.find(".carousel-item");
         if (carouselItems.length > 0) {
@@ -65,6 +66,9 @@
                 singleItem:true,
                 autoPlay : 50000
             };
+            if (is_about) {
+                carouselOptions.pagination = false;
+            }
 
             var items_array = [];
 
@@ -118,13 +122,25 @@
         }
 
         /* product carousel */
-        var product_carousel = $('.product-carousel');
+        var arrow_carousel = $('.arrow-carousel');
+        var products_carousel = $('.product-carousel');
         var carousel_thumbs = $('.js-carousel-thumb');
-        var carousel_navigation = $('.carousel-navigation');
-        var left_arrow = carousel_navigation.find('.arrow-left');
-        var right_arrow = carousel_navigation.find('.arrow-right');
+        var left_arrow = $('.arrow-left');
+        var right_arrow = $('.arrow-right');
         //
-        if (product_carousel) {
+        if (left_arrow && right_arrow) {
+            left_arrow.on('click', function (e) {
+                e.preventDefault();
+                arrow_carousel.trigger('owl.prev');
+            });
+
+            right_arrow.on('click', function (e) {
+                e.preventDefault();
+                arrow_carousel.trigger('owl.next');
+            });
+        }
+
+        if (products_carousel) {
 
             var checkCurrentImage = function() {
                 if (!productCarouselData) return;
@@ -139,30 +155,20 @@
                 });
             }
 
-            product_carousel.owlCarousel({
+            products_carousel.owlCarousel({
               slideSpeed : 300,
               pagination: false,
               singleItem: true,
               afterAction: checkCurrentImage
             });
 
-            var productCarouselData = $(product_carousel).data('owlCarousel');
+            var productCarouselData = $(products_carousel).data('owlCarousel');
 
             $.each(carousel_thumbs, function(index, thumb) {
                 $(thumb).on('click', function (e) {
                     e.preventDefault();
-                    product_carousel.trigger('owl.goTo',index);
+                    products_carousel.trigger('owl.goTo',index);
                 });
-            });
-
-            left_arrow.on('click', function (e) {
-                e.preventDefault();
-                product_carousel.trigger('owl.prev');
-            });
-
-            right_arrow.on('click', function (e) {
-                e.preventDefault();
-                product_carousel.trigger('owl.next');
             });
         }
     });

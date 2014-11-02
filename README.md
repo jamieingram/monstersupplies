@@ -32,7 +32,7 @@ Products in the featured and curses collections will not appear on the homepage.
 Featured products - most craved this week on homepage
 Curses - available options in the basket
 
-Products - if a rollver image is available you need to enter "true" in the "Has rollover" field for the product. The second image will then be used as a rollover image
+Products - if a rollver image is available you need to enter "true" in the "Has rollover" field for the product. The second image will then be used as a rollover image. The alt text for this image MUST contain the word rollover
 related products - these are product handles that will appear on the product page. To get a product handle look at the url of the product page
 Gift ideas - products are grouped by tag. Allowed tags are "little monsters", "mummies", "ogres"
 Product in homepage carousel - if there is an image with the alt text "desktop_carousel" then this product appears in the homepage carousel.You must have a second image with alt text "mobile_carousel". When appearing in the carousel the summary field is used.
