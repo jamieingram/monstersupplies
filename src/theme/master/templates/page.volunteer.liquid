@@ -17,13 +17,42 @@
     </div>
 
     <div class="grid-item large--one-half volunteer-image-holder">
-      <img src="{{ 'volunteer_large.jpg' | asset_url }}" alt="volunteer image">
+      <div class="carousel-holder">
+        
+        
+        <div class="grid-item feature-carousel volunteer-carousel arrow-carousel">
+          
+          <div class="carousel-item">
+            <img src="{{ "volunteer_large_mobile.jpg" | asset_url }}" alt="volunteer image 1" data-desktop-image="{{ "volunteer_large.jpg" | asset_url }}">
+            <div class="carousel-copy">
+              <div class="arrow-left"><a href=""><img src="{{ 'arrow-left.png' | asset_url }}" alt="previous image"></a></div>
+              <span>
+                <h2>Bruce Wayne</h2>
+                <p>“I love my volunteering at the Monster Store, but I also fight crime at night, please don’t tell anyone”</p>
+              </span>
+              <div class="arrow-right"><a href=""><img src="{{ 'arrow-right.png' | asset_url }}" alt="next image"></a></div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <img src="{{ "volunteer_large_mobile.jpg" | asset_url }}" alt="volunteer image 1" data-desktop-image="{{ "volunteer_large.jpg" | asset_url }}">
+            <div class="carousel-copy">
+              <div class="arrow-left"><a href=""><img src="{{ 'arrow-left.png' | asset_url }}" alt="previous image"></a></div>
+              <span>
+                <h2>Bruce Wayne</h2>
+                <p>“I love my volunteering at the Monster Store, but I also fight crime at night, please don’t tell anyone”</p>
+              </span>
+              <div class="arrow-right"><a href=""><img src="{{ 'arrow-right.png' | asset_url }}" alt="next image"></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
-  <div class="full-width">
-    <div class="mos-promo">
-      <p>Due to a rather inconvenient curse, all profits go to the <a href="http://www.ministryofstories.org" class="js-mos-info">Ministry of Stories</a>, a creative writing and mentoring charity for young humans</p>
-    </div>
-  </div>
 </main>
+<div class="full-width">
+  <div class="mos-promo">
+    <p>Due to a rather inconvenient curse, all profits go to the <a href="http://www.ministryofstories.org" class="js-mos-info">Ministry of Stories</a>, a creative writing and mentoring charity for young humans</p>
+  </div>
+</div>

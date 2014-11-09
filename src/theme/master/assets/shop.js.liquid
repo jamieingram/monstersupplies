@@ -57,6 +57,7 @@
         /* homepage carousel */
         var carousel = $(".feature-carousel");
         var is_about = $(carousel).hasClass('about-carousel');
+        var is_volunteer = $(carousel).hasClass('volunteer-carousel');
         //store the carousel data
         var carouselItems = carousel.find(".carousel-item");
         if (carouselItems.length > 0) {
@@ -66,7 +67,7 @@
                 singleItem:true,
                 autoPlay : 50000
             };
-            if (is_about) {
+            if (is_about || is_volunteer) {
                 carouselOptions.pagination = false;
             }
 
@@ -132,12 +133,21 @@
             left_arrow.on('click', function (e) {
                 e.preventDefault();
                 arrow_carousel.trigger('owl.prev');
+                hideArrows();
             });
 
             right_arrow.on('click', function (e) {
                 e.preventDefault();
                 arrow_carousel.trigger('owl.next');
+                hideArrows();
             });
+        }
+
+        var hideArrows = function() {
+            left_arrow.css('opacity', 0);
+            left_arrow.delay(800).animate({'opacity':1},200);
+            right_arrow.css('opacity', 0);
+            right_arrow.delay(800).animate({'opacity':1},200);
         }
 
         if (products_carousel) {
