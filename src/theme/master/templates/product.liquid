@@ -75,7 +75,9 @@
 
           <meta itemprop="priceCurrency" content="{{ shop.currency }}">
 
-          <div class="product-offer">Special offer: 5 for the price of 4</div>
+          {% if product.metafields.custom_fields.product_banner_text %}
+            <div class="product-offer">{{ product.metafields.custom_fields.product_banner_text }}</div>
+          {% endif %}
 
           <div class="product-detail">
 
@@ -138,7 +140,25 @@
                 <input min="1" type="text" id="quantity" name="quantity" class="no-border-number" value="1">
                 <span class="add-product"></span>
                 <input type="submit" name="add" class="btn button-add" id="addToCart" value="Add to Casket">
-              </div>              
+              </div>
+              <div class="sold-out-message">
+              {% if sold_out %}
+                {% if product.metafields.custom_fields.partner_site_urls %}
+                  {% assign links = product.metafields.custom_fields.partner_site_urls | split: ',' %}
+                  <p>Unfortunately, this product isn't available to buy on our site.<br/>However, you can buy it on our partner sites.</p>
+                  {% for link in links %}
+                    {% if link contains 'firebox' %}
+                      <a href="{{ link }}" class="btn">Buy on firebox.com</a><br/>
+                    {% endif %}
+                    {% if link contains 'liberty' %}
+                      <a href="{{ link }}" class="btn">Buy on liberty.co.uk</a><br/>
+                    {% endif %}
+                  {% endfor %}
+                {% else %}
+                  <p>We've sold out of this product.<br/>Our zombie helpers have ordered some more so check back soon.</p>
+                {% endif %}
+              {% endif %}
+              </div>         
             </form>
 
             <div class="delivery-info">
