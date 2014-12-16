@@ -12,9 +12,9 @@
   Shopify.AjaxifyCart = (function($) {
     
     var _config = {
-      addedToCartBtnLabel: 'Thank you!',
-      addingToCartBtnLabel: 'Adding...',
-      soldOutBtnLabel: 'Sold Out',
+      addedToCartBtnLabel: 'Fangs!',
+      addingToCartBtnLabel: 'Adding to casket...',
+      soldOutBtnLabel: 'Curses, that&#39;s sold out.',
       howLongTillBtnReturnsToNormal: 1000, // in milliseconds.
       cartCountSelector: '.cart, #cart-count a:first, #gocart p a, #cart .checkout em, .item-count, header #cartCount',
       cartTotalSelector: '.basket-total-amount',
@@ -67,7 +67,7 @@
             success: function(itemData) {
               // Re-enable add to cart button.
               addToCartBtn.addClass('inverted').val(_config.addedToCartBtnLabel);
-              _showFeedback('success','<i class="fa fa-check"></i> Added to casket <a href="/cart">View casket</a> or <a href="/collections/all">continue shopping</a>.',addToCartForm);
+              _showFeedback('success','<i class="fa fa-check"></i> Added to casket <a href="/cart">View casket</a> or <a href="/collections/all">continue to prowl.</a>.',addToCartForm);
               window.setTimeout(function(){
                 addToCartBtn.removeAttr('disabled').removeClass('disabled').removeClass('inverted').val(addToCartBtn.attr('data-label'));
               }, _config.howLongTillBtnReturnsToNormal);

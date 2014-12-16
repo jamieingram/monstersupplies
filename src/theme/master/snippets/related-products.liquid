@@ -30,7 +30,7 @@
               <p>
                  <span>
                  {% if product.price_varies %}From{% endif %}
-                  {{ product.price | money }}
+                  {{ product.price | money | remove: '.00' }}
                 </span>
               </p>
             </div>

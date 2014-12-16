@@ -652,7 +652,7 @@ select {
   line-height: 1.6;
   font-family: $bodyFontStack;
   color: $colorTextBody;
-  font-weight: 300;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
 }
@@ -837,6 +837,10 @@ sup {
 
 .font-size-18 {
   font-size:em(18px);
+}
+
+.strikethrough {
+  text-decoration: line-through;
 }
 
 /*============================================================================
@@ -1498,6 +1502,7 @@ input[type="text"]:focus{
   margin-right:10px;
   padding:3px;
   font-size:1em;
+  font-weight:600;
 }
 
 .nav-item-first {
@@ -2032,6 +2037,7 @@ a.basket-link {
     background-color: $black;
     text-transform: uppercase;
     font-size:em(12px);
+    font-weight:600;
     height:44px;
     padding-top:10px;
     margin-top:32px;
@@ -2123,15 +2129,17 @@ a.basket-link {
   background-position: center $gutter;
   padding-top:115px;
   padding-bottom:$gutter;
+  padding-left:$gutter;
+  padding-right:$gutter;
   background-color:$white;
 
   @include at-query ($max, $small) {
     text-align: left;
     background-position: left;
-    background-position: ($gutter * 2) center;
+    background-position: $gutter center;
     padding-top:$gutter;
     padding-right:$gutter;
-    padding-left: 150px;
+    padding-left: 126px;
   }
 }
 
@@ -2571,6 +2579,12 @@ input[type="text"] {
   .grid-item {
     margin-bottom:0px;
   }
+
+  @include at-query($max, $medium) {
+    .curse-options-container {
+      background-position: 96% bottom;
+    }
+  }
 }
 
 .delivery-cost-amount {
@@ -2589,7 +2603,7 @@ input[type="text"] {
 .delivery-options-holder {
   background: url('{{ "loch_ness.png" | asset_url }}') top right no-repeat;
   background-size: (147px * 0.7) (71px * 0.7);
-  background-position: right 16px;
+  background-position: right 30px;
   @include at-query($min, $xlarge) {
     background-size: 147px 71px;
   }
@@ -2597,6 +2611,10 @@ input[type="text"] {
   @include at-query($max, $medium) {
     background-size: 147px 71px;
     background-position: right 0px;
+  }
+
+  @include at-query($max, $small) {
+    background-position: right 30px;
   }
 }
 
@@ -2875,7 +2893,6 @@ input[type="text"] {
   background-color:$darkGreen;
   height: 30px;
   text-align: center;
-  font-weight: 700;
   text-transform: uppercase;
   padding-top:2px;
   margin-bottom:30px;
@@ -2954,13 +2971,14 @@ input[type="text"] {
 .product-notes {
   
   background-color: #FFF;
-  padding-top:30px;
+  padding-top:40px;
   padding-left:($gutter * 2);
   padding-bottom:($gutter * 2);
   padding-right:$gutter;
 
   h3 {
-    font-size:em(26px);
+    font-size:em(20px);
+    line-height:0.8em;
     text-transform: uppercase;
   }
 
@@ -3277,7 +3295,7 @@ input[type="text"] {
   #Basic Styles
 ==============================================================================*/
 html {
-  background-color: $colorFooterBg;
+  
 }
 
 body {
@@ -3331,7 +3349,8 @@ body {
     line-height: 1.1em;
   }
   @include at-query ($max, $small) {
-    margin-top:0px;
+    margin-top:20px;
+    margin-bottom:5px;
   }
 }
 
@@ -4025,6 +4044,12 @@ img {
     }
 }
 
+#terms-and-conditions {
+    h3 {
+        margin-top:30px;
+    }
+}
+
 .contact-page-content {
     font-size: em(18px);
 }
@@ -4034,9 +4059,9 @@ img {
     margin-top:18px;
 
     h3 {
-        font-size:em(26px);
-        text-decoration: underline;
+        font-size:em(22px);
         margin-bottom:10px;
+        line-height:1.2em;
     }
 
     li {
@@ -4058,7 +4083,7 @@ img {
 
     @include at-query ($min, $xlarge) {
         h3 {
-            font-size:em(26px);
+            font-size:em(22px);
         }
     }
 }

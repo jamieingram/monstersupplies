@@ -171,6 +171,12 @@ input[type="text"] {
   .grid-item {
     margin-bottom:0px;
   }
+
+  @include at-query($max, $medium) {
+    .curse-options-container {
+      background-position: 96% bottom;
+    }
+  }
 }
 
 .delivery-cost-amount {
@@ -189,7 +195,7 @@ input[type="text"] {
 .delivery-options-holder {
   background: url('{{ "loch_ness.png" | asset_url }}') top right no-repeat;
   background-size: (147px * 0.7) (71px * 0.7);
-  background-position: right 16px;
+  background-position: right 30px;
   @include at-query($min, $xlarge) {
     background-size: 147px 71px;
   }
@@ -197,6 +203,10 @@ input[type="text"] {
   @include at-query($max, $medium) {
     background-size: 147px 71px;
     background-position: right 0px;
+  }
+
+  @include at-query($max, $small) {
+    background-position: right 30px;
   }
 }
 

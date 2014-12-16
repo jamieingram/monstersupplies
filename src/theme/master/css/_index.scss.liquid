@@ -48,15 +48,17 @@
   background-position: center $gutter;
   padding-top:115px;
   padding-bottom:$gutter;
+  padding-left:$gutter;
+  padding-right:$gutter;
   background-color:$white;
 
   @include at-query ($max, $small) {
     text-align: left;
     background-position: left;
-    background-position: ($gutter * 2) center;
+    background-position: $gutter center;
     padding-top:$gutter;
     padding-right:$gutter;
-    padding-left: 150px;
+    padding-left: 126px;
   }
 }
 

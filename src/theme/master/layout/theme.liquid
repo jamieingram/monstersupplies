@@ -27,7 +27,7 @@
   <link rel="canonical" href="{{ canonical_url }}">
   <meta name="viewport" content="width=device-width">
   <!-- Fonts ================================================ -->
-  <link href='https://fonts.googleapis.com/css?family=Lato|Crimson+Text' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:300|Crimson+Text:400,600' rel='stylesheet' type='text/css'>
 
   <!-- CSS ================================================== -->
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
@@ -65,19 +65,22 @@
 {% endcomment %}
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
   <div id="fb-root"></div>
+  <!--
   <form id="translation-form" name="translation-form" class="translation-form" method="POST">
+  -->
     <div class="translation-bar">
       <span class="desktop-only">This page has been </span><span class="mobile-capitalise-first">automatically</span><span> translated for </span>
-      <span class="selected-language">human</span>
-      <div class="burger-trigger"></div>
+      <span class="selected-language">humans</span>
+      <!--<div class="burger-trigger"></div>
       <div class="translation-options">
         <ul>
           <li><a href="#" data-language="human">Human</a></li>
           <li><a href="#" data-language="werewolf">Werewolf</a></li>
         </ul>
       </div>
+    -->
     </div>
-  </form>
+  <!--</form>-->
   <header class="site-header side-padding" role="banner">
     <div class="wrapper">
       <div  class="header-logo"><h1><a href="/"></a></h1></div>
@@ -88,7 +91,7 @@
             {% include 'search-bar' %}
           </div>
           <a href="/cart" class="basket-link" id="cartToggle">
-            Basket (<span id="cartCount">{{ cart.item_count }}</span>)
+            Casket (<span id="cartCount">{{ cart.item_count }}</span>)
           </a>
         </p>
       </div>

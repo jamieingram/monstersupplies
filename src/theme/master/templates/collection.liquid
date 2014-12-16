@@ -2,7 +2,7 @@
 
   <div class="full-width">
     <header class="page-header collection-header">
-      <div class="delivery-promo delivery-promo-small bottom-gutter-margin">
+      <div class="delivery-promo secondary-font delivery-promo-small bottom-gutter-margin">
         <p>Free delivery on orders over &pound;50</p>
       </div>
       <h2>{{ collection.title }}</h2>
@@ -31,7 +31,7 @@
 
     <div class="products-promo full-width">
       <div class="grid-uniform products-promo-content side-padding">
-        <a href="#">
+        <a href="{{ collections.view-all.url }}">
           <div class="grid-item large--one-half medium--one-half text-center no-bottom-margin">
             <h2>Can't find what you are looking for?</h2>
             <button class='btn'>View all</button>
@@ -54,11 +54,9 @@
           
           {% include 'product-grid-quote' %}
 
-        {% else %}
-          
-          {% include 'product-grid-item' %}
-
         {% endif %}
+          
+        {% include 'product-grid-item' %}
 
       {% else %}
 
@@ -84,8 +82,4 @@
 
 </main>
 
-<div class="full-width">
-  <div class="mos-promo">
-    <p>Due to a rather inconvenient curse, all profits go to the <a href="http://www.ministryofstories.org" class="js-mos-info">Ministry of Stories</a>, a creative writing and mentoring charity for young humans</p>
-  </div>
-</div>
+{% include 'mos-promo' %}

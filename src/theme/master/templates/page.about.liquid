@@ -8,7 +8,7 @@
 
   <div class="grid-uniform side-padding">
 
-    <div class="grid-item large--two-thirds push--large--one-sixth">
+    <div class="grid-item large--three-fifths push--large--one-fifth">
 
       <div class="rte font-size-18 text-center">
         {{ page.content }}
@@ -38,7 +38,7 @@
           <div class="carousel-copy">
             <div class="arrow-left"><a href=""><img src="{{ 'arrow-white-left.png' | asset_url }}" alt="previous image"></a></div>
             <span>
-              <p>The second image</p>
+              <p>We are fully licenced to stock a wide variety of bespoke and everyday items for monsters of every kind, as specified in the Monster Retalier's Act of 1827</p>
             </span>
             <div class="arrow-right"><a href=""><img src="{{ 'arrow-white-right.png' | asset_url }}" alt="next image"></a></div>
           </div>
@@ -63,8 +63,4 @@
   </div>
 
 </main>
-<div class="full-width">
-  <div class="mos-promo">
-    <p>Due to a rather inconvenient curse, all profits go to the <a href="http://www.ministryofstories.org" class="js-mos-info">Ministry of Stories</a>, a creative writing and mentoring charity for young humans</p>
-  </div>
-</div>
+{% include 'mos-promo' %}

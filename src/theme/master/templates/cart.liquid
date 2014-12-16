@@ -2,7 +2,7 @@
 
   <div class="full-width">
     <header class="page-header">
-      <h2>Basket</h2>
+      <h2>Casket</h2>
     </header>
   </div>
 
@@ -81,7 +81,8 @@
               <div class="grid-item large--three-fifths medium--one-half">
                 <ul class="curse-options">
                   {% assign total_curse_cost = 0 %}
-                  {% for product in collections.curses.products %}
+                  {% assign curses = collections.curses.products | sort: 'price' %}
+                  {% for product in curses %}
                     {% assign variant = product.selected_or_first_available_variant %}
                     {% assign selected = false %}
                     {% for item in cart.items %}
@@ -155,7 +156,7 @@
     </form>
 
     <div class="grid-item no-bottom-margin">
-      <div class="delivery-promo delivery-promo-small grid-item no-bottom-margin">
+      <div class="delivery-promo delivery-promo-small secondary-font grid-item no-bottom-margin">
         <p>Free delivery on orders over &pound;50</p>
       </div>
     </div>
@@ -189,7 +190,7 @@
               <form action="/cart/add" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" id="id" value="{{ variant.id }}">
                 <input type="hidden" id="quantity" name="quantity" value="1">
-                <button class="btn" type="submit">Add to basket</button>
+                <button class="btn" type="submit">Add to casket</button>
               </form>
             </div>
           </div>
@@ -206,8 +207,8 @@
       Do something fun here, it's a great chance to show your company's human side.
     {% endcomment %}
     <div class="full-width text-center">
-      <h4>It appears that your basket is currently empty!</h4>
-      <p>You can continue browsing <a href="/collections/all">here</a>.</p>
+      <h4>Your casket is empty</h4>
+      <p><a href="/collections/all">Continue to prowl here.</a></p>
     </div>
 
   {% endif %}

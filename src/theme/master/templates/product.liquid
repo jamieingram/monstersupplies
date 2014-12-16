@@ -76,7 +76,7 @@
           <meta itemprop="priceCurrency" content="{{ shop.currency }}">
 
           {% if product.metafields.custom_fields.product_banner_text %}
-            <div class="product-offer">{{ product.metafields.custom_fields.product_banner_text }}</div>
+            <div class="product-offer secondary-font">{{ product.metafields.custom_fields.product_banner_text }}</div>
           {% endif %}
 
           <div class="product-detail">
@@ -155,7 +155,7 @@
                     {% endif %}
                   {% endfor %}
                 {% else %}
-                  <p>We've sold out of this product.<br/>Our zombie helpers have ordered some more so check back soon.</p>
+                  <p>Curses, we've sold out of this product.<br/>Our zombie helpers have ordered some more so check back soon.</p>
                 {% endif %}
               {% endif %}
               </div>         
