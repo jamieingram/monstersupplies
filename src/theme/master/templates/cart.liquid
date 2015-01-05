@@ -10,7 +10,7 @@
     <form action="/cart" id="cartForm" class="no-bottom-margin" method="post">
 
       <div class="full-width basket-summary">
-        <p>Here are the items you have selected so far. Please note, magic beans are no longer accepted as payment.</p>
+        <p>Here are the items you have selected so far. Please note, magic beans are no longer accepted as payment, and we currently deliver to the UK only.</p>
         <input type="submit" name="checkout" class="btn" value="Proceed to checkout">
       </div>
 
@@ -51,7 +51,7 @@
                         Added data-id for the ajax cart implementation only.
                       {% endcomment %}
                       <span class="arrow arrow-up"></span>
-                      <input type="text" name="updates[]" id="updates_{{ item.id }}" class="no-border-number quantity-input" value="{{ item.quantity }}" autocomplete="off" min="0" data-id="{{ item.id }}">
+                      <input type="text" name="updates[]" id="updates_{{ item.id }}" class="no-border-number quantity-input" value="{{ item.quantity }}" autocomplete="off" min="0" data-id="{{ item.id }}" data-cost="{{ item.price }}">
                       <span class="arrow arrow-down"></span>
                     </div>
 
@@ -107,7 +107,7 @@
         <div class="grid-item cart-row no-bottom-margin">
           <div class="grid-item large--one-half">
             <h3>Delivery cost</h3>
-            <p>Our zombie volunteers pack and send orders every Saturday by 1st Class Royal Mail. A little slower than you might have expected, perhaps, but an excellent service.</p>
+            <p>Our zombie volunteers pack and send orders every Saturday by 1st Class Royal Mail. A little slower than you might have expected, perhaps, but an excellent service. Free UK delivery on all orders over £50.</p>
             <p>Alternatively, choose to collect in our Hoxton Street store for free!</p>
           </div>
           <div class="grid-item large--one-half delivery-options-holder no-bottom-margin">
@@ -157,7 +157,7 @@
 
     <div class="grid-item no-bottom-margin">
       <div class="delivery-promo delivery-promo-small secondary-font grid-item no-bottom-margin">
-        <p>Free delivery on orders over &pound;50</p>
+        <p>Free UK delivery on orders over &pound;50</p>
       </div>
     </div>
 

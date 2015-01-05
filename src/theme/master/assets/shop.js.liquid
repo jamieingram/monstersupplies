@@ -232,6 +232,8 @@
             var arrow_down = $(product).find('.arrow-down');
             var quantity_input = $(product).find('input.quantity-input');
             var product_id = quantity_input.attr('data-id');
+            var product_price = quantity_input.attr('data-cost');
+            var product_price_output = $(product).find('.product-cost');
 
             var quantity = parseInt(quantity_input.val());
 
@@ -239,12 +241,15 @@
                 quantity += 1;
                 quantity_input.val(quantity);
                 Shopify.AjaxifyCart.updateBasket(product_id,quantity);
+                //update the price inline
+                updateProductTotal(quantity * product_price, product_price_output);
             });
 
             arrow_down.on('click', function (e) {
                 if (quantity > 1) quantity -= 1;
                 quantity_input.val(quantity);
                 Shopify.AjaxifyCart.updateBasket(product_id,quantity);
+                updateProductTotal(quantity * product_price, product_price_output);
             });
         });
 
@@ -264,6 +269,13 @@
                 updateCurseTotal();
             }));
         });
+
+        var updateProductTotal = function(total, output) {
+            total *= 0.01;
+            var price = "£"+total;
+            price = price.replace('.00','');
+            output.html(price);
+        }
 
         var updateCurseTotal = function() {
             var curses_amount = $('.curse-options-container .product-cost');
