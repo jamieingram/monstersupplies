@@ -8,32 +8,40 @@
   <div class="grid-uniform">
     <div class="feature-carousel grid-item no-bottom-margin">
 
-      {% for product in collections.all.products %}
+      {% for product in collections.all.all_products %}
+      {% assign has_carousel = false %}
         {% for collection in product.collections %}
           {% if forloop.first %}
             {% assign product_url = '/collections/' | append: collection.handle | append: product.url %}
           {% endif %}
         {% endfor %}
         {% for image in product.images %}
-        {% if image.alt contains 'desktop_carousel' %}
-          {% assign desktop_image_url = image | product_img_url: 'master' %}
-        {% endif %}
+          {% if image.alt contains 'desktop_carousel' %}
+            {% assign desktop_image_url = image | product_img_url: 'master' %}
+            {% assign has_carousel = true %}
+          {% endif %}
           {% if image.alt contains 'mobile_carousel' %}
-            <div class="carousel-item">
-              <img src="{{ image.src | product_img_url: 'master' }}" alt="carousel image" data-desktop-image="{{ desktop_image_url }}">
-              <div class="carousel-copy">
-                <h3>{{ product.title }}</h3>
-                <p>{{ product.metafields.custom_fields.summary }}</p>
-                <a href="{{ product_url }}"><button class='btn btn-black'>Buy now</button></a>
-              </div>
-            </div>
+            {% assign mobile_image_url = image | product_img_url: 'master' %}
+            {% assign has_carousel = true %}
           {% endif %}
         {% endfor %}
+
+        {% if has_carousel == true %}
+          <div class="carousel-item">
+            <img src="{{ mobile_image_url }}" alt="carousel image" data-desktop-image="{{ desktop_image_url }}">
+            <div class="carousel-copy">
+              <h3>{{ product.title }}</h3>
+              <p>{{ product.metafields.custom_fields.summary }}</p>
+              <a href="{{ product_url }}"><button class='btn btn-black'>Buy now</button></a>
+            </div>
+          </div>
+        {% endif %}
+
       {% endfor %}
 
       {% for item in blogs.featured.articles %}
         {% assign images_content = item.excerpt | remove: '<img src="' %}
-        {% assign images = images_content | split: '" />' %}
+        {% assign images = images_content | split: '">' %}
         <div class="carousel-item">
           <img src="{{ images[1] }}" alt="carousel image" data-desktop-image="{{ images[0] }}">
           <div class="carousel-copy">

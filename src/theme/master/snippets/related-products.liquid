@@ -3,7 +3,7 @@
   {% assign meta_related_products = product.metafields.custom_fields.related_products | remove: ' ' %}
   {% if meta_related_products %}
     {% assign related_products = meta_related_products | split: ',' %}
-    {% for product in collection.all_products %}
+    {% for product in collections.all.all_products %}
       {% for related_product in related_products %}
         {% if product.handle == related_product %}
           
