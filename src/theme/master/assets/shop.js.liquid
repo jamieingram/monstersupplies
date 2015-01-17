@@ -103,7 +103,7 @@
                 for (var i = 0; i < items_array.length; i++) {
                     var item_obj = items_array[i];
                     var image_str = item_obj['desktop-img'];
-                    if (isMobile) image_str = item_obj['mobile-img'];
+                    if (isMobile || image_str == undefined) image_str = item_obj['mobile-img'];
                     var item_str = '<div class="carousel-item">';
                     item_str += '<img src="'+image_str+'" alt="'+item_obj['alt-text']+'">';
                     item_str += '<div class="carousel-copy">' +item_obj['carousel-copy']+ '</div>';
@@ -123,20 +123,22 @@
         }
 
         /* product carousel */
-        var arrow_carousel = $('.arrow-carousel');
+        var arrow_carousel = $('.js-arrow-carousel');
         var products_carousel = $('.product-carousel');
         var carousel_thumbs = $('.js-carousel-thumb');
         var left_arrow = $('.arrow-left');
         var right_arrow = $('.arrow-right');
         //
         if (left_arrow && right_arrow) {
-            left_arrow.on('click', function (e) {
+            var left_arrow_link = left_arrow.find('a');
+            var right_arrow_link = right_arrow.find('a');
+            left_arrow_link.on('click', function (e) {
                 e.preventDefault();
                 arrow_carousel.trigger('owl.prev');
                 hideArrows();
             });
 
-            right_arrow.on('click', function (e) {
+            right_arrow_link.on('click', function (e) {
                 e.preventDefault();
                 arrow_carousel.trigger('owl.next');
                 hideArrows();

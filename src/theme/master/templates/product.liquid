@@ -43,7 +43,7 @@
               <div class="arrow-left"><a href=""><img src="{{ 'arrow-left.png' | asset_url }}" alt="previous image"></a></div>
               <div class="arrow-right"><a href=""><img src="{{ 'arrow-right.png' | asset_url }}" alt="next image"></a></div>
             </div>
-            <div class="product-carousel arrow-carousel">
+            <div class="product-carousel js-arrow-carousel">
               {% for image in product.images %}
                 {% if (image.alt contains 'rollover' or image.alt contains 'carousel' %}
                 <!-- don't show this image as it's the rollover asset -->
