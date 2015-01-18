@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:Shopify/shopify_theme.git
+  remote: https://github.com/Shopify/shopify_theme.git
   revision: 1505eb8d3d5dd2380d9e720069bb0ba25d6d1bc2
   specs:
     shopify_theme (0.0.20)
