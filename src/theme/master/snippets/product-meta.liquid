@@ -31,6 +31,7 @@
 {% endif %}
 
 {% assign has_rollover = product.metafields.custom_fields.has_rollover | capitalize %}
-{% if has_rollover == "TRUE" %}
+{% if has_rollover == "TRUE" or has_rollover == "True" or has_rollover == "true" %}
   {% assign thumbnail_url = product.images[1].src | product_img_url: 'grande' %}
+  {% assign has_rollover = "true" %}
 {% endif %}

@@ -69,13 +69,17 @@
 
 .postage-promo-banner {
   height:30px;
-  font-size: em(16px);
+  font-size: em(14px);
   text-align: center;
   color:$white;
   text-transform: uppercase;
   padding-top:3px;
   background-color: $darkGreen;
   margin-bottom:40px;
+
+  @include at-query ($min, $postSmall) {
+    font-size: em(16px);
+  }
 }
 
 .carousel-holder {
