@@ -157,7 +157,7 @@ a:focus {
   padding: 5px 10px;
   margin: 0;
   line-height: 1.42;
-  font-weight: bold;
+  font-weight: 600;
   text-decoration: none;
   text-align: center;
   text-transform: uppercase;
@@ -328,4 +328,22 @@ img {
 
 .grey-border-bottom {
   border-bottom: 2px solid #bcbebb;
+}
+
+/*============================================================================
+  # Translation styles
+==============================================================================*/
+
+.upside-down {
+  -webkit-transform:rotate(-180deg);
+  -moz-transform:rotate(-180deg); 
+  -o-transform:rotate(-180deg); 
+  transform:rotate(-180deg);
+  ms-filter:"progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+  filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  overflow:hidden;
+}
+
+.hieroglyphics {
+  font-family: 'Hieroglyphics';
 }

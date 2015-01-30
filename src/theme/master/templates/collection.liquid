@@ -2,9 +2,6 @@
 
   <div class="full-width">
     <header class="page-header collection-header">
-      <div class="delivery-promo secondary-font delivery-promo-small bottom-gutter-margin">
-        <p>Free UK delivery on orders over &pound;50</p>
-      </div>
       <h2>{{ collection.title }}</h2>
       <p>{{ collection.description }}</p>
     </header>
@@ -44,17 +41,11 @@
     </div>
   
   {% else %}
-    {% paginate collection.products by 11 %}
+    {% paginate collection.products by 12 %}
 
     <div class="grid-uniform bottom-gutter-margin side-padding">
 
       {% for product in collection.products %}
-
-        {% if forloop.index == 4 %}
-          
-          {% include 'product-grid-quote' %}
-
-        {% endif %}
           
         {% include 'product-grid-item' %}
 
@@ -79,7 +70,10 @@
   
   {% endif %}
 
-
 </main>
+
+<div class="delivery-promo secondary-font delivery-promo-small">
+  <p>Free UK delivery on orders over &pound;50</p>
+</div>
 
 {% include 'mos-promo' %}

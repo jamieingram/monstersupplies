@@ -10,7 +10,7 @@
     font-size:em(22px);
 
     @include at-query ($max, $small) {
-      font-size:em(16px);
+      font-size:em(14px);
     }
   }
 
@@ -18,7 +18,7 @@
     padding:3px;
 
     p {
-      font-size:em(16px);
+      font-size:em(14px);
     }
   }
 
@@ -26,16 +26,22 @@
 
 .about-shop-promo {
   text-align: center;
-  background: url('{{ "shop-bg.jpg" | asset_url }}') center -260px no-repeat;
-  background-size: 1180px 887px;
+  background: url('{{ "shop-bg.jpg" | asset_url }}') center top no-repeat;
+  background-size: 630px ((630 / 1180) * 544px);
+  background-position:center top;
 
   .btn-secondary {
     margin-bottom: 2.6em;
   }
 
-  @include at-query ($max, $small) {
-    background-size: 480px ((480 / 1180) * 887px);
-    background-position:center top;
+  @include at-query ($min, $postSmall) {
+    background-position:center 0;
+    background-size: 768px 354px;
+  }
+
+  @include at-query ($min, $large) {
+    background-position:center -80px;
+    background-size: 1180px 544px;
   }
 
   
@@ -45,6 +51,7 @@
   font-size: 1.125em;
   text-align: center;
   background: url('{{ "mos_logo.png" | asset_url }}') top center no-repeat;
+  background-size: 77px 77px;
   background-position: center $gutter;
   padding-top:115px;
   padding-bottom:$gutter;
@@ -99,7 +106,6 @@
   background: url('{{ "semi_circle.png" | asset_url }}') top center no-repeat;
   background-size: 564px 109px;
   padding-bottom:0.5em;
-  margin-bottom:14em;
 
   h3 {
     padding-top:($gutter / 2);
@@ -124,6 +130,14 @@
     p {
       font-size:em(14px);
     }
+  }
+
+  @include at-query ($min, $postSmall) {
+    margin-bottom:10em;
+  }
+
+  @include at-query ($min, $large) {
+    margin-bottom:14em;
   }
 
 }

@@ -1,0 +1,34 @@
+<main class="wrapper main-content" role="main">
+  {% comment %}
+
+    Unlinked page used for a competition
+
+  {% endcomment %}
+
+  <div class=" full-width">
+    <header class="page-header">
+      <h2>{{ page.title }}</h2>
+    </header>
+  </div>
+
+  <div class="grid-uniform side-padding">
+
+    <div class="grid-item large--three-fifths push--large--one-fifth text-center">
+
+      <div>
+        <label for="secret">Enter your secret code here:</label>
+        <input type="text" name="secret" class="search" id="secret" />
+        <input class="secret-input" type="submit" value="check" id="check">
+        <p></p>
+        <p id="incorrect" class="hidden">Sorry, that is not the right code. Please try again.</p>
+    
+        <p id="hidden" class="hidden">We have lost the names of long established monster families. Can you help? 
+    Monster family names can often be traced back to the place where someone's ancestor lived (Lord Darkcastle), or the job they did (Mrs Slimeseller) or what they smell like (Professor Filthystein). Can you make up a new monster name and write a story about how it got the name?</p>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+{% include 'mos-promo' %}

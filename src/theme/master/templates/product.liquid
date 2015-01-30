@@ -45,25 +45,21 @@
             </div>
             <div class="product-carousel js-arrow-carousel">
               {% for image in product.images %}
-                {% if (image.alt contains 'rollover' or image.alt contains 'carousel' %}
-                <!-- don't show this image as it's the rollover asset -->
-                {% else %}
+                {% unless image.alt contains 'carousel' %}
                   <div class="carousel-item">
                     <img src="{{ image.src | product_img_url: '1024x1024' }}" alt="{{ image.alt | escape }}">
                   </div>
-                {% endif %}
+                {% endunless %}
               {% endfor %}
             </div>
           </div>
           <div class="product-thumbs">
             {% for image in product.images %}
-              {% if (image.alt contains 'rollover' or image.alt contains 'carousel' %}
-                <!-- don't show this image as it's the rollover asset -->
-              {% else %}
+              {% unless image.alt contains 'carousel' %}
                 <div class="product-thumb js-carousel-thumb {% if forloop.index == 1 %} product-selected {% endif %}">
                   <img src="{{ image.src | product_img_url: 'small' }}" alt="{{ image.alt | escape }}">
                 </div>
-              {% endif %}
+              {% endunless %}
             {% endfor %}
           </div>
         {% endif %}
@@ -112,7 +108,7 @@
               <div class="product-description rte" itemprop="description">
                 {{ product.description }}
               </div>  
-              <select name="id" id="productSelect">
+              <select name="id" id="productSelect" class="display:none;">
                 {% for variant in product.variants %}
                   {% if variant.available %}
 
@@ -186,15 +182,17 @@
       </div>
       <!-- end row -->
       <div class="grid-item large--one-half">
-        <div class="product-notes">
-          <h3>Notes for Humans:</h3>
-          <p>
-            {{ product.metafields.custom_fields.notes_for_humans }}
-          </p>
-          <div class="product-more-info">
-            {{ product.metafields.custom_fields.notes_for_humans_detail }}
+        {% if product.metafields.custom_fields.notes_for_humans or product.metafields.custom_fields.notes_for_humans_detail %}
+          <div class="product-notes">
+            <h3>Notes for Humans:</h3>
+            <p>
+              {{ product.metafields.custom_fields.notes_for_humans }}
+            </p>
+            <div class="product-more-info">
+              {{ product.metafields.custom_fields.notes_for_humans_detail }}
+            </div>
           </div>
-        </div>
+        {% endif %}
         {% if product.metafields.custom_fields.product_quote %}
         <div class="product-quote">
           <p class="quote-text">"{{ product.metafields.custom_fields.product_quote }}"</p>
@@ -224,87 +222,8 @@
 
   </div>
 
-
-  {% comment %}
-    To take advantage of a callback on the select dropdown, add option_selection.js
-    and customize the JS below as you need.
-
-    Currently, the code below does:
-      - Overwrites your <select> tag from above
-      - Breaks out the product variants into separate fields, if more than one exists
-  {% endcomment %}
-
-  <script>
-
-  var selectCallback = function(variant, selector) {
-
-    var addToCart = $('#addToCart'),
-        productPrice = $('#productPrice'),
-        comparePrice = $('#comparePrice');
-
-    if (variant) {
-      if (variant.available) {
-        // We have a valid product variant, so enable the submit button
-        addToCart.removeClass('disabled').removeAttr('disabled').val('Add to Casket');
-
-      } else {
-        // Variant is sold out, disable the submit button
-        addToCart.val('Sold Out').addClass('disabled').attr('disabled', 'disabled');
-      }
-
-      // Regardless of stock, update the product price
-      var price = Shopify.formatMoney(variant.price, "{{ shop.money_format}}");
-      price = price.replace('.00','');
-      productPrice.html(price);
-
-      // Also update and show the product's compare price if necessary
-      if ( variant.compare_at_price > variant.price ) {
-        price = 'Compare at: ' + Shopify.formatMoney(variant.compare_at_price, "{{ shop.money_format }}");
-        price = price.replace('.00','');
-        comparePrice
-          .html(price)
-          .show();
-      } else {
-        comparePrice.hide();
-      }
-
-    } else {
-      // The variant doesn't exist. Just a safegaurd for errors, but disable the submit button anyway
-      addToCart.val('Unavailable').addClass('disabled').attr('disabled', 'disabled');
-    }
-  };
-
-  jQuery(function($) {
-
-    new Shopify.OptionSelectors('productSelect', {
-      product: {{ product | json }},
-      onVariantSelected: selectCallback
-    });
-
-    // Add label if only one product option and it isn't 'Title'. Could be 'Size'.
-    {% if product.options.size == 1 and product.options.first != 'Title' %}
-      $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}</label>');
-    {% endif %}
-    
-    // Hide selectors if we only have 1 variant and its title contains 'Default'.
-    {% if product.variants.size == 1 and product.variants.first.title contains 'Default' %}
-      $('.selector-wrapper').hide();
-    {% endif %}
-
-    // Auto-select first available variant on page load. Otherwise the product looks sold out.
-    {% assign found_one_in_stock = false %}
-    {% for variant in product.variants %}
-      {% if variant.available and found_one_in_stock == false %}
-        {% assign found_one_in_stock = true %}
-        {% for option in product.options %}
-        $('.single-option-selector:eq({{ forloop.index0 }})').val({{ variant.options[forloop.index0] | json }}).trigger('change');
-        {% endfor %}
-      {% endif %}
-    {% endfor %}
-
-  });
-  </script>
 </main>
+
 <div class="postage-promo-banner secondary-font no-bottom-margin">
   Free UK delivery on all orders over £50
 </div>

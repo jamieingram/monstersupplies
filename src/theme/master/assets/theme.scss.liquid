@@ -617,7 +617,7 @@ $headerFontWeight: 400;
 
 // Secondary Font
 $secondaryFontStack: "Lato", sans-serif;
-$secondaryFontWeight: 400;
+$secondaryFontWeight: 600;
 
 // Body Font
 $bodyFontStack: "Crimson Text", serif;
@@ -640,6 +640,16 @@ $baseFontSize: 16px; // Henseforth known as 1em (assumed at 16px)
 }
 $socialIconFontStack: 'icons';
 
+@font-face {
+  font-family: 'Hieroglyphics';
+  src: url(' {{ "egyptian_hieroglyphics.eot" | asset_url }} '); /* IE9 Compat Modes */
+  src: url(' {{ "egyptian_hieroglyphics.eot" | asset_url }} ?#iefix ') format('embedded-opentype'), /* IE6-IE8 */
+       url(' {{ "egyptian_hieroglyphics.woff" | asset_url }} ') format("woff"),
+       url(' {{ "egyptian_hieroglyphics.ttf" | asset_url }} ') format("truetype"); /* Safari, Android, iOS */
+  font-weight: normal;
+  font-style: normal;
+}
+
 /*============================================================================
   #Typography
 ==============================================================================*/
@@ -648,7 +658,7 @@ input,
 textarea,
 button,
 select {
-  font-size: $baseFontSize;
+  font-size: em($baseFontSize);
   line-height: 1.6;
   font-family: $bodyFontStack;
   color: $colorTextBody;
@@ -1304,8 +1314,8 @@ input[type="text"]:focus{
   }
 
   .icon {
-    font-size: 30px;
-    line-height: 30px;
+    font-size: em(30px);
+    line-height: em(30px);
   }
 
   .fallback-text {
@@ -1322,7 +1332,7 @@ input[type="text"]:focus{
   }
 
   .icon {
-    font-size: 30px;
+    font-size: em(30px);
     line-height: 26px;
   }
 
@@ -1636,7 +1646,7 @@ input[type="text"]:focus{
 .nav-search {
   text-transform: uppercase;
   font-size:em(12px);
-  width:150px;
+  width:151px;
   position: relative;
   padding: 7px 0;
 
@@ -1907,7 +1917,7 @@ a.basket-link {
          .mos-logo {
             width:100%;
             height:ceil(164px * 0.7);
-            background: url('{{ "mos-logo-red.png" | asset_url }}') top center no-repeat;
+            background: url('{{ "mos-logo-red.jpg" | asset_url }}') top center no-repeat;
             background-size: (232px * 0.7) (164px * 0.7);
             text-indent: 100%;
             white-space: nowrap;
@@ -1924,7 +1934,6 @@ a.basket-link {
          p {
             font-size:em(18px);
             line-height:em(16px);
-            font-style: italic;
             margin-bottom:30px;
 
             @include at-query ($min, $xlarge) {
@@ -2091,7 +2100,7 @@ a.basket-link {
     font-size:em(22px);
 
     @include at-query ($max, $small) {
-      font-size:em(16px);
+      font-size:em(14px);
     }
   }
 
@@ -2099,7 +2108,7 @@ a.basket-link {
     padding:3px;
 
     p {
-      font-size:em(16px);
+      font-size:em(14px);
     }
   }
 
@@ -2107,16 +2116,22 @@ a.basket-link {
 
 .about-shop-promo {
   text-align: center;
-  background: url('{{ "shop-bg.jpg" | asset_url }}') center -260px no-repeat;
-  background-size: 1180px 887px;
+  background: url('{{ "shop-bg.jpg" | asset_url }}') center top no-repeat;
+  background-size: 630px ((630 / 1180) * 544px);
+  background-position:center top;
 
   .btn-secondary {
     margin-bottom: 2.6em;
   }
 
-  @include at-query ($max, $small) {
-    background-size: 480px ((480 / 1180) * 887px);
-    background-position:center top;
+  @include at-query ($min, $postSmall) {
+    background-position:center 0;
+    background-size: 768px 354px;
+  }
+
+  @include at-query ($min, $large) {
+    background-position:center -80px;
+    background-size: 1180px 544px;
   }
 
   
@@ -2126,6 +2141,7 @@ a.basket-link {
   font-size: 1.125em;
   text-align: center;
   background: url('{{ "mos_logo.png" | asset_url }}') top center no-repeat;
+  background-size: 77px 77px;
   background-position: center $gutter;
   padding-top:115px;
   padding-bottom:$gutter;
@@ -2180,7 +2196,6 @@ a.basket-link {
   background: url('{{ "semi_circle.png" | asset_url }}') top center no-repeat;
   background-size: 564px 109px;
   padding-bottom:0.5em;
-  margin-bottom:14em;
 
   h3 {
     padding-top:($gutter / 2);
@@ -2205,6 +2220,14 @@ a.basket-link {
     p {
       font-size:em(14px);
     }
+  }
+
+  @include at-query ($min, $postSmall) {
+    margin-bottom:10em;
+  }
+
+  @include at-query ($min, $large) {
+    margin-bottom:14em;
   }
 
 }
@@ -2374,7 +2397,7 @@ a.basket-link {
 .pagination-custom-lg > li > a,
 .pagination-custom-lg > li > span {
   padding: 10px 16px;
-  font-size: 18px;
+  font-size: em(18px);
 }
 
 .pagination-custom-lg > li:first-child > a,
@@ -2551,6 +2574,7 @@ input[type="text"] {
   .curse-options-container {
     background: url('{{ "mos_logo.png" | asset_url }}') center right no-repeat;
     background-position: 96% center;
+    background-size: 100px 100px;
   }
 
   .curse-options {
@@ -2621,6 +2645,7 @@ input[type="text"] {
 .delivery-options {
   display:inline-block;
   margin-top:42px;
+  margin-bottom: 48px;
   @include at-query($max, $medium) {
     margin-top:0px;
   }
@@ -2730,10 +2755,11 @@ input[type="text"] {
   .product-grid-detail {
     text-align:center;
     margin-top:($gutter/2);
+    margin-bottom:20px;
   }
 
   .product-title {
-    display:inline-block;
+    display: block;
     font-family: $headerFontStack;
     font-weight: $headerFontWeight;
     font-size: 0.9em;
@@ -2836,7 +2862,7 @@ input[type="text"] {
   }
 
   @include at-query ($min, $xlarge) {
-    width:100px;
+    width:80px;
     margin-left:6px;
     margin-right:6px;
   }
@@ -2869,7 +2895,7 @@ input[type="text"] {
 .product-detail {
   padding-left:$gutter;
   h2 {
-    line-height:0.7em;
+    line-height:1.2em;
     @include at-query($max, $small) {
       line-height:1em;
     }
@@ -3450,7 +3476,7 @@ a:focus {
   padding: 5px 10px;
   margin: 0;
   line-height: 1.42;
-  font-weight: bold;
+  font-weight: 600;
   text-decoration: none;
   text-align: center;
   text-transform: uppercase;
@@ -3621,6 +3647,24 @@ img {
 
 .grey-border-bottom {
   border-bottom: 2px solid #bcbebb;
+}
+
+/*============================================================================
+  # Translation styles
+==============================================================================*/
+
+.upside-down {
+  -webkit-transform:rotate(-180deg);
+  -moz-transform:rotate(-180deg); 
+  -o-transform:rotate(-180deg); 
+  transform:rotate(-180deg);
+  ms-filter:"progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+  filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  overflow:hidden;
+}
+
+.hieroglyphics {
+  font-family: 'Hieroglyphics';
 }
 /* 
  * 	Core Owl Carousel CSS File
@@ -3793,7 +3837,7 @@ img {
 	*display: inline;/*IE7 life-saver */
 	margin: 5px;
 	padding: 3px 10px;
-	font-size: 12px;
+	font-size: em(12px);
 	-webkit-border-radius: 30px;
 	-moz-border-radius: 30px;
 	border-radius: 30px;

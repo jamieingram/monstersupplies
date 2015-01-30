@@ -1,0 +1,13 @@
+function get_url_param(var_name) {
+
+    var page_url = window.location.search.substring(1);
+
+    var page_vars = page_url.split('&');
+
+    for (var i = 0; i < page_vars.length; i++) {
+        var param = page_vars[i].split('=');
+        if (param[0] == var_name) {
+            return param[1];
+        }
+    }
+}

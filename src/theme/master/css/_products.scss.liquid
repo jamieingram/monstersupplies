@@ -32,10 +32,11 @@
   .product-grid-detail {
     text-align:center;
     margin-top:($gutter/2);
+    margin-bottom:20px;
   }
 
   .product-title {
-    display:inline-block;
+    display: block;
     font-family: $headerFontStack;
     font-weight: $headerFontWeight;
     font-size: 0.9em;
@@ -138,7 +139,7 @@
   }
 
   @include at-query ($min, $xlarge) {
-    width:100px;
+    width:80px;
     margin-left:6px;
     margin-right:6px;
   }
@@ -171,7 +172,7 @@
 .product-detail {
   padding-left:$gutter;
   h2 {
-    line-height:0.7em;
+    line-height:1.2em;
     @include at-query($max, $small) {
       line-height:1em;
     }

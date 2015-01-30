@@ -1,8 +1,32 @@
-;(function ($, Monsters, undefined){
+; (function ($, Monsters, undefined) {
+
+    /* Translation menu */
+    var page_content;
+    var current_translation;
+    var white_space = [" ","<","\n","\r","\t"];
+    var punctuation = [".",",",";","?","!"];
+    var font_overrides = ['h2','h3','h4','h5','button','.product-title','.secondary-font','.title-small'];
+
+    $(window).on('initialise', function() {
+        var burger_trigger = $('.burger-trigger');
+        var translation_options = $('.translation-options');
+        var transition_links = translation_options.find('a');
+        //
+        burger_trigger.on('click', function(e) {
+            e.preventDefault();
+            translation_options.toggleClass('is-open');
+        });
+        transition_links.on('click', function (e) {
+            e.preventDefault();
+            translation_options.removeClass('is-open');
+            var target = $(this).attr('data-url');
+            document.location.href = target;
+        });
+    });
 
     /* navigation */
 
-    $(document).ready(function() {
+    $(window).on('initialise', function() {
         var mobile_menu = $('.mobile-nav');
         var main_menu = $('.menu');
         var toggle = mobile_menu.find('.nav-toggle');
@@ -30,30 +54,9 @@
         });
     });
 
-    /* Translation menu */
-
-    $(document).ready(function() {
-        var burger_trigger = $('.burger-trigger');
-        var translation_options = $('.translation-options');
-        var transition_links = translation_options.find('a');
-        var selected_language = $('.selected-language');
-        //
-        burger_trigger.on('click', function(e) {
-            e.preventDefault();
-            translation_options.toggleClass('is-open');
-        });
-        transition_links.on('click', function (e) {
-            e.preventDefault();
-            var language = $(this).attr('data-language');
-            selected_language.html(language);
-            translation_options.removeClass('is-open');
-        });
-    });
-
     /* Carousel */
 
-    $(document).ready(function() {
-
+    $(window).on('initialise', function() {
         /* homepage carousel */
         var carousel = $(".feature-carousel");
         var is_about = $(carousel).hasClass('about-carousel');
@@ -122,6 +125,14 @@
             $(window).on('mobileToDesktop', showDesktopCarouselAssets);
         }
 
+        $(document.documentElement).keyup(function(event) {
+            if (event.keyCode == 37) {
+                    carousel.trigger('owl.prev');
+            } else if (event.keyCode == 39) {
+                    carousel.trigger('owl.next');
+            }
+        });
+
         /* product carousel */
         var arrow_carousel = $('.js-arrow-carousel');
         var products_carousel = $('.product-carousel');
@@ -186,7 +197,7 @@
     });
 
     /* rollover images for products */
-    $(document).ready(function() {
+    $(window).on('initialise', function() {
         var images = $('.js-image-rollover');
         $.each(images, function(index, image) {
             var image_url = $(image).attr('src');
@@ -203,7 +214,7 @@
     });
 
     /* plus and minus buttons - product page */
-    $(document).ready(function() {
+    $(window).on('initialise', function() {
 
         var add_button = $('.add-product');
         var subtract_button = $('.subtract-product');
@@ -223,7 +234,7 @@
     });
 
     /* basket behaviours */
-    $(document).ready(function() {
+    $(window).on('initialise', function() {
 
         /* up and down arrows in basket */
 
@@ -300,7 +311,7 @@
 
     /* overlays */
 
-    $(document).ready(function() {
+    $(window).on('initialise', function() {
         var newsletter_button = $('.js-newsletter-button');
         var delivery_link = $('.js-delivery-info');
         var mos_link = $('.js-mos-info');
@@ -309,6 +320,16 @@
         var mos_overlay = $('.mos-overlay');
         var modal_windows = $('.modal-window');
         var close_button = $('.js-overlay-close');
+
+        $.each(modal_windows, function(index, modal) {
+            $(modal).on('click', function (e) {
+                closeOverlays();
+            });
+            var content = $(modal).find('.modal-content');
+            $(content).on('click', function (e) {
+                e.stopPropagation();
+            });
+        });
 
         var openOverlay = function(overlay_target) {
             $('body').addClass('noscroll');
@@ -340,9 +361,23 @@
         });
     });
 
+    /* housekeeping page */
+
+    $(window).on('initialise', function() {
+        $("input#check").click(function() {
+            if ($("input#secret").val() == "F3ASTB3AST") {
+                $("p#incorrect").addClass("hidden");
+                $("p#hidden").removeClass("hidden");
+            } else {
+                $("p#incorrect").removeClass("hidden");
+            }
+            
+        });
+    });
+
     /* helper functions */
 
-    $(document).ready(function() {
+    $(window).on('initialise', function() {
         //setup the layout handler
         var getWidth = function() {
             return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -367,6 +402,138 @@
             previousWidth = currentWidth;
         }));
         
+    });
+
+    $(document).ready(function() {
+
+        var applyTranslation = function(language) {
+            //
+            if (language == current_translation) return;
+            current_translation = language;
+            //
+            var new_content;
+
+            $('.container').removeClass('upside-down');
+            $('.container').removeClass('hieroglyphics');
+            $.each(font_overrides, function(index, selector) {
+                $(selector).css('font-family','');
+            });
+
+            var update_content = false;
+
+            switch (language) {
+                case "zombies":
+                    var words = ["[a]r","arg[h]","ug[h]","br[a]ins","BR[A]INS","e[r]g","gr[u]nt","[u]rg","R[A]H","sl[u]r","[o]of","r[e]h","[r]rr","[O]ORG","[o]g","[o]o"];
+                    new_content = replace_words(words, page_content);
+                    update_content = true;
+                break;
+                case "werewolves":
+                    var words = ["g[r]","w[o]of","B[A]RK","y[a]p","h[o]wl","Awh[o]","a[w]","sn[i]ff","Y[A]P","aro[o]o","AR[O]Ooo","r[a]sp"];
+                    new_content = replace_words(words, page_content);
+                    update_content = true;
+                break;
+                case "vampire-bats":
+                    new_content = page_content;
+                    $('.container').addClass('upside-down');
+                    update_content = true;
+                break;
+                case "mummies":
+                    new_content = page_content;
+                    $('.container').html(new_content);
+                    $('.container').addClass('hieroglyphics');
+                    $.each(font_overrides, function(index, selector) {
+                        $(selector).css('font-family','Hieroglyphics');
+                    });
+                    return true;
+                break;
+                default:
+                    
+                break;
+            }
+            if (update_content == true) $('.container').html(new_content);
+            return update_content;
+        }
+        //
+        var replace_words = function(words, content) {
+            
+            //find the words within the page
+            var num_open_tags = 0;
+            var current_word = '';
+            //
+            for (var i = 0 ; i < content.length ; i++) {
+                var current_char = content.charAt(i);
+
+                if (current_char == ">") {
+                    num_open_tags--;
+                }
+
+                if ($.inArray(current_char, white_space) != -1) {
+                    //we have a white space character - check to see if we should replace a word
+                    if (num_open_tags == 0 && current_word.length > 1) {
+                        //don't touch numbers
+                        var matches = current_word.match(/\d+/g);
+                        if (matches == null) {
+                            //this word doesn't contain a number - replace it
+                            //maintain punctuation at the end of the word
+                            var last_char = '';
+                            if ($.inArray(current_word.charAt(current_word.length - 1), punctuation) != -1) {
+                                last_char = current_word.charAt(current_word.length - 1);
+                                current_word = current_word.substring(0,current_word.length - 1);
+                            }
+                            var chosen_word = words[0];
+                            if (current_word.length > 5) {
+                                chosen_word = words[Math.floor(Math.random() * words.length)];
+                            }
+                            var word_length = chosen_word.length - 2;
+                            var fill_num = Math.max(0, current_word.length - word_length);
+                            var bracket_pos = chosen_word.indexOf("[");
+                            new_word = chosen_word.substring(0,bracket_pos);
+                            //
+                            for (var j = 0 ; j <= fill_num ; j++) {
+                                new_word += chosen_word.charAt(bracket_pos + 1);
+                            }
+                            //
+                            new_word += chosen_word.substring(bracket_pos+3);
+                            new_word += last_char;
+                            //
+                            content = content.substring(0, i - new_word.length) + new_word + content.substring(i);
+
+                        }
+                    }
+                    current_word = '';
+
+                }else if (num_open_tags == 0 && current_char != ">") {
+                    current_word += current_char;
+                }
+
+                if (current_char == "<") {
+                    num_open_tags++;
+                }                        
+            }
+            return content;
+        }
+
+        //store the default html
+        if (page_content == undefined) {
+            //store the html of this page in memory so we can return to it
+            page_content = $('.container').html();
+            page_content = page_content.replace(/&amp;/g,"&");
+            page_content = page_content.replace(/&nbsp;/g," ");
+        }
+        //
+        var language = get_url_param('lang');
+        //
+        if (language != undefined) {
+            var updated = applyTranslation(language);
+            if (updated == true) {
+                var selected_language = $('.selected-language');
+                language = language.replace("-", " ");
+                selected_language.html(language);
+            }
+        }
+
+        //trigger the custom event
+        $(window).trigger('initialise');
     });
     
     

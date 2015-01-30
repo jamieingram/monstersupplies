@@ -6,7 +6,7 @@ $headerFontWeight: 400;
 
 // Secondary Font
 $secondaryFontStack: "Lato", sans-serif;
-$secondaryFontWeight: 400;
+$secondaryFontWeight: 600;
 
 // Body Font
 $bodyFontStack: "Crimson Text", serif;
@@ -29,6 +29,16 @@ $baseFontSize: 16px; // Henseforth known as 1em (assumed at 16px)
 }
 $socialIconFontStack: 'icons';
 
+@font-face {
+  font-family: 'Hieroglyphics';
+  src: url(' {{ "egyptian_hieroglyphics.eot" | asset_url }} '); /* IE9 Compat Modes */
+  src: url(' {{ "egyptian_hieroglyphics.eot" | asset_url }} ?#iefix ') format('embedded-opentype'), /* IE6-IE8 */
+       url(' {{ "egyptian_hieroglyphics.woff" | asset_url }} ') format("woff"),
+       url(' {{ "egyptian_hieroglyphics.ttf" | asset_url }} ') format("truetype"); /* Safari, Android, iOS */
+  font-weight: normal;
+  font-style: normal;
+}
+
 /*============================================================================
   #Typography
 ==============================================================================*/
@@ -37,7 +47,7 @@ input,
 textarea,
 button,
 select {
-  font-size: $baseFontSize;
+  font-size: em($baseFontSize);
   line-height: 1.6;
   font-family: $bodyFontStack;
   color: $colorTextBody;
