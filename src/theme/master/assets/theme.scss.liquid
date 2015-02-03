@@ -2575,6 +2575,11 @@ input[type="text"] {
     background: url('{{ "mos_logo.png" | asset_url }}') center right no-repeat;
     background-position: 96% center;
     background-size: 100px 100px;
+
+    @include at-query($max, $small) {
+      background-position: 96% center;
+      background-size: (100px * 0.7) (100px * 0.7);
+    }
   }
 
   .curse-options {
@@ -2638,7 +2643,8 @@ input[type="text"] {
   }
 
   @include at-query($max, $small) {
-    background-position: right 30px;
+    background-position: right 70px;
+    background-size: (147px * 0.6) (71px * 0.6);
   }
 }
 
