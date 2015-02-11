@@ -420,20 +420,22 @@
             });
 
             var update_content = false;
+            var header_pos = page_content.indexOf("<header");
+            console.log(header_pos);
 
             switch (language) {
                 case "zombies":
                     var words = ["[a]r","arg[h]","ug[h]","br[a]ins","BR[A]INS","e[r]g","gr[u]nt","[u]rg","R[A]H","sl[u]r","[o]of","r[e]h","[r]rr","[O]ORG","[o]g","[o]o"];
-                    var temp_content = page_content.substring(815);
+                    var temp_content = page_content.substring(header_pos);
                     new_content = replace_words(words, temp_content);
-                    new_content = page_content.substring(0,815) + new_content;
+                    new_content = page_content.substring(0,header_pos) + new_content;
                     update_content = true;
                 break;
                 case "werewolves":
                     var words = ["g[r]","w[o]of","B[A]RK","y[a]p","h[o]wl","Awh[o]","a[w]","sn[i]ff","Y[A]P","aro[o]o","AR[O]Ooo","r[a]sp"];
-                    var temp_content = page_content.substring(815);
+                    var temp_content = page_content.substring(header_pos);
                     new_content = replace_words(words, temp_content);
-                    new_content = page_content.substring(0,815) + new_content;
+                    new_content = page_content.substring(0,header_pos) + new_content;
                     update_content = true;
                 break;
                 case "vampire-bats":

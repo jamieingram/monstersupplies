@@ -19,9 +19,9 @@
       <header class="page-header">
 
         {% if current_tags %}
-          <h1>{{ blog.title | link_to: blog.url }} &raquo; {{ current_tags.first }}</h1>
+          <h2>{{ blog.title | link_to: blog.url }} &raquo; {{ current_tags.first }}</h2>
         {% else %}
-          <h1>Shop Journal</h1>
+          <h2>Shop Journal</h2>
         {% endif %}
 
       </header>
