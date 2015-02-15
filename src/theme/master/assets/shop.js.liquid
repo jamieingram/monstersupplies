@@ -412,16 +412,20 @@
             current_translation = language;
             //
             var new_content;
-
+            //
             $('.container').removeClass('upside-down');
             $('.container').removeClass('hieroglyphics');
+            $('.js-logo').removeClass('mummy');
+            $('.js-logo').removeClass('werewolf');
+            $('.js-logo').removeClass('zombie');
+            //
             $.each(font_overrides, function(index, selector) {
                 $(selector).css('font-family','');
             });
 
             var update_content = false;
             var header_pos = page_content.indexOf("<header");
-            console.log(header_pos);
+            var logo_class = '';
 
             switch (language) {
                 case "zombies":
@@ -429,6 +433,7 @@
                     var temp_content = page_content.substring(header_pos);
                     new_content = replace_words(words, temp_content);
                     new_content = page_content.substring(0,header_pos) + new_content;
+                    logo_class = 'zombie';
                     update_content = true;
                 break;
                 case "werewolves":
@@ -436,6 +441,7 @@
                     var temp_content = page_content.substring(header_pos);
                     new_content = replace_words(words, temp_content);
                     new_content = page_content.substring(0,header_pos) + new_content;
+                    logo_class = 'werewolf';
                     update_content = true;
                 break;
                 case "vampire-bats":
@@ -450,6 +456,7 @@
                     $.each(font_overrides, function(index, selector) {
                         $(selector).css('font-family','Hieroglyphics');
                     });
+                    $('.js-logo').addClass('mummy');
                     return true;
                 break;
                 default:
@@ -457,6 +464,9 @@
                 break;
             }
             if (update_content == true) $('.container').html(new_content);
+            if (logo_class != '') {
+                $('.js-logo').addClass(logo_class);
+            }
             return update_content;
         }
         //

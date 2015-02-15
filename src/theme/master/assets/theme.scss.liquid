@@ -1406,6 +1406,33 @@ input[type="text"]:focus{
     border: 0;
     text-indent: 200%;
     overflow: hidden;
+
+    &.mummy {
+      background: url('{{ "logo_mummy.png" | asset_url }}') top left no-repeat;
+      background-size: 430px 118px;
+
+      @include at-query ($max, $small) {
+        background-size: (430px * 0.7) (118px * 0.7);
+      }
+    }
+
+    &.werewolf {
+      background: url('{{ "logo_werewolf.png" | asset_url }}') top left no-repeat;
+      background-size: 430px 118px;
+
+      @include at-query ($max, $small) {
+        background-size: (430px * 0.7) (118px * 0.7);
+      }
+    }
+
+    &.zombie {
+      background: url('{{ "logo_zombie.png" | asset_url }}') top left no-repeat;
+      background-size: 430px 118px;
+
+      @include at-query ($max, $small) {
+        background-size: (430px * 0.7) (118px * 0.7);
+      }
+    }
   }
 }
 
