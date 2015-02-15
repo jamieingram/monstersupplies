@@ -153,11 +153,6 @@ $gridGutter: 24px; // can be a %, but nested grids will have smaller margins bec
 
 // Radius
 $radius: 0px;
-*, input, :before, :after {
-  -webkit-box-sizing:border-box;
-  -moz-box-sizing:border-box;
-  box-sizing:border-box;
-}
 
 /*============================================================================
   #Breakpoint and Grid Variables
@@ -183,7 +178,11 @@ $breakpoints: (
 $breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large');
 $breakpoint-has-push:  ('medium', 'medium-down', 'large');
 $breakpoint-has-pull:  ('medium', 'medium-down', 'large');
-
+*, input, :before, :after {
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing:border-box;
+}
 
 /*============================================================================
   #Grid Setup
