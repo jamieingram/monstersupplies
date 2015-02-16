@@ -421,6 +421,8 @@ sup {
 .strikethrough {
   text-decoration: line-through;
 }
+/* FONTS */
+
 /* latin */
 @font-face {
   font-family: 'Crimson Text';
@@ -454,8 +456,137 @@ sup {
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 
+/*============================================================================
+  #Links and Buttons
+==============================================================================*/
+a {
+  color: $colorLink;
+  text-decoration: underline;
+}
+
+a:hover,
+a:focus {
+  color: $colorLinkHover;
+}
+
+.btn {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 0;
+  line-height: 1.42;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+  -webkit-user-select: none;
+  -moz-user-select:    none;
+  -ms-user-select:     none;
+  -o-user-select:      none;
+  user-select:         none;
+  -webkit-appearance: none;
+  border-radius: $radius;
+
+  &.btn--small {
+    padding: 2px 2px;
+    font-size: 0.75em; //12px
+  }
+
+  &.btn--full {
+    width: 100%;
+  }
+
+  &.btn--red {
+    background-color: $red;
+  }
+
+  &.btn--grey {
+    color: #fff;
+    background-color: $lightGrey;
+  }
+
+  /*================ Set primary button colors ================*/
+  background-color: $colorBtnPrimary;
+  color: #fff;
+
+  &:hover {
+    background-color: $colorBtnPrimaryHover;
+    color: #fff;
+  }
+
+  &.btn--red:hover {
+    background-color: darken($red, 10%);
+  }
+
+  &.btn--grey:hover {
+    color: #fff;
+    background-color: darken($lightGrey, 10%);
+  }
+
+  &:active,
+  &:focus {
+   background-color: $colorBtnPrimaryActive;
+   color: #fff;
+  }
+
+  &[disabled],
+  &.disabled {
+    cursor: default;
+    color: $disabledBorder;
+    background-color: $disabledGrey;
+  }
+}
+
+.btn--primary {
+  @extend .btn;
+  background-color: $colorBtnPrimary !important;
+  color: #FFF !important;
+  
+  &:hover {
+    background-color: $colorBtnPrimaryHover !important;
+    color: #FFF !important;
+  }
+
+  &:active,
+  &:focus {
+   background-color: $colorBtnPrimaryActive !important;
+   color: #FFF !important;
+  }
+}
+
+.btn-secondary {
+  @extend .btn;
+  background-color: $colorBtnSecondary;
+  color: $black;
+  
+  &:hover {
+    background-color: $colorBtnSecondaryHover;
+    color: $black;
+  }
+
+  &:active,
+  &:focus {
+   background-color: $colorBtnSecondaryActive;
+   color: $black;
+  }
+}
+
+
+/* CUSTOM STYLES */
+
 body {
   background-color: $colorBody;
+}
+
+h3 {
+  font-size:em(26px);
+}
+
+.section__edit-link {
+  line-height: 1.4;
 }
 
 .header {
