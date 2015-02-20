@@ -288,6 +288,7 @@
             var price = "£"+total;
             price = price.replace('.00','');
             output.html(price);
+            recalculateCart();
         }
 
         var updateCurseTotal = function() {
@@ -305,6 +306,49 @@
             var price = "£"+total;
             price = price.replace('.00','');
             curses_amount.html(price);
+            recalculateCart();
+        }
+
+        var postage_dropdown = $('.js-postage-select');
+        var delivery_cost = $('.delivery-cost');
+        var total_amount = $('.basket-total-amount');
+        //
+        postage_dropdown.on('change',function() {recalculateCart.apply(this);});
+
+        var recalculateCart = function() {
+            var basket_total = 0;
+            var costs = $('.js-product-cost');
+            $.each(costs, function(index, cost) {
+                basket_total += Number($(cost).text().substr(1));
+            });
+
+            var postage = 0;
+
+            if (postage_dropdown.val() == "home") {
+                //calculate correct postage
+                var postage = calculatePostage(basket_total);
+                
+            }
+            var total = basket_total + postage;
+            total = "£" + total;
+            total = total.replace('.00','');
+            total_amount.html(total);
+            //
+            var postage = "£"+postage;
+            postage = postage.replace('.00','');
+            delivery_cost.html(postage);
+            
+        }
+
+        var calculatePostage = function(basket_total) {
+            var postage = 3.5;
+            if (basket_total > 25) {
+                postage = 7;
+            }
+            if (basket_total > 50) {
+                postage = 0;
+            }
+            return postage;
         }
         
     });

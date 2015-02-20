@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="grid-item one-fifth">
-                      <h5 class="product-cost">{{ item.price | money  | remove: '.00'}}</h5>
+                      <h5 class="product-cost js-product-cost">{{ item.price | money  | remove: '.00'}}</h5>
                     </div>
 
                   </div>
@@ -98,7 +98,7 @@
                 </ul>
               </div>
               <div class="grid-item large--two-fifths medium--one-half">
-                <h5 class="product-cost">{{ total_curse_cost | money | remove: '.00' }}</h5>
+                <h5 class="product-cost js-product-cost">{{ total_curse_cost | money | remove: '.00' }}</h5>
               </div>
             </div>
           </div>
@@ -107,28 +107,41 @@
         <div class="grid-item cart-row no-bottom-margin">
           <div class="grid-item large--one-half">
             <h3>Delivery cost</h3>
-            <p>Our zombie volunteers pack and send orders every Saturday by 1st Class Royal Mail. A little slower than you might have expected, perhaps, but an excellent service. Free UK delivery on all orders over £50. <a href="#" class="js-delivery-info">Delivery and returns information.</a></p>
-            <p>Alternatively, choose to collect in our Hoxton Street store for free!</p>
+            <p>Our zombie volunteers pack and send orders every Saturday by 1st Class Royal Mail. A little slower than you might have expected, perhaps, but an excellent service.</p>
+            <p>Alternatively, choose to collect your order from our Hoxton Street store <strong>for free!</strong></p>
+            <p>Free UK delivery on all orders over £50.</p>
+            <p><a href="#" class="js-delivery-info">Delivery and returns information.</a></p>
+            
           </div>
           <div class="grid-item large--one-half delivery-options-holder no-bottom-margin">
             <div class="grid-uniform">
               <div class="grid-item large--three-fifths medium--one-half delivery-options">
-                <select name="postage-options" class="js-select">
+                <select name="postage-options" class="js-postage-select">
+                  {% assign delivery_cost = '350' %}
+                  {% if cart.total_price > 2500 %}
+                    {% assign delivery_cost = '700' %}
+                  {% else %}
+                    {% if cart.total_price > 5000 %}
+                      {% assign delivery_cost = '0' %}
+                    {% endif %}
+                  {% endif %}
                   <option value="home">Deliver to an address</option>
                   <option value="shop">Collect in store</option>
                 </select>
               </div>
               <div class="grid-item large--two-fifths medium--one-half delivery-cost-amount">
-                <h5 class="delivery-cost">£0</h5>
+                <h5 class="delivery-cost">{{ delivery_cost | money | remove: '.00' }}</h5>
               </div>
 
+              {% assign attribute = 'is-gift' %}
+
               <div class="grid-item product-gift-summary">
-                <input type="checkbox" id="gift" value="gift" /><label for="gift" class="checkbox-label">This is a gift</label>
+                <input type="checkbox" id="{{ attribute }}" name="attributes[{{ attribute }}]" value="1" {% if cart.attributes[attribute] == "1" %} checked{% endif %} /><label for="{{ attribute }}" class="checkbox-label">This is a gift</label>
                 <div class="grey-border-bottom">
                   <p>If you're sending your order directly to the recipient, we won't include the invoice.</p>
                 </div>
                 <div class="basket-total">
-                  <h5 class="basket-total-label">Total</h5><div class="basket-total-amount">{{ cart.total_price | money }}</div>
+                  <h5 class="basket-total-label">Total</h5><div class="basket-total-amount">{{ cart.total_price | plus: delivery_cost | money | remove: '.00'}}</div>
                 </div>
 
                 {% comment %}
@@ -208,7 +221,7 @@
     {% endcomment %}
     <div class="full-width text-center">
       <h4>Your casket is empty</h4>
-      <p><a href="/collections/all">Continue to prowl here.</a></p>
+      <p><a href="/collections/view-all">Continue to prowl here.</a></p>
     </div>
 
   {% endif %}
