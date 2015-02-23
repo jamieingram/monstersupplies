@@ -17,7 +17,7 @@
       <div class="basket-contents">
 
         {% for item in cart.items %}
-          {% unless item.product.type == 'curse' %}
+          {% unless item.product.type == 'curse' or item.product.type == 'delivery' %}
             <div class="cart-row indented-row js-product-row">
               <div class="grid-uniform product-detail-item side-padding">
 
@@ -116,7 +116,11 @@
           <div class="grid-item large--one-half delivery-options-holder no-bottom-margin">
             <div class="grid-uniform">
               <div class="grid-item large--three-fifths medium--one-half delivery-options">
-                <select name="postage-options" class="js-postage-select">
+                {% assign delivery_products = collections.delivery.products %}
+                {% for product in delivery_products %}
+                  {% assign delivery_item = product.selected_or_first_available_variant %}
+                {% endfor %}
+                <select name="postage-options" data-item-id="{{ delivery_item.id }}" class="js-postage-select">
                   {% assign delivery_cost = '350' %}
                   {% if cart.total_price > 2500 %}
                     {% assign delivery_cost = '700' %}

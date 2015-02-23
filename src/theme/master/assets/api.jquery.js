@@ -21,7 +21,7 @@ money values instead of cents.
 
 */
 
-Shopify.money_format = '${{amount}}';
+Shopify.money_format = '£{{amount}}';
 
 /* 
 

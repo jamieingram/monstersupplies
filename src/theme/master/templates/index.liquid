@@ -103,7 +103,7 @@
 
       {% for collection in collections %}
 
-          {% unless (collection.handle == 'featured' or collection.handle == 'curses' or collection.handle == 'extra' or collection.handle == 'carousel' %}
+          {% unless (collection.handle == 'featured' or collection.handle == 'curses' or collection.handle == 'extra' or collection.handle == 'carousel' or collection.handle == 'delivery' %}
             {% include 'collection-grid-item' %}
           {% endunless %}
 

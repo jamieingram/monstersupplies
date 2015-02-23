@@ -40,3 +40,5 @@ Product in homepage carousel - if there is an image with the alt text "desktop_c
 Featured blog items - for other featured content you need to create a new blog post in the "featured" blog category. The Content is used in the carousel, and the excerpt must contain JUST two images - the desktop one first, followed by the mobile one. Link label and Link Target are also used in the carousel.
 
 If a product is in the  "extra" collection it will appear in the basket as a potential extra item to add (in the Why not treat yourself section of the page)
+
+For collect in store - create a product called "collect in store" with type delivery with unlimited stock and weight of 1000kg. Then create a shipping option that is free for anything over 1000kg.

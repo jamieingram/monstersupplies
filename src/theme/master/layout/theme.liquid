@@ -15,6 +15,17 @@
     {% assign current_url = product.url %}
 {% endcase %}
 
+{% assign cart_count = 0 %}
+
+{% for item in cart.items %}
+  {% unless item.product.type == "curse" or item.product.type == "delivery" %}
+    {% assign cart_count = cart_count | plus:1  %}
+    {{ cart_count }}
+  {% endunless %}
+{% endfor %}
+
+
+
 <!doctype html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
@@ -112,7 +123,7 @@
               {% include 'search-bar' %}
             </div>
             <a href="/cart" class="basket-link" id="cartToggle">
-              Casket (<span id="cartCount">{{ cart.item_count }}</span>)
+              Casket (<span id="cartCount">{{ cart_count }}</span>)
             </a>
           </p>
         </div>

@@ -310,6 +310,7 @@
         }
 
         var postage_dropdown = $('.js-postage-select');
+        var store_delivery_id = postage_dropdown.attr('data-item-id');
         var delivery_cost = $('.delivery-cost');
         var total_amount = $('.basket-total-amount');
         //
@@ -319,33 +320,35 @@
             var basket_total = 0;
             var costs = $('.js-product-cost');
             $.each(costs, function(index, cost) {
-                basket_total += Number($(cost).text().substr(1));
+                basket_total += 100 * Number($(cost).text().substr(1));
             });
 
-            var postage = 0;
+            window.postage = 0;
 
             if (postage_dropdown.val() == "home") {
                 //calculate correct postage
-                var postage = calculatePostage(basket_total);
-                
+                window.postage = calculatePostage(basket_total);
+                Shopify.AjaxifyCart.updateBasket(store_delivery_id,0);
+            }else if (postage_dropdown.val() == "shop") {
+                Shopify.AjaxifyCart.addToBasket(store_delivery_id,1);
             }
-            var total = basket_total + postage;
-            total = "£" + total;
+            var total = basket_total + window.postage;
+            total = Shopify.formatMoney(total, "£\{\{amount\}\}");
             total = total.replace('.00','');
             total_amount.html(total);
             //
-            var postage = "£"+postage;
+            postage = Shopify.formatMoney(window.postage, "£\{\{amount\}\}");
             postage = postage.replace('.00','');
             delivery_cost.html(postage);
             
         }
 
         var calculatePostage = function(basket_total) {
-            var postage = 3.5;
-            if (basket_total > 25) {
-                postage = 7;
+            var postage = 350;
+            if (basket_total > 2500) {
+                postage = 700;
             }
-            if (basket_total > 50) {
+            if (basket_total > 5000) {
                 postage = 0;
             }
             return postage;
