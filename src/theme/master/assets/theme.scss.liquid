@@ -2526,11 +2526,17 @@ a.basket-link {
   margin-bottom:$gutter;
 
   p {
-    display:inline-block;
     margin-right:24px;
     @include at-query($max, $small) {
       margin-left:12px;
       margin-right:12px;
+    }
+  }
+
+  .btn {
+    margin-right:12px;
+    @include at-query($max, $small) {
+      margin-bottom:12px;
     }
   }
 

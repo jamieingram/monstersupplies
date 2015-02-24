@@ -4,9 +4,9 @@
 {% endif %}
 
 {% assign is_new = false %}
-{% assign date_published = product.published_at | date:'%s' %}
+{% assign date_created = product.created_at | date:'%s' %}
 {% assign date_now = 'now' | date:'%s' %}
-{% assign date_difference = date_now | minus: date_published | divided_by: 60 | divided_by: 60 | divided_by: 24 %}
+{% assign date_difference = date_now | minus: date_created | divided_by: 60 | divided_by: 60 | divided_by: 24 %}
 {% if date_difference < 30 %}
   {% assign is_new = true %}
 {% endif %}

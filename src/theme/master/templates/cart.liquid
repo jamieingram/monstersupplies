@@ -11,13 +11,13 @@
 
       <div class="full-width basket-summary">
         <p>Here are the items you have selected so far. Please note, magic beans are no longer accepted as payment, and we currently deliver to the UK only.</p>
-        <input type="submit" name="checkout" class="btn" value="Proceed to checkout">
+        <a href="#delivery-options" class="btn btn-black">Delivery options</a><input type="submit" name="checkout" class="btn" value="Proceed to checkout">
       </div>
 
       <div class="basket-contents">
 
         {% for item in cart.items %}
-          {% unless item.product.type == 'curse' or item.product.type == 'delivery' %}
+          {% unless item.product.type == 'curse' or item.product.type == 'Curse' or item.product.type == 'delivery' %}
             <div class="cart-row indented-row js-product-row">
               <div class="grid-uniform product-detail-item side-padding">
 
@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="grid-item one-fifth">
-                      <h5 class="product-cost js-product-cost">{{ item.price | money  | remove: '.00'}}</h5>
+                      <h5 class="product-cost js-product-cost">{{ item.price | times: item.quantity | money  | remove: '.00'}}</h5>
                     </div>
 
                   </div>
@@ -106,7 +106,7 @@
 
         <div class="grid-item cart-row no-bottom-margin">
           <div class="grid-item large--one-half">
-            <h3>Delivery cost</h3>
+            <a name="delivery-options"></a><h3>Delivery cost</h3>
             <p>Our zombie volunteers pack and send orders every Saturday by 1st Class Royal Mail. A little slower than you might have expected, perhaps, but an excellent service.</p>
             <p>Alternatively, choose to collect your order from our Hoxton Street store <strong>for free!</strong></p>
             <p>Free UK delivery on all orders over £50.</p>

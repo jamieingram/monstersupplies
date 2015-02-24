@@ -18,12 +18,10 @@
 {% assign cart_count = 0 %}
 
 {% for item in cart.items %}
-  {% unless item.product.type == "curse" or item.product.type == "delivery" %}
+  {% unless item.product.type == "curse" or item.product.type == "Curse" or item.product.type == "delivery" %}
     {% assign cart_count = cart_count | plus:1  %}
-    {{ cart_count }}
   {% endunless %}
 {% endfor %}
-
 
 
 <!doctype html>

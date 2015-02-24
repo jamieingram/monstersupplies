@@ -57,10 +57,15 @@
     /* Carousel */
 
     $(window).on('initialise', function() {
+        console.log("init carousel");
         /* homepage carousel */
         var carousel = $(".feature-carousel");
         var is_about = $(carousel).hasClass('about-carousel');
         var is_volunteer = $(carousel).hasClass('volunteer-carousel');
+        var arrow_carousel = $('.js-arrow-carousel');
+        var products_carousel = $('.product-carousel');
+        var carousel_thumbs = $('.js-carousel-thumb');
+
         //store the carousel data
         var carouselItems = carousel.find(".carousel-item");
         if (carouselItems.length > 0) {
@@ -133,34 +138,35 @@
             }
         });
 
-        /* product carousel */
-        var arrow_carousel = $('.js-arrow-carousel');
-        var products_carousel = $('.product-carousel');
-        var carousel_thumbs = $('.js-carousel-thumb');
-        var left_arrow = $('.arrow-left');
-        var right_arrow = $('.arrow-right');
+        /* arrows */
+        var left_arrows = $('.arrow-left');
+        var right_arrows = $('.arrow-right');
         //
-        if (left_arrow && right_arrow) {
-            var left_arrow_link = left_arrow.find('a');
-            var right_arrow_link = right_arrow.find('a');
-            left_arrow_link.on('click', function (e) {
-                e.preventDefault();
-                arrow_carousel.trigger('owl.prev');
-                hideArrows();
+        if (left_arrows.length > 0 && right_arrows.length > 0) {
+            $.each($('.arrow-left-link'), function(index, link) {
+                
+                $(link).on('click', function (e) {
+                    e.preventDefault();
+                    arrow_carousel.trigger('owl.prev');
+                    hideArrows();
+                });
             });
 
-            right_arrow_link.on('click', function (e) {
-                e.preventDefault();
-                arrow_carousel.trigger('owl.next');
-                hideArrows();
+            $.each($('.arrow-right-link'), function(index, link) {
+                
+                $(link).on('click', function (e) {
+                    e.preventDefault();
+                    arrow_carousel.trigger('owl.next');
+                    hideArrows();
+                });
             });
         }
 
         var hideArrows = function() {
-            left_arrow.css('opacity', 0);
-            left_arrow.delay(800).animate({'opacity':1},200);
-            right_arrow.css('opacity', 0);
-            right_arrow.delay(800).animate({'opacity':1},200);
+            left_arrows.css('opacity', 0);
+            left_arrows.delay(800).animate({'opacity':1},200);
+            right_arrows.css('opacity', 0);
+            right_arrows.delay(800).animate({'opacity':1},200);
         }
 
         if (products_carousel) {

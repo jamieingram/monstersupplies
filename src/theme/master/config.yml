@@ -1,1 +1,8 @@
-../../config/stage/config.yml
+---
+:api_key: a2122e7feb9d2eb77c4c15136bec7c70
+:password: 000db580496b5ae5f02824566a30fac5
+:store: monstersupplies.myshopify.com
+:theme_id: 10195596
+:whitelist_files:
+- theme/
+:ignore_files: 

@@ -40,8 +40,8 @@
             <div class="stripe-holder"><div class="stripe secondary-font">Sold Out</div></div>
             {% endif %}
             <div class="carousel-navigation">
-              <div class="arrow-left"><a href=""><img src="{{ 'arrow-left.png' | asset_url }}" alt="previous image"></a></div>
-              <div class="arrow-right"><a href=""><img src="{{ 'arrow-right.png' | asset_url }}" alt="next image"></a></div>
+              <div class="arrow-left"><a class="arrow-left-link" href=""><img src="{{ 'arrow-left.png' | asset_url }}" alt="previous image"></a></div>
+              <div class="arrow-right"><a class="arrow-right-link" href=""><img src="{{ 'arrow-right.png' | asset_url }}" alt="next image"></a></div>
             </div>
             <div class="product-carousel js-arrow-carousel">
               {% for image in product.images %}
@@ -202,20 +202,28 @@
       </div>
       <div class="grid-item large--one-half">
         <div class="collection-items top-line">
-          <h3>More from the {{ collection.title }} range</h3>
+          
+          {% assign collection_title = collection.title %}
+          {% assign current_product = product %}
+
+          {% if collection.handle == 'view-all' %}
+            {% assign collection_title = 'complete' %}
+          {% endif %}
+          
+          <h3>More from the {{ collection_title }} range</h3>
           <div class="grid-uniform">
-            {% for product in collection.products limit:6 %}
-
-              {% include 'product-grid-item-small' %}
-
+            {% assign counter = 0 %}
+            {% for product in collection.products limit:7 %}
+              {% unless product.handle == current_product.handle or counter > 5 %}
+                {% include 'product-grid-item-small' %}
+                {% assign counter = counter | plus: 1 %}
+              {% endunless %}
             {% endfor %}
           </div>
         </div>
         <div class="collection-items top-line no-bottom-margin">
           <h3>Other monsters also bought</h3>
-
-          {% include 'related-products' %}
-
+            {% include 'related-products' %}
         </div>
       </div>
     </div>
