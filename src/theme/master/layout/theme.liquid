@@ -19,7 +19,7 @@
 
 {% for item in cart.items %}
   {% unless item.product.type == "curse" or item.product.type == "Curse" or item.product.type == "delivery" %}
-    {% assign cart_count = cart_count | plus:1  %}
+    {% assign cart_count = cart_count | plus:item.quantity  %}
   {% endunless %}
 {% endfor %}
 
@@ -73,6 +73,7 @@
   {% endcomment %}
 
   {{ '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js' | script_tag }}
+  {{ 'modernizr.min.js'  | asset_url | script_tag }}
 
   {% if template contains 'customers' %}
     {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
@@ -103,11 +104,11 @@
       <div class="burger-trigger"></div>
       <div class="translation-options">
         <ul>
-          <li><a href="#" data-url="{{ current_url }}?lang=humans">Humans</a></li>
-          <li><a href="#" data-url="{{ current_url }}?lang=mummies">Mummies</a></li>
-          <li><a href="#" data-url="{{ current_url }}?lang=vampire-bats">Vampire Bats</a></li>
-          <li><a href="#" data-url="{{ current_url }}?lang=werewolves">Werewolves</a></li>
-          <li><a href="#" data-url="{{ current_url }}?lang=zombies">Zombies</a></li>
+          <li><a class="sliding-middle-out sliding-middle-out-white" href="#" data-url="{{ current_url }}?lang=humans">Humans</a></li>
+          <li><a class="sliding-middle-out sliding-middle-out-white" href="#" data-url="{{ current_url }}?lang=mummies">Mummies</a></li>
+          <li><a class="sliding-middle-out sliding-middle-out-white" href="#" data-url="{{ current_url }}?lang=vampire-bats">Vampire Bats</a></li>
+          <li><a class="sliding-middle-out sliding-middle-out-white" href="#" data-url="{{ current_url }}?lang=werewolves">Werewolves</a></li>
+          <li><a class="sliding-middle-out sliding-middle-out-white" href="#" data-url="{{ current_url }}?lang=zombies">Zombies</a></li>
         </ul>
       </div>
     </div>
@@ -120,8 +121,8 @@
             <div class="nav-search">
               {% include 'search-bar' %}
             </div>
-            <a href="/cart" class="basket-link" id="cartToggle">
-              Casket (<span id="cartCount">{{ cart_count }}</span>)
+            <a href="/cart" class="basket-link sliding-middle-out" id="cartToggle">
+              Casket (<span class="cartCount">{{ cart_count }}</span>)
             </a>
           </p>
         </div>

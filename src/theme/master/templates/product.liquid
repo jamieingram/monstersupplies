@@ -24,7 +24,13 @@
           If we have more than 1, show it then loop through the rest as thumbnails.
         {% endcomment %}
         {% assign meta_has_rollover = product.metafields.custom_fields.has_rollover %}
-        {% if product.images.size == 1 %}
+        {% assign num_images = 0 %}
+        {% for image in product.images %}
+          {% unless image.alt contains 'carousel' %}
+            {% assign num_images = num_images | plus: 1 %}
+          {% endunless %}
+        {% endfor %}
+        {% if num_images == 1 %}
 
           <div class="product-photo-container">
             <img src="{{ product.images[0].src | product_img_url: 'grande' }}" alt="{{ product.images[0].alt }}">

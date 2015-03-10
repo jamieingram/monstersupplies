@@ -852,6 +852,33 @@ sup {
   text-decoration: line-through;
 }
 
+.sliding-middle-out {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 0px;
+}
+
+.sliding-middle-out:after {
+  content: '';
+  display: block;
+  margin: auto;
+  height: 1px;
+  width: 0px;
+  background: transparent;
+  transition: width .3s ease, background-color .3s ease;
+}
+
+.sliding-middle-out:hover:after {
+  width: 100%;
+  background: black;
+}
+
+.sliding-middle-out-white:hover:after {
+  width: 100%;
+  background: white;
+}
+
+
 /*============================================================================
   #Forms
 ==============================================================================*/
@@ -1714,7 +1741,7 @@ input[type="text"]:focus{
 a.basket-link {
   text-decoration: none;
   text-transform: uppercase;
-  font-size: em(12px);
+  font-size: em(14px);
 
   @include at-query ($max, $small) {
     font-size:1em;
@@ -2115,6 +2142,14 @@ a.basket-link {
     }
 
 }
+.carousel-home {
+  .carousel-navigation {
+    @include at-query ($max, $small) {
+      top:24%;
+    }
+  }
+}
+
 .delivery-promo {
   background-color:$darkGreen;
   text-align: center;
@@ -2462,6 +2497,7 @@ a.basket-link {
 .cart-row {
   padding-top: $gutter;
   padding-bottom:12px;
+  padding-right:12px;
 
   a {
     color: $colorTextBody;
@@ -2628,7 +2664,7 @@ input[type="text"] {
     }
   }
 
-  .product-cost, .delivery-cost {
+  .curse-cost, .delivery-cost {
     font-size:em(26px);
     line-height:1.1em;
     display:inline-block;
@@ -2858,14 +2894,23 @@ input[type="text"] {
   padding-left:$gutter;
   padding-right:$gutter;
   width:100%;
-  top:48%;
+  top:46%;
 
   .arrow-left {
+    cursor: pointer;
+    cursor: hand;
     float:left;
   }
 
   .arrow-right {
+    cursor: pointer;
+    cursor: hand;
     float:right;
+  }
+
+  @include at-query ($max, $small) {
+    padding-left:$gutter * 0.5;
+    padding-right:$gutter * 0.5;
   }
 }
 
@@ -3709,6 +3754,15 @@ img {
 .hieroglyphics {
   font-family: 'Hieroglyphics';
 }
+
+
+.grow {
+  
+}
+
+.grow:hover {
+  
+}
 /* 
  * 	Core Owl Carousel CSS File
  *	v1.3.3
@@ -3818,14 +3872,14 @@ img {
 	}
 
 	@include at-query ($max, $small) {
-		padding-top:34px;
+		padding-top:42px;
 		position: relative;
 		width:100%;
 		padding-left:10px;
 		padding-right:10px;
 		left:0;
 		top:0;
-		height:220px;
+		height:228px;
 
 		p {
 			font-size:em(18px);
@@ -3860,14 +3914,13 @@ img {
 	position: absolute;
 	bottom:8%;
 	width:34%;
-	left:10%;
+	left:8%;
 
 	@include at-query ($max, $small) {
 		left:0;
 		margin: 0px auto;
-		bottom:190px;
+		bottom:184px;
 		width:100%;
-		padding-left:$gutter;
 	}
 }
 
@@ -3972,11 +4025,15 @@ img {
         }
 
         .arrow-left {
+            cursor: pointer;
+            cursor: hand;
             margin-top:10px;
             float:left;
         }
 
         .arrow-right {
+            cursor: pointer;
+            cursor: hand;
             margin-top:10px;
             float:right;
         }

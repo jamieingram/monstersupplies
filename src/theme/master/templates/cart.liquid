@@ -11,61 +11,61 @@
 
       <div class="full-width basket-summary">
         <p>Here are the items you have selected so far. Please note, magic beans are no longer accepted as payment, and we currently deliver to the UK only.</p>
-        <a href="#delivery-options" class="btn btn-black">Delivery options</a><input type="submit" name="checkout" class="btn" value="Proceed to checkout">
+        <!--<a href="#delivery-options" class="btn btn-black">Delivery options</a>--><input type="submit" name="checkout" class="btn" value="Proceed to checkout">
       </div>
 
       <div class="basket-contents">
 
-        {% for item in cart.items %}
-          {% unless item.product.type == 'curse' or item.product.type == 'Curse' or item.product.type == 'delivery' %}
-            <div class="cart-row indented-row js-product-row">
-              <div class="grid-uniform product-detail-item side-padding">
+      
+      {% for item in cart.items %}
+        {% assign product_class = '' %}
+        {% if item.product.type == 'curse' or item.product.type == 'Curse' or item.product.type == 'delivery' %}
+          {% assign product_class = 'hidden' %}
+        {% endif %}
+        <div class="cart-row indented-row js-product-row {{ product_class }}">
+          <div class="grid-uniform product-detail-item side-padding">
 
-                <div class="grid-item large--one-quarter medium-down--one-third">                
-                      <a href="{{ item.product.url | within: collections.all }}">
+            <div class="grid-item large--one-quarter medium-down--one-third">                
+              <a href="{{ item.product.url | within: collections.all }}">
 
-                        <img src="{{ item.product.featured_image.src | product_img_url: 'medium' }}" alt="{{ item.title | escape }}">
-                      </a>
+                <img src="{{ item.product.featured_image.src | product_img_url: 'medium' }}" alt="{{ item.title | escape }}">
+              </a>
+            </div>
+
+            <div class="grid-item large--three-quarters medium-down--two-thirds">
+              <div class="grid-uniform">
+
+                <div class="grid-item three-fifths">
+                  <h5 class="product-title">
+                    <a href="{{ item.product.url }}">
+                      {{ item.product.title }}
+
+                      {% if item.product.variants.size != 0 %}
+                        {% unless item.variant.title contains 'Default' %}
+                          <br>
+                           <small>{{ item.variant.title }}</small>
+                        {% endunless %}
+                      {% endif %}
+                    </a>
+                  </h5>
+                  <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="btn btn--grey" data-id="{{ item.id }}"><span class="close-button-white">&nbsp;</span>Remove</a>
                 </div>
-
-                <div class="grid-item large--three-quarters medium-down--two-thirds">
-                  <div class="grid-uniform">
-
-                    <div class="grid-item three-fifths">
-                      <h5 class="product-title">
-                        <a href="{{ item.product.url }}">
-                          {{ item.product.title }}
-
-                          {% if item.product.variants.size != 0 %}
-                            {% unless item.variant.title contains 'Default' %}
-                              <br>
-                               <small>{{ item.variant.title }}</small>
-                            {% endunless %}
-                          {% endif %}
-                        </a>
-                      </h5>
-                      <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="btn btn--grey" data-id="{{ item.id }}"><span class="close-button-white">&nbsp;</span>Remove</a>
-                    </div>
-                    <div class="grid-item one-fifth quantity-adjust">
-                      {% comment %}
-                        Added data-id for the ajax cart implementation only.
-                      {% endcomment %}
-                      <span class="arrow arrow-up"></span>
-                      <input type="text" name="updates[]" id="updates_{{ item.id }}" class="no-border-number quantity-input" value="{{ item.quantity }}" autocomplete="off" min="0" data-id="{{ item.id }}" data-cost="{{ item.price }}">
-                      <span class="arrow arrow-down"></span>
-                    </div>
-
-                    <div class="grid-item one-fifth">
-                      <h5 class="product-cost js-product-cost">{{ item.price | times: item.quantity | money  | remove: '.00'}}</h5>
-                    </div>
-
-                  </div>
+                <div class="grid-item one-fifth quantity-adjust">
+                  {% comment %}
+                    Added data-id for the ajax cart implementation only.
+                  {% endcomment %}
+                  <span class="arrow arrow-up"></span>
+                  <input type="text" name="updates[{{ item.id }}]" id="updates_{{ item.id }}" class="no-border-number quantity-input" value="{{ item.quantity }}" autocomplete="off" min="0" data-id="{{ item.id }}" data-cost="{{ item.price }}">
+                  <span class="arrow arrow-down"></span>
                 </div>
-
+                <div class="grid-item one-fifth">
+                  <h5 class="product-cost js-product-cost">{{ item.price | times: item.quantity | money  | remove: '.00'}}</h5>
+                </div>
               </div>
-            </div> <!-- end cart-row //-->
-          {% endunless %}
-        {% endfor %}
+            </div>
+          </div>
+        </div> <!-- end cart-row //-->
+      {% endfor %}
       </div>
 
       <div class="grid-uniform">
@@ -98,7 +98,7 @@
                 </ul>
               </div>
               <div class="grid-item large--two-fifths medium--one-half">
-                <h5 class="product-cost js-product-cost">{{ total_curse_cost | money | remove: '.00' }}</h5>
+                <h5 class="curse-cost js-product-cost">{{ total_curse_cost | money | remove: '.00' }}</h5>
               </div>
             </div>
           </div>
@@ -107,14 +107,17 @@
         <div class="grid-item cart-row no-bottom-margin">
           <div class="grid-item large--one-half">
             <a name="delivery-options"></a><h3>Delivery cost</h3>
-            <p>Our zombie volunteers pack and send orders every Saturday by 1st Class Royal Mail. A little slower than you might have expected, perhaps, but an excellent service.</p>
-            <p>Alternatively, choose to collect your order from our Hoxton Street store <strong>for free!</strong></p>
+            <p>Our zombie volunteers pack and send orders weekly by 1st Class Royal Mail. A little slower than you might have expected, perhaps, but an excellent service.</p>
+            <P>Orders under £25 - <strong>£3.50</strong></p>
+            <P>Orders between £25 - £50 - <strong>£7</strong></p>
+            <!--<p>Alternatively, choose to collect your order from our Hoxton Street store <strong>for free!</strong></p>-->
             <p>Free UK delivery on all orders over £50.</p>
             <p><a href="#" class="js-delivery-info">Delivery and returns information.</a></p>
             
           </div>
           <div class="grid-item large--one-half delivery-options-holder no-bottom-margin">
             <div class="grid-uniform">
+              <!--
               <div class="grid-item large--three-fifths medium--one-half delivery-options">
                 {% assign delivery_products = collections.delivery.products %}
                 {% for product in delivery_products %}
@@ -136,6 +139,7 @@
               <div class="grid-item large--two-fifths medium--one-half delivery-cost-amount">
                 <h5 class="delivery-cost">{{ delivery_cost | money | remove: '.00' }}</h5>
               </div>
+              -->
 
               {% assign attribute = 'is-gift' %}
 
@@ -145,7 +149,7 @@
                   <p>If you're sending your order directly to the recipient, we won't include the invoice.</p>
                 </div>
                 <div class="basket-total">
-                  <h5 class="basket-total-label">Total</h5><div class="basket-total-amount">{{ cart.total_price | plus: delivery_cost | money | remove: '.00'}}</div>
+                  <h5 class="basket-total-label">Total</h5><div class="basket-total-amount">{{ cart.total_price | money | remove: '.00'}}</div>
                 </div>
 
                 {% comment %}
@@ -167,20 +171,21 @@
 
               </div>
             </div>
+          </div>
         </div>
 
       </div>
     </form>
 
-    <div class="grid-item no-bottom-margin">
-      <div class="delivery-promo delivery-promo-small secondary-font grid-item no-bottom-margin">
+    <div class="full-width no-bottom-margin">
+      <div class="delivery-promo delivery-promo-small secondary-font no-bottom-margin">
         <p>Free UK delivery on orders over &pound;50</p>
       </div>
     </div>
 
     {% capture index %}{{ 'now' | date: '%S' | times: collections.extra.products.size | divided_by: 60 }}{% endcapture %}
 
-    <div class="grid-item no-bottom-margin">
+    <div class="full-width no-bottom-margin">
       {% for product in collections.extra.products offset:index limit:1 %}
       {% assign variant = product.selected_or_first_available_variant %}
         {% for collection in product.collections %}
@@ -215,7 +220,6 @@
       </div>
       {% endfor %}
     </div>
-    </form>
 
   {% else %}
 

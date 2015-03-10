@@ -96,14 +96,23 @@
   padding-left:$gutter;
   padding-right:$gutter;
   width:100%;
-  top:48%;
+  top:46%;
 
   .arrow-left {
+    cursor: pointer;
+    cursor: hand;
     float:left;
   }
 
   .arrow-right {
+    cursor: pointer;
+    cursor: hand;
     float:right;
+  }
+
+  @include at-query ($max, $small) {
+    padding-left:$gutter * 0.5;
+    padding-right:$gutter * 0.5;
   }
 }
 

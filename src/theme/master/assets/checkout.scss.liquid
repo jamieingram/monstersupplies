@@ -421,6 +421,33 @@ sup {
 .strikethrough {
   text-decoration: line-through;
 }
+
+.sliding-middle-out {
+  display: inline-block;
+  position: relative;
+  padding-bottom: 0px;
+}
+
+.sliding-middle-out:after {
+  content: '';
+  display: block;
+  margin: auto;
+  height: 1px;
+  width: 0px;
+  background: transparent;
+  transition: width .3s ease, background-color .3s ease;
+}
+
+.sliding-middle-out:hover:after {
+  width: 100%;
+  background: black;
+}
+
+.sliding-middle-out-white:hover:after {
+  width: 100%;
+  background: white;
+}
+
 /* FONTS */
 
 /* latin */

@@ -57,7 +57,6 @@
     /* Carousel */
 
     $(window).on('initialise', function() {
-        console.log("init carousel");
         /* homepage carousel */
         var carousel = $(".feature-carousel");
         var is_about = $(carousel).hasClass('about-carousel');
@@ -132,9 +131,9 @@
 
         $(document.documentElement).keyup(function(event) {
             if (event.keyCode == 37) {
-                    carousel.trigger('owl.prev');
+                carousel.trigger('owl.prev');
             } else if (event.keyCode == 39) {
-                    carousel.trigger('owl.next');
+                carousel.trigger('owl.next');
             }
         });
 
@@ -143,18 +142,18 @@
         var right_arrows = $('.arrow-right');
         //
         if (left_arrows.length > 0 && right_arrows.length > 0) {
-            $.each($('.arrow-left-link'), function(index, link) {
-                
-                $(link).on('click', function (e) {
+            $.each(left_arrows, function(index, arrow) {
+                var link = $(arrow).find('a.arrow-left-link');
+                link.on('click', function (e) {
                     e.preventDefault();
                     arrow_carousel.trigger('owl.prev');
                     hideArrows();
                 });
             });
 
-            $.each($('.arrow-right-link'), function(index, link) {
-                
-                $(link).on('click', function (e) {
+            $.each(right_arrows, function(index, arrow) {
+                var link = $(arrow).find('a.arrow-right-link');
+                link.on('click', function (e) {
                     e.preventDefault();
                     arrow_carousel.trigger('owl.next');
                     hideArrows();
@@ -259,16 +258,18 @@
             arrow_up.on('click', function (e) {
                 quantity += 1;
                 quantity_input.val(quantity);
-                Shopify.AjaxifyCart.updateBasket(product_id,quantity);
+                //Shopify.AjaxifyCart.updateBasket(product_id,quantity);
                 //update the price inline
                 updateProductTotal(quantity * product_price, product_price_output);
+                recalculateCart();
             });
 
             arrow_down.on('click', function (e) {
                 if (quantity > 1) quantity -= 1;
                 quantity_input.val(quantity);
-                Shopify.AjaxifyCart.updateBasket(product_id,quantity);
+                //Shopify.AjaxifyCart.updateBasket(product_id,quantity);
                 updateProductTotal(quantity * product_price, product_price_output);
+                recalculateCart();
             });
         });
 
@@ -298,7 +299,7 @@
         }
 
         var updateCurseTotal = function() {
-            var curses_amount = $('.curse-options-container .product-cost');
+            var curses_amount = $('.curse-options-container .curse-cost');
             var total = 0;
             $.each(curses, function(index, curse) {
                 var cost = parseInt($(this).find('label').attr('data-cost'));
@@ -312,7 +313,7 @@
             var price = "£"+total;
             price = price.replace('.00','');
             curses_amount.html(price);
-            recalculateCart();
+            //recalculateCart();
         }
 
         var postage_dropdown = $('.js-postage-select');
@@ -329,6 +330,7 @@
                 basket_total += 100 * Number($(cost).text().substr(1));
             });
 
+            /*
             window.postage = 0;
 
             if (postage_dropdown.val() == "home") {
@@ -338,14 +340,17 @@
             }else if (postage_dropdown.val() == "shop") {
                 Shopify.AjaxifyCart.addToBasket(store_delivery_id,1);
             }
-            var total = basket_total + window.postage;
-            total = Shopify.formatMoney(total, "£\{\{amount\}\}");
+            basket_total = basket_total + window.postage;
+            */
+            var total = Shopify.formatMoney(basket_total, "£\{\{amount\}\}");
             total = total.replace('.00','');
             total_amount.html(total);
             //
+            /*
             postage = Shopify.formatMoney(window.postage, "£\{\{amount\}\}");
             postage = postage.replace('.00','');
             delivery_cost.html(postage);
+            */
             
         }
 
