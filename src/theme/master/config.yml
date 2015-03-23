@@ -1,8 +1,8 @@
 ---
-:api_key: a2122e7feb9d2eb77c4c15136bec7c70
-:password: 000db580496b5ae5f02824566a30fac5
-:store: monstersupplies.myshopify.com
-:theme_id: 10195596
+:api_key: 1ace33f7d35d534db18297c898221c18
+:password: b80c6c528818935aee6d82407acfeef1
+:store: monster-supplies.myshopify.com
+:theme_id: 9208991
 :whitelist_files:
 - theme/
-:ignore_files: 
+:ignore_files:

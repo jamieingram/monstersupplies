@@ -54,6 +54,21 @@
         });
     });
 
+    /* links */
+    $(window).on('initialise', function() {
+        if (!Modernizr.touch) {
+            //add the rollover effect to the links
+            var translation_options = $('.translation-options');
+            var transition_links = translation_options.find('a');
+            $.each(transition_links, function(index, link) {
+                $(link).addClass('sliding-middle-out sliding-middle-out-white');
+            });
+
+            var underlined_links = $('.js-sliding-middle-out');
+            underlined_links.addClass('sliding-middle-out');
+        }
+    });
+
     /* Carousel */
 
     $(window).on('initialise', function() {

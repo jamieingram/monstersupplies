@@ -1,10 +1,10 @@
 <div class="navigation">
   <ul class="mobile-nav">
-    <li class="mobile-nav-item nav-toggle grid-item small--one-third"><a class="sliding-middle-out" href="#">Menu</a></li>
+    <li class="mobile-nav-item nav-toggle grid-item small--one-third"><a class="js-sliding-middle-out" href="#">Menu</a></li>
     <li class="mobile-nav-item grid-item small--one-third">
-      <a href="/cart" class="basket-link" id="cartToggle">Casket (<span class="sliding-middle-out" class="cartCount">{{ cart_count }}</span>)</a>
+      <a href="/cart" class="basket-link" id="cartToggle">Casket (<span class="js-sliding-middle-out" class="cartCount">{{ cart_count }}</span>)</a>
     </li>
-    <li class="mobile-nav-item grid-item small--one-third mobile-nav-search"><a class="sliding-middle-out" href="#">Search</a></li>
+    <li class="mobile-nav-item grid-item small--one-third mobile-nav-search"><a class="js-sliding-middle-out" href="#">Search</a></li>
   </ul>
   <div class="mobile-search-form">
     {% include 'search-bar-mobile' %}
@@ -12,7 +12,7 @@
   <ul class="menu">
     {% for link in linklists.main-menu.links %}
     <li class="nav-item {% if forloop.first %}nav-item-first{% endif %}{% if forloop.last %}nav-item-last{% endif %}">
-      <a class="sliding-middle-out" href="{{ link.url }}">{{ link.title }}</a>
+      <a class="js-sliding-middle-out" href="{{ link.url }}">{{ link.title }}</a>
     </li>
     {% if link.title == 'View all' %}
     <span class="nav-divider"></span>
