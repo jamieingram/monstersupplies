@@ -7,6 +7,12 @@
 
   <div class="grid-uniform">
     <div class="grid-item">
+    {% capture message_size %}{{ settings.homepage_message | size }}{% endcapture %}
+      {% if message_size != '0' %}
+        <div class="postage-promo-banner secondary-font no-bottom-margin">
+          {{ settings.homepage_message }}
+        </div>
+      {% endif %}
       <div class="carousel-holder carousel-home">
         <div class="carousel-navigation">
           <div class="arrow-left"><a class="arrow-left-link" href=""><img src="{{ 'arrow-left.png' | asset_url }}" alt="previous image"></a></div>
