@@ -3,29 +3,34 @@
   {% assign collection_products = collection.products %}
   {% assign meta_related_products = product.metafields.custom_fields.related_products | remove: ' ' %}
   {% if meta_related_products %}
+
     {% assign related_products = meta_related_products | split: ',' %}
+
     {% for related_product in related_products %}
+
+      <!-- looking for {{ related_product }} -->
       {% assign match = false %}
+
       {% for product in collection_products %}
         {% if product.handle == related_product %}
           {% assign match = true %}
           {% include 'related-product' %}
+          {% break %}
         {% endif %}
-      {% endfor %} 
-      
+      {% endfor %}
+
       {% comment %}
         We didn't find a match in the related collection so we look in what we can get from all products
       {% endcomment %}
 
       {% if match == false %}
-      {% for product in all_products %}
-      {% for related_product in related_products %}
-        {% if product.handle == related_product %}
-          {% include 'related-product' %}
-        {% endif %}
-      {% endfor %}
-    {% endfor %}
-    {% endif %}
+        {% for product in all_products %}
+          {% if product.handle == related_product %}
+            {% include 'related-product' %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
 
     {% endfor %}
   {% endif %}
