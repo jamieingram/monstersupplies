@@ -21,7 +21,7 @@
     We have a featured_image, so it's likely a product
   {% endcomment %}
   <div class="grid-item one-third">
-      <a href="{{ item.url }}" title="{{ item.title | escape }}">
+      <a href="{{ item.url | within: item.collections.last }}" title="{{ item.title | escape }}">
         {{ item.featured_image.src | product_img_url: 'medium' | img_tag: item.featured_image.alt }}
       </a>
   </div>
@@ -32,7 +32,7 @@
     If we don't have a featured_image, add a push-- class to keep the alignment the same
   {% endcomment %}
   <div class="grid-item two-thirds {% unless item.featured_image %}push--one-third{% endunless %}">
-    <h4>{{ item.title | link_to: item.url }}</h4>
+    <h4><a href="{{ item.url | within: item.collections.last }}" title="{{ item.title }}">{{ item.title }}</a></h4>
 
     {% comment %}
       To show the price, let's pull what was already done on the product page,
