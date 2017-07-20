@@ -16,7 +16,7 @@
 
       <div class="basket-contents">
 
-      
+
       {% for item in cart.items %}
         {% assign product_class = '' %}
         {% if item.product.type == 'curse' or item.product.type == 'Curse' or item.product.type == 'delivery' %}
@@ -25,7 +25,7 @@
         <div class="cart-row indented-row js-product-row {{ product_class }}">
           <div class="grid-uniform product-detail-item side-padding">
 
-            <div class="grid-item large--one-quarter medium-down--one-third">                
+            <div class="grid-item large--one-quarter medium-down--one-third">
               <a href="{{ item.product.url | within: collections.all }}">
 
                 <img src="{{ item.product.featured_image.src | product_img_url: 'medium' }}" alt="{{ item.title | escape }}">
@@ -69,7 +69,7 @@
       </div>
 
       <div class="grid-uniform">
-        
+
         <div class="grid-item cart-row basket-add-curse grey-border-bottom">
           <div class="grid-item large--one-half">
             <h3>Add a curse to your order</h3>
@@ -107,13 +107,13 @@
         <div class="grid-item cart-row no-bottom-margin">
           <div class="grid-item large--one-half">
             <a name="delivery-options"></a><h3>Delivery cost</h3>
-            <p>Our zombie volunteers pack and send orders weekly by 1st Class Royal Mail. A little slower than you might have expected, perhaps, but an excellent service.</p>
+            <p>Our zombie volunteers pack and send orders twice weekly by 2nd Class Royal Mail. A little slower than you might have expected, perhaps, but an excellent service.</p>
             <P>Orders under £25 - <strong>£3.50</strong></p>
             <P>Orders between £25 - £50 - <strong>£7</strong></p>
             <!--<p>Alternatively, choose to collect your order from our Hoxton Street store <strong>for free!</strong></p>-->
             <p>Free UK delivery on all orders over £50.</p>
             <p><a href="#" class="js-delivery-info">Delivery and returns information.</a></p>
-            
+
           </div>
           <div class="grid-item large--one-half delivery-options-holder no-bottom-margin">
             <div class="grid-uniform">
@@ -154,7 +154,7 @@
 
                 {% comment %}
                   name="update" is required for the update button to work
-                
+
                 <!--<input type="submit" name="update" class="btn-secondary" value="Update basket">-->
                 {% endcomment %}
                 {% comment %}
@@ -197,7 +197,7 @@
         <div class="cart-row indented-row">
           <div class="grid-uniform product-detail-item">
 
-            <div class="grid-item large--one-quarter medium-down--one-third">                
+            <div class="grid-item large--one-quarter medium-down--one-third">
               <a href="{{ product_url }}">
 
                 <img src="{{ product.featured_image.src | product_img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" naptha_cursor="text">
